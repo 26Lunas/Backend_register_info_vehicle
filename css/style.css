@@ -1,16 +1,50 @@
 
 
 
-/* .icono-login{
+:root{
+    --colorAzul: #042c6c;
+    --colorBlancoAzulado: #ced7e38f;
+}
+
+.fondo-login{
+    background: url("../img/img-portada01.jfif") no-repeat;
+    background-size: cover;
+    
+}
+
+.cont-login{
+    border-radius: 1.5em;
+    background: none !important;
+    
+}
+.cont-form-login{
+    background: var(--colorBlancoAzulado) !important;
+    border-radius: 1.5em;
+}
+.cont-form-login h3{
+    color: var(--colorAzul);
+}
+
+.icono-login{
     z-index: 1;
+    /* border: solid 3px red; */
     width: 100px;
     height: 100px;
     background: #0d6efd;
     border-radius: 50%;
     position: relative;
     top: 5vh;
-    left: 38%;
-} */
+    left: 39%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icono-login i{
+    color: white;
+    font-size: 40px;
+}
+
 .cont-creditos{
     /* border: solid 3px red; */
     width: 100%;
