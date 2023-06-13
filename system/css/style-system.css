@@ -1,16 +1,20 @@
-
-
-:root{
+:root {
     --colorBlanco: #fff;
+    --colorAzul: #042c6c;
+    --colorBlancoAzulado: #ced7e38f;
+    --colorAzulClaro: #2596be;
+
 }
-.cont-fisico-placas{
+
+.cont-fisico-placas {
     /* border: solid 3px red; */
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
-.cont-placa{
+
+.cont-placa {
     /* border: solid 1px gray; */
     width: 130px;
     display: flex;
@@ -23,13 +27,25 @@
     cursor: pointer;
     margin: 10px;
 }
-.cont-placa:hover{
+
+.cont-placa:hover {
     transform: scale(1.2);
 }
-.icono-placa{
+
+.icono-placa {
     /* border: solid 3px rgb(44, 3, 35); */
     width: 100%;
 }
-.icono-placa img{
+
+.icono-placa img {
     width: 100%;
+}
+
+.icono-insurance{
+    margin-bottom: 12%;
+}
+
+.label-placa {
+    color: var(--colorAzulClaro);
+    font-weight: bold;
 }
