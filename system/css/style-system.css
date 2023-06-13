@@ -5,7 +5,9 @@
     --colorAzulClaro: #2596be;
 
 }
-
+.logo{
+    width: 55px;
+}
 .cont-fisico-placas {
     /* border: solid 3px red; */
     width: 100%;
@@ -62,4 +64,14 @@
 .label-placa {
     color: var(--colorAzulClaro);
     font-weight: bold;
+}
+/* -------------------------------- */
+.cont-logo{
+    /* border: solid 3px red; */
+    width: 120px;
+
+}
+.cont-logo img{
+    width: 100%;
+    object-fit: contain;
 }
