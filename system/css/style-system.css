@@ -1,0 +1,35 @@
+
+
+:root{
+    --colorBlanco: #fff;
+}
+.cont-fisico-placas{
+    /* border: solid 3px red; */
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.cont-placa{
+    /* border: solid 1px gray; */
+    width: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    background: var(--colorBlanco);
+    box-shadow: #00000031 0 1px 15px;
+    cursor: pointer;
+    margin: 10px;
+}
+.cont-placa:hover{
+    transform: scale(1.2);
+}
+.icono-placa{
+    /* border: solid 3px rgb(44, 3, 35); */
+    width: 100%;
+}
+.icono-placa img{
+    width: 100%;
+}
