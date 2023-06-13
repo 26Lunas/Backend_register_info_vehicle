@@ -41,12 +41,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #042c6cd8;
+    background: #042c6c;
+    overflow: hidden;
+    margin-bottom: 12%;
 }
 
 .icono-placa i {
     font-size: 25px;
     color: var(--colorBlanco);
+}
+.icono-placa img{
+    width: 100%;
+    object-fit: contain;
 }
 
 /* .icono-insurance{
