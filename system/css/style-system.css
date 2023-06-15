@@ -12,6 +12,7 @@
 
 .container-main{
     /* border: solid 3px red; */
+    padding-top: 5% !important;
     padding: 0 3%;
     height: 87vh;
     max-height: 87vh;
