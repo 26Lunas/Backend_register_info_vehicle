@@ -38,7 +38,8 @@
                 <!-- <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div> -->
-                <div class="sidebar-brand-text mx-3 cont-text-logo"> <img src="img/img-placas/img-icono-estrella.png" class="logo" alt="">DMV</div>
+                <div class="sidebar-brand-text mx-3 cont-text-logo"> <img src="img/img-placas/img-icono-estrella.png"
+                        class="logo" alt="">DMV</div>
             </a>
 
             <!-- Divider -->
@@ -53,7 +54,7 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-            
+
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="">
@@ -71,7 +72,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-           
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -92,9 +93,9 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-                    
 
-                    
+
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -103,8 +104,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -147,116 +147,114 @@
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
 
-                    <div class="cont-fisico-placas">
-                        <div class="cont-placa">
-                            <div class="icono-placa icono-texasNueva">
-                                <!-- <img src="img/img-placas/icono-TexasNueva.png"> -->
-                                <!-- <i class="fa-solid fa-location-dot"></i> -->
-                                <img src="img/img-placas/img-dmv.jpeg" alt="">
-                            </div>
-                            <label class="label-placa">Texas Nueva</label>
-                        </div>
-                      
-                        <div class="cont-placa">
-                            <div class="icono-placa icono-texasVieja">
-                                <!-- <img src="img/img-placas/icono-TexasVieja.png"> -->
-                                <!-- <i class="fa-solid fa-location-dot"></i> -->
-                                <img src="img/img-placas/img-dmv.jpeg" alt="">
+                    <div class="cont-form-register">
+                        <h2>Generate plate</h2>
+                        <form class="form-register">
+                            <div class="form-vehicle">
+                                <h4>Vehicle information</h4>
+                                <div class="form-campos campos-vehicle">
+                                    <div class="cont-campo campo-1-vehicle">
+                                        <label>Vin:</label>
+                                        <input type="text" disabled class="form-control" id="campoVehicle-vin"
+                                            placeholder="Vin">
+                                        <label>Seller*:</label>
+                                        <input type="text" class="form-control" id="campoVehicle-seller"
+                                            placeholder="Seller">
+                                        <label>Body Style*:</label>
+                                        <select name="" id="campoVehicle-bodyStyle"  class="form-control">
+                                            <option value="--">--</option>
+                                            <option value="PK">PK</option>
+                                        </select>
+                                        <label>Major color*:</label>
+                                        <select name="" id="campoVehicle-majorColor"  class="form-control">
+                                            <option value="--">--</option>
+                                            <option value="White">White</option>
+                                        </select>
 
+                                    </div>
+                                    <div class="cont-campo campo-2-vehicle">
+                                        <label>Sale date*:</label>
+                                        <input type="date" class="form-control" id="campoVehicle-saleDate">
+                                        <label>Deler number*:</label>
+                                        <input type="text" class="form-control" id="campoVehicle-delerNumber"
+                                            placeholder="Daler number">
+                                        <label>Year*:</label>
+                                        <input type="text" class="form-control" id="campoVehicle-year"
+                                            placeholder="Year">
+                                        <label>Minor color:</label>
+                                        <select name="" id="campoVehicle-minorColor"  class="form-control">
+                                            <option value="--">--</option>
+                                            <option value="White">White</option>
+                                            <option value="White">Black</option>
+                                        </select>
+
+                                    </div>
+                                    <div class="cont-campo campo-3-vehicle">
+                                        <label>Days*:</label>
+                                        <select name="" id="campoVehicle-days"  class="form-control">
+                                            <option value="--">--</option>
+                                            <option value="90">90</option>
+                                            <option value="60">60</option>
+                                            <option value="30">30</option>
+                                        </select>
+                                        <label>Make*:</label>
+                                        <input type="text" class="form-control" id="campoVehicle-Make"
+                                            placeholder="Make">
+                                        <label>Model*:</label>
+                                        <input type="text" class="form-control" id="campoVehicle-Model"
+                                            placeholder="Model">
+                                        <label>Miles:</label>
+                                        <input type="text" class="form-control" id="campoVehicle-Miles"
+                                            placeholder="Miles">
+                                        
+
+                                    </div>
+                                </div>
+                                
                             </div>
-                            <label class="label-placa">Texas Vieja</label>
-                        </div>
-                        <div class="cont-placa">
-                            <div class="icono-placa icono-california">
-                                <!-- <img src="img/img-placas/icono-California.png" alt=""> -->
-                                <!-- <i class="fa-solid fa-location-dot"></i> -->
-                                <img src="img/img-placas/img-dmv.jpeg" alt="">
+                            <div class="form-buyer">
+                                <h4>Buyer information</h4>
+                                <div class="form-campos campos-buyer">
+                                    <div class="cont-campo campo-1-campoBuyer">
+                                        <label>Name 1*:</label>
+                                        <input type="text" class="form-control" id="campoBuyer-name1"
+                                            placeholder="Name 1">
+                                        <label>City*:</label>
+                                        <input type="text" class="form-control" id="campoBuyer-city"
+                                            placeholder="City">
+                                        <label>Email*:</label>
+                                        <input type="text" class="form-control" id="campoBuyer-email"
+                                            placeholder="Email">
+
+                                    </div>
+                                    <div class="cont-campo campo-2-campoBuyer">
+                                        <label>Name 2:</label>
+                                        <input type="text" class="form-control" id="campoBuyer-name2" placeholder="Name 2">
+                                        <label>State*:</label>
+                                        <select name="" id="campoBuyer-state"  class="form-control">
+                                            <option value="--">--</option>
+                                            <option value="White">CO:Colorado</option>
+                                            <option value="White">CA:California</option>
+                                        </select>
+                                        <label>Phone:</label>
+                                        <input type="number" class="form-control" id="campoBuyer-phone" placeholder="Phone">
+
+                                    </div>
+                                    <div class="cont-campo campo-3-campoBuyer">
+                                        <label>Adress*:</label>
+                                        <input type="text" class="form-control" id="campoBuyer-adress"
+                                            placeholder="Adress">
+                                        <label>Zip*:</label>
+                                        <input type="text" class="form-control" id="campoBuyer-zip"
+                                            placeholder="Zip">                                    
+
+                                    </div>
+                                </div>
                             </div>
-                            <label class="label-placa">California</label>
-                        </div>
-                        <div class="cont-placa">
-                            <div class="icono-placa icono-colorado">
-                                <!-- <img src="img/img-placas/icono-Colorado.png" alt=""> -->
-                                <!-- <i class="fa-solid fa-location-dot"></i> -->
-                                <img src="img/img-placas/img-dmv.jpeg" alt="">
-                            </div>
-                            <label class="label-placa">Colorado</label>
-                        </div>
-                        <div class="cont-placa">
-                            <div class="icono-placa icono-florida">
-                                <!-- <img src="img/img-placas/icono-Florida.png"> -->
-                                <!-- <i class="fa-solid fa-location-dot"></i> -->
-                                <img src="img/img-placas/img-dmv.jpeg" alt="">
-                            </div>
-                            <label class="label-placa">Florida</label>
-                        </div>
-                        <div class="cont-placa">
-                            <div class="icono-placa icono-inspect">
-                                <!-- <img src="img/img-placas/icono-Inspect.png"> -->
-                                <!-- <i class="fa-solid fa-location-dot"></i> -->
-                                <img src="img/img-placas/img-dmv.jpeg" alt="">
-                            </div>
-                            <label class="label-placa">Inspect</label>
-                        </div>
-                        <div class="cont-placa">
-                            <div class="icono-placa icono-insurance">
-                                <!-- <img src="img/img-placas/icono-Insurance.png"> -->
-                                <!-- <i class="fa-solid fa-location-dot"></i> -->
-                                <img src="img/img-placas/img-dmv.jpeg" alt="">
-                            </div>
-                            <label class="label-placa">Insurance</label>
-                        </div>
-                        <div class="cont-placa">
-                            <div class="icono-placa icono-louisiana">
-                                <!-- <img src="img/img-placas/icono-Louisiana.png"> -->
-                                <!-- <i class="fa-solid fa-location-dot"></i> -->
-                                <img src="img/img-placas/img-dmv.jpeg" alt="">
-                            </div>
-                            <label class="label-placa">Louisiana</label>
-                        </div>
-                        <div class="cont-placa">
-                            <div class="icono-placa icono-maryland">
-                                <!-- <img src="img/img-placas/icono-Maryland.png"> -->
-                                <!-- <i class="fa-solid fa-location-dot"></i> -->
-                                <img src="img/img-placas/img-dmv.jpeg" alt="">
-                            </div>
-                            <label class="label-placa">Maryland</label>
-                        </div>
-                        <div class="cont-placa">
-                            <div class="icono-placa icono-newJersey">
-                                <!-- <img src="img/img-placas/icono-NewJersey.png"> -->
-                                <!-- <i class="fa-solid fa-location-dot"></i> -->
-                                <img src="img/img-placas/img-dmv.jpeg" alt="">
-                            </div>
-                            <label class="label-placa">New Jersey</label>
-                        </div>
-                        <div class="cont-placa">
-                            <div class="icono-placa icono-newMexico">
-                                <!-- <img src="img/img-placas/icono-NewMexico.png"> -->
-                                <!-- <i class="fa-solid fa-location-dot"></i> -->
-                                <img src="img/img-placas/img-dmv.jpeg" alt="">
-                            </div>
-                            <label class="label-placa">New Mexico</label>
-                        </div>
-                        <div class="cont-placa">
-                            <div class="icono-placa icono-newYork">
-                                <!-- <img src="img/img-placas/icono-NewYork.png"> -->
-                                <!-- <i class="fa-solid fa-location-dot"></i> -->
-                                <img src="img/img-placas/img-dmv.jpeg" alt="">
-                            </div>
-                            <label class="label-placa">New York</label>
-                        </div>                        
-                        <div class="cont-placa">
-                            <div class="icono-placa icono-virgina">
-                                <!-- <img src="img/img-placas/icono-Virgina.png"> -->
-                                <!-- <i class="fa-solid fa-location-dot"></i> -->
-                                <img src="img/img-placas/img-dmv.jpeg" alt="">
-                            </div>
-                            <label class="label-placa">Virgina</label>
-                        </div> 
+                        </form>
                     </div>
 
-                
+
 
                 </div>
                 <!-- /.container-fluid -->

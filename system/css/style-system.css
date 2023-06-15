@@ -3,11 +3,27 @@
     --colorAzul: #042c6c;
     --colorBlancoAzulado: #ced7e38f;
     --colorAzulClaro: #2596be;
+    --colorAzulClaroMasOscuro: #2080a3;
 
 }
 .logo{
     width: 55px;
 }
+
+.container-main{
+    /* border: solid 3px red; */
+    padding: 0 3%;
+    height: 87vh;
+    max-height: 87vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.title-texas{
+    color: var(--colorAzul) !important;
+}
+
+
 .cont-fisico-placas {
     /* border: solid 3px red; */
     width: 100%;
@@ -75,3 +91,43 @@
     width: 100%;
     object-fit: contain;
 }
+/* ---------- Form Register -------------*/
+
+.cont-form-register{
+    /* border: solid 3px red; */
+    width: 100%;
+    padding-bottom: 4%;
+}
+.cont-form-register h2{
+    text-align: center;
+    font-weight: bold;
+    color: var(--colorAzul);
+    margin-bottom: 5%;
+}
+.form-register{
+    /* border: solid 3px blue; */
+}
+.form-register h4{
+    color: var(--colorAzul);
+    padding-bottom: 1%;
+    border-bottom: dotted var(--colorAzul) 1.5px;
+}
+
+
+.form-campos{
+    /* border: solid 3px hotpink; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.form-campos label{
+    padding-top: 3%;
+    color: var(--colorAzulClaroMasOscuro);
+}
+.cont-campo{
+    width: 330px;
+    margin: 10px;
+}
+
+/* -------- Fin Form Register -----------*/
