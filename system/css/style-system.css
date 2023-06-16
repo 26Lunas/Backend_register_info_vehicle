@@ -100,35 +100,34 @@
     padding-bottom: 4%;
 }
 .cont-form-register h2{
+    width: 100%;
     text-align: center;
     font-weight: bold;
     color: var(--colorAzul);
     margin-bottom: 5%;
+    font-size: 1.5rem;
 }
 .form-register{
     /* border: solid 3px blue; */
 }
-.form-register h4{
+.form-register h6{
     color: var(--colorAzul);
     padding-bottom: 1%;
-    border-bottom: dotted var(--colorAzul) 1.5px;
+    border-bottom: dashed var(--colorAzul) 1.5px;
+    font-weight: bold !important;
 }
 
-
-.form-campos{
-    /* border: solid 3px hotpink; */
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-.form-campos label{
+.form-vehicle label{
     padding-top: 3%;
-    color: var(--colorAzulClaroMasOscuro);
+    font-size: 13px;
+    color: var(--colorAzul);
+    text-transform: uppercase;
 }
-.cont-campo{
-    width: 330px;
-    margin: 10px;
+.form-vehicle input, .form-vehicle select{
+    border: 1px solid #ced4da;
+    border-radius: 15px;
+    color: #8c8c8c;
+    font-size: 12px;
+    height: 30px;
 }
-
 /* -------- Fin Form Register -----------*/
