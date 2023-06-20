@@ -130,4 +130,26 @@
     font-size: 12px;
     height: 30px;
 }
+
+.section-btn-plates{
+    /* border: solid 3px red; */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+}
+.section-btn-plates .btn{
+    border: solid 1px var(--colorAzul);
+    border-radius: 20px;
+    border-width: 1px;
+    display: flex;
+    font-size: 13px;
+    justify-content: center;
+    line-height: 12px;
+    padding: 8px 15px;
+    color: var(--colorAzul);
+}
+.btn-save{
+    background: var(--colorAzul) !important;
+    color: var(--colorBlanco) !important;
+}
 /* -------- Fin Form Register -----------*/
