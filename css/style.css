@@ -73,9 +73,15 @@
     line-height: 16px;
     border-radius: 15px;
 }
+.btn-login:hover{
+    border: 3px var(--colorAzul) !important;
+    color: var(--colorAzul) !important;
+    outline: none;
+}
 .requerido{
     color: red;
     font-weight: 800;
+   
 }
 
 /* .cont-creditos{
