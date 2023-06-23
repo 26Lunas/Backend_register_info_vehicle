@@ -8,27 +8,37 @@
 }
 
 .fondo-login{
-    background: url("../img/img-portada01.jfif") no-repeat;
+    /* background: url("../img/img-portada01.jfif") no-repeat;
     background-size: cover;
-    
+     */
+    background: #fff;
 }
 
 .cont-login{
-    border-radius: 1.5em;
+    border-radius: .5em;
     background: none !important;
     
 }
 .cont-form-login{
-    background: var(--colorBlancoAzulado) !important;
-    border-radius: 1.5em;
+    background: #21485713 !important;
+    border-radius: .5em;
 }
-.cont-form-login h3{
+.cont-form-login h5{
     color: var(--colorAzul);
+    text-align: center;
+}
+.cont-form-login label{
+    color: var(--colorAzul);
+    align-items: flex-end;
+}
+.cont-form-login input{
+    margin-left: 10px;
 }
 
-.icono-login{
+
+/* .icono-login{
     z-index: 1;
-    /* border: solid 3px red; */
+    /* border: solid 3px red; 
     width: 100px;
     height: 100px;
     background: var(--colorAzul);
@@ -41,7 +51,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-}
+} */
 .icono-login img{
     width: 100%;
     object-fit: contain;
@@ -50,9 +60,22 @@
     color: white;
     font-size: 40px;
 }
+
+.cont-btn-login{
+    /* border: solid 3px red; */
+    display: flex !important;
+    justify-content: end !important;
+    margin-top: 10px;
+}
 .btn-login{
     background: var(--colorAzul);
     color: white;
+    line-height: 16px;
+    border-radius: 15px;
+}
+.requerido{
+    color: red;
+    font-weight: 800;
 }
 
 /* .cont-creditos{

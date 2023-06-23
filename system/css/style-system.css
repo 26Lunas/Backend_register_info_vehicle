@@ -18,6 +18,7 @@
     max-height: 87vh;
     overflow: hidden;
     overflow-y: scroll;
+    background: var(--colorBlanco) !important;
 }
 
 .title-texas{
