@@ -132,6 +132,7 @@
     outline-color: #000 !important;
     font-size: 12px;
     height: 30px;
+    text-transform: uppercase;
 }
 
 .section-btn-plates{
