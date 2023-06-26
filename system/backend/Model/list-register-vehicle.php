@@ -4,7 +4,7 @@
 include('../connection.php');
 
 
-$query = "SELECT * FROM tb_vehicle";
+$query = "SELECT * FROM tb_vehicle  JOIN tb_buyer ON tb_vehicle.id_buyer = tb_buyer.id_buyer";
 
 $result = mysqli_query($Connection, $query);
 if(!$result){
@@ -21,13 +21,19 @@ while ($row = mysqli_fetch_array($result)) {
         'major_color' => $row['major_color'],
         'minor_color' => $row['minor_color'],
         'sale_date' => $row['deler_number'],
-        'date' => $row['date'],
+        'year' => $row['year'],
         'days' => $row['days'],
         'make' => $row['make'],
         'model' => $row['model'],
-        'miles' => $row['miles']
+        'miles' => $row['miles'],
+        'name_1' => $row['name_1'],
+        'city' => $row['city'],
+        'estado' => $row['estado'],
+        'phone' => $row['phone']
+   
 
     );
 }
 $jsonString = json_encode($json);
 echo $jsonString;
+

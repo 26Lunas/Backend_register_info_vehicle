@@ -227,7 +227,40 @@ $(function () {
         alert("Probando el envio de datos...")
         guardar_register_vehicle_info();
         guardar_rigister_buyer_info();
-    })
+    });
+
+    // Backend - list registers placas
+
+    fetch_list_register_placas()
+
+    function fetch_list_register_placas(){
+        $.ajax({
+            type: "GET",
+            url: "backend/Model/list-register-vehicle.php",
+            success: function (response) {
+                    // console.log(response);
+
+                let listRegistro = JSON.parse(response);
+                
+                let plantilla = '';
+                listRegistro.forEach(listRegistro => {
+                    plantilla += 
+                    `
+                    <tr>
+                        <td>${listRegistro.id_vehicle}</td>
+                        <td>${listRegistro.name_1}</td>
+                        <td>${listRegistro.phone}</td>
+                        <td>${listRegistro.estado}</td>
+                        <td><i class="fa-solid fa-pen-to-square"></i> | </td>
+                    </tr>
+
+                    `
+                });
+
+                $('#body-listRegisterVehicle').html(plantilla);
+            }
+        });
+    };
 
 
 
