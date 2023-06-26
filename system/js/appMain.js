@@ -14,4 +14,15 @@ $(function(){
     });
 
 
+    function enviarValorVin() {
+        var valor = $("#id_vin").val();
+        localStorage.setItem("valorEnviado", valor);
+        window.location.href = "form-register.html";
+    };
+
+    $('.btn-buscarVin').click(function() {
+        enviarValorVin();
+    });
+
+
 });
