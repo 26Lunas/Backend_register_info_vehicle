@@ -8,7 +8,6 @@ if($_POST['campoVehicleVin']){
     // Generar número de 6 dígitos aleatorio
     $numeroAleatorio = mt_rand(100000, 999999);
 
-
     $id_buyer = $numeroAleatorio;
     $name_1 = $_POST['campoBuyerName1'];
     $name_2 = $_POST['campoBuyerName2'];
@@ -18,9 +17,6 @@ if($_POST['campoVehicleVin']){
     $buyer_phone = $_POST['campoBuyerPhone'];
     $buyer_adress = $_POST['campoBuyerAdress'];
     $buyer_zip = $_POST['campoBuyerZip'];
-
-    
-
 
     // Query table tb_buyer
     $query_tb_buyer = "INSERT tb_buyer (id_buyer,
@@ -45,7 +41,7 @@ if($_POST['campoVehicleVin']){
     if(!$result_tb_buyer){
         die('Error en la consulta ' . mysqli_error($Connection));
     }else{
-        echo "Datos registrados con exito!";
+        // echo "Datos registrados con exito! tb_buyer";
     }
 
     // Query table tb_vehicle
@@ -58,13 +54,14 @@ if($_POST['campoVehicleVin']){
    $tb_vehicle_sale_date = $_POST['campoVehicleSaleDate'];
    $tb_vehicle_deler_number = $_POST['campoVehicleDelerNamber'];
    $tb_vehicle_year = $_POST['campoVehicleYear'];
+   $tb_vehicle_days = $_POST['campoVehicleDays'];
    $tb_vehicle_make = $_POST['campoVehicleMake'];
    $tb_vehicle_model = $_POST['campoVehicleModel'];
    $tb_vehicle_miles = $_POST['campoVehicleMiles'];
 
 
 
-   $query_tb_vehicle = "INSERT tb_vehivle (vin_vehicle,
+   $query_tb_vehicle = "INSERT tb_vehicle (vin_vehicle,
                                             seller,
                                             body_style,
                                             major_color,
@@ -95,7 +92,7 @@ $result_tb_vehicle = mysqli_query($Connection, $query_tb_vehicle);
     if(!$result_tb_buyer){
         die('Error en la consulta ' . mysqli_error($Connection));
     }else{
-        echo "Datos registrados con exito!";
+        // echo " Datos registrados con exito tb_vehicle!";
     }
 
 

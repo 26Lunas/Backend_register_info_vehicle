@@ -1,12 +1,8 @@
 $(function () {
-
     // console.log("Jquery esta funcionando...");
-
-   
-
     // Backend - list registers placas
 
-    fetch_list_register_placas()
+    fetch_list_register_placas();
 
     function fetch_list_register_placas(){
         $.ajax({
