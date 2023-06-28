@@ -30,7 +30,6 @@ while ($row = mysqli_fetch_array($result)) {
         'city' => $row['city'],
         'estado' => $row['estado'],
         'phone' => $row['phone']
-   
 
     );
 }

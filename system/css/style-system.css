@@ -191,3 +191,35 @@
     margin-left: 10px;
 }
 /* -------- Fin Form Register -----------*/
+
+/* List register Vehicle info */
+
+.view-register, .fa-print, .edit-register, .delete-register{
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+.view-register:hover{
+    color: rgba(31, 139, 31, 0.685);
+}
+.fa-print{
+    color: rgb(196, 62, 14);
+}
+.fa-print:hover{
+    color: orangered;
+}
+.edit-register{
+    color: var(--colorAzulClaro);
+}
+.edit-register:hover{
+    color: var(--colorAzul);
+}
+.delete-register{
+    color: rgb(187, 39, 39);
+}
+.delete-register:hover{
+    color: rgb(224, 17, 17);
+}
+
+/* Fin List register Vehicle info */
