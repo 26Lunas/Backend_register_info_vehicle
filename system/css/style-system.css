@@ -9,7 +9,10 @@
 .logo{
     width: 55px;
 }
-
+.requerido{
+    color: red;
+    font-weight: 800;
+}
 .container-main{
     /* border: solid 3px red; */
     padding-top: 5% !important;
@@ -220,6 +223,11 @@
 }
 .delete-register:hover{
     color: rgb(224, 17, 17);
+}
+
+.valor-vacio{
+    border: solid 2px red !important;
+    background: rgba(238, 51, 51, 0.178) !important;
 }
 
 /* Fin List register Vehicle info */

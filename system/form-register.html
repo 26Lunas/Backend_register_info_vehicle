@@ -146,22 +146,22 @@
 
                     <div class="cont-form-register">
                         <h2>Generate Plate</h2>
-                        <form class="form-register">
+                        <form class="form-register" id="form-register">
                             <div class="form-vehicle">
                                 <h6>Vehicle information *</h6>
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label>Vin:</label>
-                                        <input type="text" disabled class="form-control" id="campoVehicle-vin"
+                                        <label>Vin <span class="requerido">*</span>:</label>
+                                        <input type="text" disabled class="form-control required" id="campoVehicle-vin"
                                             placeholder="Vin">
                                     </div>
                                     <div class="col-sm-4">
-                                        <label>Sale date*:</label>
-                                        <input type="date" class="form-control" id="campoVehicle-saleDate">
+                                        <label>Sale date <span class="requerido">*</span>:</label>
+                                        <input type="date" class="form-control required" id="campoVehicle-saleDate">
                                     </div>
                                     <div class="col-sm-4">
-                                        <label>Days*:</label>
-                                        <select name="" id="campoVehicle-days" class="form-control">
+                                        <label>Days <span class="requerido">*</span>:</label>
+                                        <select name="" id="campoVehicle-days" class="form-control required">
                                             <option value="">--</option>
                                             <option value="90">90</option>
                                             <option value="60">60</option>
@@ -171,23 +171,23 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-4 col-6">
-                                        <label>Seller*:</label>
-                                        <input type="text" class="form-control" id="campoVehicle-seller"
+                                        <label>Seller <span class="requerido">*</span>:</label>
+                                        <input type="text" class="form-control required" id="campoVehicle-seller"
                                             placeholder="Seller" value="TOMMIE VAUGHN MOTORS, INC.">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Deler number*:</label>
-                                        <input type="text" class="form-control" id="campoVehicle-delerNumber"
+                                        <label>Deler number <span class="requerido">*</span>:</label>
+                                        <input type="text" class="form-control required" id="campoVehicle-delerNumber"
                                             placeholder="Daler number" value="P153181">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Make*:</label>
-                                        <input type="text" class="form-control" id="campoVehicle-Make"
+                                        <label>Make <span class="requerido">*</span>:</label>
+                                        <input type="text" class="form-control required" id="campoVehicle-Make"
                                             placeholder="Make">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Body Style*:</label>
-                                        <select name="" id="campoVehicle-bodyStyle" class="form-control">
+                                        <label>Body Style <span class="requerido">*</span>:</label>
+                                        <select name="" id="campoVehicle-bodyStyle" class="form-control required">
                                             <option value="">--</option>
                                             <option value="LL">LL</option>
                                             <option value="PK">PK</option>
@@ -206,19 +206,19 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Year*:</label>
-                                        <input type="text" class="form-control" id="campoVehicle-year"
+                                        <label>Year <span class="requerido">*</span>:</label>
+                                        <input type="text" class="form-control required" id="campoVehicle-year"
                                             placeholder="Year">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Model*:</label>
-                                        <input type="text" class="form-control" id="campoVehicle-Model"
+                                        <label>Model <span class="requerido">*</span>:</label>
+                                        <input type="text" class="form-control required" id="campoVehicle-Model"
                                             placeholder="Model">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Major color*:</label>
-                                        <select name="" id="campoVehicle-majorColor" class="form-control">
-                                            <option value="--">--</option>
+                                        <label>Major color <span class="requerido">*</span>:</label>
+                                        <select name="" id="campoVehicle-majorColor" class="form-control required">
+                                            <option value="">--</option>
                                             <option value="BEIGE">BEIGE</option>
                                             <option value="BLACK">BLACK</option>
                                             <option value="BLUE">BLUE</option>
@@ -239,7 +239,7 @@
                                     <div class="col-sm-4 col-6">
                                         <label>Minor color:</label>
                                         <select name="" id="campoVehicle-minorColor" class="form-control">
-                                            <option value="--">--</option>
+                                            <option value="">--</option>
                                             <option value="BEIGE">BEIGE</option>
                                             <option value="BLACK">BLACK</option>
                                             <option value="BLUE">BLUE</option>
@@ -267,8 +267,8 @@
                                     </div>
 
                                     <div class="col-sm-4 col-6">
-                                        <label>Name 1*:</label>
-                                        <input type="text" class="form-control" id="campoBuyer-name1"
+                                        <label>Name 1 <span class="requerido">*</span>:</label>
+                                        <input type="text" class="form-control required" id="campoBuyer-name1"
                                             placeholder="Name 1">
                                     </div>
                                     <div class="col-sm-4 col-6">
@@ -277,18 +277,18 @@
                                             placeholder="Name 2">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Adress*:</label>
-                                        <input type="text" class="form-control" id="campoBuyer-adress"
+                                        <label>Adress <span class="requerido">*</span>:</label>
+                                        <input type="text" class="form-control required" id="campoBuyer-adress"
                                             placeholder="Adress">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>City*:</label>
-                                        <input type="text" class="form-control" id="campoBuyer-city" placeholder="City">
+                                        <label>City <span class="requerido">*</span>:</label>
+                                        <input type="text" class="form-control required" id="campoBuyer-city" placeholder="City">
 
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>State*:</label>
-                                        <select name="" id="campoBuyer-state" class="form-control">
+                                        <label>State <span class="requerido">*</span>:</label>
+                                        <select name="" id="campoBuyer-state" class="form-control required">
                                             <option value="">--</option>
                                             <option value="AL">AL:Alabama</option>
                                             <option value="Ak">Ak:Alaska</option>
@@ -333,7 +333,8 @@
                                             <option value="SC">SC:South Carolina</option>
                                             <option value="SD">SD:South Dakota</option>
                                             <option value="TN">TN:Tennessee</option>
-                                            <option value="TX">TX:Texas</option>
+                                            <option value="TX">TX:Texas Nueva</option>
+                                            <option value="TXV">TX:Texas Vieja</option>
                                             <option value="UT">UT:Utah</option>
                                             <option value="VT">VT:Vermont</option>
                                             <option value="VA">VA:Virginia</option>
@@ -344,12 +345,12 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Zip*:</label>
-                                        <input type="text" class="form-control" id="campoBuyer-zip" placeholder="Zip">
+                                        <label>Zip <span class="requerido">*</span>:</label>
+                                        <input type="text" class="form-control required" id="campoBuyer-zip" placeholder="Zip">
 
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Email*:</label>
+                                        <label>Email:</label>
                                         <input type="text" class="form-control" id="campoBuyer-email"
                                             placeholder="Email">
                                     </div>
@@ -362,7 +363,7 @@
                                 <div class="row">
                                     <div class="section-btn-plates col-sm-12">
                                         <button class="btn btn-cancel">Cancel</button>
-                                        <button type="button" class="btn btn-save">Save</button>
+                                        <button type="button" class="btn btn-save btn-save-vehicle">Save</button>
                                     </div>
                                 </div>
                             </div>

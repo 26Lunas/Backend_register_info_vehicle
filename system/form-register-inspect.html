@@ -146,78 +146,80 @@
 
                     <div class="cont-form-register">
                         <h2>Make Inspect</h2>
-                        <form class="form-register">
+                        <form class="form-register" id="form-register-inspect">
                             <div class="form-vehicle">
                                 <h6>Vehicle information *</h6>
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label>Vin:</label>
-                                        <input type="text" disabled class="form-control" id="campoVehicle-vin"
+                                        <label>Vin <span class="requerido">*</span>:</label>
+                                        <input type="text" disabled class="form-control required" id="campoVehicle-vin"
                                             placeholder="Vin">
                                     </div>
                                     <div class="col-sm-4">
-                                        <label>Sale date*:</label>
-                                        <input type="date" class="form-control" id="campoVehicle-saleDate">
+                                        <label>Sale date <span class="requerido">*</span>:</label>
+                                        <input type="date" class="form-control required" id="campoVehicle-saleDate">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-4 col-6">
-                                        <label>Year*:</label>
-                                        <input type="text" class="form-control" id="campoVehicle-year"
+                                        <label>Year <span class="requerido">*</span>:</label>
+                                        <input type="text" class="form-control required" id="campoVehicle-year"
                                             placeholder="Year">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Make*:</label>
-                                        <input type="text" class="form-control" id="campoVehicle-Make"
+                                        <label>Make <span class="requerido">*</span>:</label>
+                                        <input type="text" class="form-control required" id="campoVehicle-Make"
                                             placeholder="Make">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Model*:</label>
-                                        <input type="text" class="form-control" id="campoVehicle-Model"
+                                        <label>Model <span class="requerido">*</span>:</label>
+                                        <input type="text" class="form-control required" id="campoVehicle-Model"
                                             placeholder="Make">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Vehicle Type*:</label>
-                                        <input type="text" class="form-control" id="campoVehicle-vehicleType"
+                                        <label>Vehicle Type <span class="requerido">*</span>:</label>
+                                        <input type="text" class="form-control required" id="campoVehicle-vehicleType"
                                             placeholder="Vehicle Type">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Engine size*:</label>
-                                        <input type="text" class="form-control" id="campoVehicle-engineSize"
+                                        <label>Engine size <span class="requerido">*</span>:</label>
+                                        <input type="text" class="form-control required" id="campoVehicle-engineSize"
                                             placeholder="Engine size">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Cylinder*:</label>
-                                        <input type="text" class="form-control" id="campoVehicle-cylinder"
+                                        <label>Cylinder <span class="requerido">*</span>:</label>
+                                        <input type="text" class="form-control required" id="campoVehicle-cylinder"
                                             placeholder="Cylinder">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>LGN*:</label><input name="lgn" placeholder="LGN" type="text" id="lgn"
-                                            class="form-control" value="">
+                                        <label>LGN <span class="requerido">*</span>:</label>
+                                        <input name="lgn" placeholder="LGN" type="text" id="lgn"
+                                            class="form-control required" value="">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Transmission*:</label><select name="transmission"
-                                            placeholder="Select transmission" type="select" class="form-control"
-                                            id="transmission">
-                                            <option value="-1">Select transmission</option>
+                                        <label>Transmission <span class="requerido">*</span>:</label>
+                                        <select name="transmission" placeholder="Select transmission" type="select"
+                                            class="form-control required" id="transmission">
+                                            <option value="">Select transmission</option>
                                             <option value="AUTOMATIC">Automatic</option>
                                             <option value="MECHANIC">Mechanic</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>GVW*:</label><input name="gvw" placeholder="GVW"
-                                            type="text" id="gvw" class="form-control" value="">
+                                        <label>GVW <span class="requerido">*</span>:</label>
+                                        <input name="gvw" placeholder="GVW" type="text" id="gvw"
+                                            class="form-control required" value="">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>Odometer*:</label><input name="odometer"
-                                            placeholder="Odometer" type="number" id="odometer" class="form-control"
-                                            value="">
+                                        <label>Odometer <span class="requerido">*</span>:</label>
+                                        <input name="odometer" placeholder="Odometer" type="number" id="odometer"
+                                            class="form-control required" value="">
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label >Fuel type *:</label><select name="fuel_type"
-                                            placeholder="Select fuel type" type="select" class="form-control"
-                                            id="fuel_type">
-                                            <option value="-1">Select fuel type</option>
+                                        <label>Fuel type <span class="requerido">*</span>:</label><select
+                                            name="fuel_type" placeholder="Select fuel type" type="select"
+                                            class="form-control required" id="fuel_type">
+                                            <option value="">Select fuel type</option>
                                             <option value="DIESEL">Diesel</option>
                                             <option value="ELECTRIC">Electric</option>
                                             <option value="GASOLINE">Gasoline</option>
@@ -225,15 +227,15 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-4 col-6">
-                                        <label>License*:</label><input name="license"
-                                            placeholder="License" type="text" id="license" class="form-control"
-                                            value="">
+                                        <label>License <span class="requerido">*</span>:</label>
+                                        <input name="license" placeholder="License" type="text" id="license"
+                                            class="form-control required" value="">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="section-btn-plates col-sm-12">
                                         <button class="btn btn-cancel">Cancel</button>
-                                        <button class="btn btn-save-inspect">Save</button>
+                                        <button type="button" class="btn btn-save btn-save-inspect">Save</button>
                                     </div>
                                 </div>
                             </div>

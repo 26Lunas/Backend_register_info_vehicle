@@ -30,6 +30,7 @@ $(document).ready(function () {
                         let contPlacaTexasNueva = $(this).find("label").text();
                         console.log(contPlacaTexasNueva);
                         $(".modal-title").html(contPlacaTexasNueva);
+                        $("#estado_id").val(listRegistro.identificador_state);
                     });
                 });
             }
@@ -48,6 +49,8 @@ $(document).ready(function () {
         }else{
             window.location.href = "form-register-inspect.html";
         }
+        let estado_id = $("#estado_id").val();
+        localStorage.setItem("estado",estado_id);
        
 
     }
