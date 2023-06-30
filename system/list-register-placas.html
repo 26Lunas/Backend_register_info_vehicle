@@ -23,6 +23,9 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -61,6 +64,18 @@
                     <i class="fa-solid fa-address-card"></i>
                     <span>Registros</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="list-register-state.html">
+                    <i class="fa-solid fa-flag-usa"></i>
+                    <span>lista de estados</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Usuarios</span></a>
+            </li>
+
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
@@ -135,19 +150,19 @@
                 <div class="container-main">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo modi animi impedit
+                    <h1 class="h3 mb-2 text-gray-800">Registro de vehiculos y compradores</h1>
+                    <!-- <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo modi animi impedit
                         delectus accusamus iste eveniet ducimus nam? Iure debitis iste placeat perspiciatis sed nam quo
-                        dolorum eius enim aperiam.</p>
+                        dolorum eius enim aperiam.</p> -->
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Cehiculos y Compradores</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable_register_vehicle" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Code</th>

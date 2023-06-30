@@ -12,6 +12,7 @@ if(!$result){
 $json = array();
 while ($row = mysqli_fetch_array($result)) {
     $json[] = array(
+        'id_state' => $row['id_state'],
         'name_state' => $row['name_state'],
         'identificador_state' => $row['identificador_state']
     );

@@ -1,5 +1,6 @@
 $(document).ready(function () {
     fetch_list_state();
+    fetch_list_register_state();
 
     function fetch_list_state() {
         $.ajax({
@@ -36,22 +37,46 @@ $(document).ready(function () {
             }
         });
     }
-
     
+
+    function fetch_list_register_state() {
+        $.ajax({
+            type: "GET",
+            url: "backend/Model/fetch_list_state.php",
+            success: function (response) {
+                let listRegistro = JSON.parse(response);
+                let plantilla = '';
+                listRegistro.forEach(listRegistro => {
+                    plantilla += `
+                    <tr>
+                    <td>${listRegistro.id_state}</td>
+                    <td>${listRegistro.name_state}</td>
+                    <td>${listRegistro.identificador_state}</td>
+                    <td><i class="fa-solid fa-pen-to-square edit-register"></i> | <i class="fa-solid fa-trash-can delete-register"></i></td>
+                </tr>
+                    `;
+                });
+
+                $('#body-listRegisterState').html(plantilla);
+
+                
+            }
+        });
+    }
 
     function enviarValorVin() {
         var valor = $("#id_vin").val();
         localStorage.setItem("valorEnviado", valor);
 
         let modelText = $(".modal-title").html();
-        if(modelText !== "Inspect"){
+        if (modelText !== "Inspect") {
             window.location.href = "form-register.html";
-        }else{
+        } else {
             window.location.href = "form-register-inspect.html";
         }
         let estado_id = $("#estado_id").val();
-        localStorage.setItem("estado",estado_id);
-       
+        localStorage.setItem("estado", estado_id);
+
 
     }
 
@@ -63,24 +88,20 @@ $(document).ready(function () {
         } else {
             alert("Vin required");
         }
-        
+
     });
-
-
-
-
 
     $("#search").on("input", function () {
         var search = $(this).val();
         // console.log('Texto ingresado: ' + search);
-        if(search !== ""){
+        if (search !== "") {
             $.ajax({
                 type: "POST",
                 url: "backend/Model/fetch_searh_fisico.php",
-                data: {search},
+                data: { search },
                 success: function (response) {
-                    console.log(response)
-    
+                    // console.log(response)
+
                     let listRegistro = JSON.parse(response);
                     let plantilla = '';
                     listRegistro.forEach(listRegistro => {
@@ -93,14 +114,14 @@ $(document).ready(function () {
                             </div>
                         `;
                     });
-    
+
                     $('#cont-fisico-placas').html(plantilla);
-    
+
                     // Asignar eventos de clic a cada elemento individualmente
                     listRegistro.forEach(listRegistro => {
                         $(`#cont-placa-${listRegistro.identificador_state}`).click(function () {
                             console.log("Click en " + listRegistro.name_state);
-    
+
                             $("#btn-placa-Modal").click();
                             let contPlacaTexasNueva = $(this).find("label").text();
                             console.log(contPlacaTexasNueva);
@@ -110,10 +131,10 @@ $(document).ready(function () {
                     });
                 }
             });
-        }else{
+        } else {
             fetch_list_state();
         }
-        
+
     });
 
 

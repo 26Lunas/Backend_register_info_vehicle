@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard</title>
+    <title>List-Register</title>
 
     <!-- CSS style -->
     <link rel="stylesheet" href="css/style-system.css">
@@ -22,6 +22,9 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -63,7 +66,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="list-register-state.html">
+                <a class="nav-link" href="">
                     <i class="fa-solid fa-flag-usa"></i>
                     <span>lista de estados</span></a>
             </li>
@@ -72,6 +75,7 @@
                     <i class="fa-solid fa-users"></i>
                     <span>Usuarios</span></a>
             </li>
+
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
@@ -104,9 +108,6 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-
-
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -149,62 +150,38 @@
                 <div class="container-main">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center mb-4">
-                        <div class="cont-logo">
-                            <img src="img/img-placas/img-icono-estrella.png" alt="">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Registro de Vehiculos y Compradores</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                            <i class="fa-solid fa-plus"></i> Agregar Estado</a>
+                    </div>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Tabla de Estados</h6>
+
                         </div>
-                        <h1 class="mb-0 title-texas">Texas Department of Motor Vehicles</h1>
-                        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-                    </div>
-                    <div class="row display-flex justify-content-end m-2">
-                        <div class="col-sm-4 col-6">
-                            <!-- <label class="m-0 label-placa">Buscar físico</label> -->
-                            <input type="search" name="" id="search" class="form-control" placeholder="Buscar físico">
-                        </div>
-                    </div>
 
-                    <div class="cont-fisico-placas" id="cont-fisico-placas">
-                        <p class="text-center">No hay fisico</p>
-                    </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable_register_vehicle" width="100%"
+                                    cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Code</th>
+                                            <th>Name</th>
+                                            <th>State identifier</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="body-listRegisterState">
 
-                    <a class="dropdown-item" href="#" id="btn-placa-Modal" hidden data-toggle="modal"
-                        data-target="#placaModal">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        placa
-                    </a>
-
-                    <!-- placa Modal-->
-                    <div class="modal fade" id="placaModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <div class="modal-title h4">California</div>
-                                    <input type="text" id="estado_id" hidden>
-                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="section-vin">
-                                                    <label>VIN: </label>
-                                                    <input class="form-control" id="id_vin" name="vin"
-                                                        placeholder="VIN">
-                                                    <button class="btn btn-buscarVin">Registrar</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-
 
                 </div>
                 <!-- /.container-fluid -->
@@ -257,13 +234,6 @@
     <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/34c89acf97.js" crossorigin="anonymous"></script>
 
-    <!-- Jquey 3.7.0-->
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-
-    <!-- Js -->
-    <script src="js/appMain.js"></script>
-
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -271,15 +241,21 @@
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
+    <!-- JS -->
+    <script src="js/backend.js"></script>
+    <script src="js/appMain.js"></script>
 
-    <!-- Page level custom scripts -->
-    <!-- <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script> -->
+
 
 </body>
 

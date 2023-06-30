@@ -1,4 +1,4 @@
-$(function () {
+$(document).ready(function () {
     // console.log("Jquery esta funcionando...");
     // Backend - list registers placas
 
