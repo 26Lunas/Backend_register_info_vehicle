@@ -146,7 +146,12 @@
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
-                    <div class="row"><input type="search" name="" id="" class="form-control"></div>
+                    <div class="row display-flex justify-content-end m-2">
+                        <div class="col-sm-4 col-6">
+                            <!-- <label class="m-0 label-placa">Buscar físico</label> -->
+                            <input type="search" name="" id="search" class="form-control" placeholder="Buscar físico">
+                        </div>
+                    </div>
 
                     <div class="cont-fisico-placas" id="cont-fisico-placas">
                         <p class="text-center">No hay fisico</p>
@@ -176,7 +181,8 @@
                                             <div class="col-sm-12">
                                                 <div class="section-vin">
                                                     <label>VIN: </label>
-                                                    <input class="form-control" id="id_vin" name="vin" placeholder="VIN">
+                                                    <input class="form-control" id="id_vin" name="vin"
+                                                        placeholder="VIN">
                                                     <button class="btn btn-buscarVin">Registrar</button>
                                                 </div>
                                             </div>
