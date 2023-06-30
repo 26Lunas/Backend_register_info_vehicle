@@ -6,9 +6,13 @@ $(function () {
     localStorage.removeItem("valorEnviado");
 
     let estado = localStorage.getItem("estado");
-    console.log(estado);
+    // console.log(estado);
     $('#campoBuyer-state').val(estado);
     localStorage.removeItem("estado");
+
+    $('.btn-cancel').click(function (){
+        window.location.href = "index.html"
+    });
 
 
 
