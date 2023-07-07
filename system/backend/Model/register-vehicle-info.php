@@ -44,8 +44,40 @@ if($_POST['campoVehicleVin']){
         // echo "Datos registrados con exito! tb_buyer";
     }
 
+    function generarCodigoAleatorio() {
+        $letras = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $numeros = '0123456789';
+    
+        $codigo = '';
+    
+        // Generar cuatro números aleatorios
+        for ($i = 0; $i < 4; $i++) {
+            $posicion = rand(0, strlen($numeros) - 1);
+            $codigo .= $numeros[$posicion];
+        }
+    
+        // Generar dos letras aleatorias
+        $codigo .= $letras[rand(0, strlen($letras) - 1)];
+        $codigo .= $letras[rand(0, strlen($letras) - 1)];
+    
+        // Generar un número aleatorio
+        $posicion = rand(0, strlen($numeros) - 1);
+        $codigo .= $numeros[$posicion];
+    
+        return $codigo;
+    }
+    
+    // Uso del código generador
+    $codigoAleatorio = generarCodigoAleatorio();
+    
+    // echo "Código aleatorio: " . $codigoAleatorio;
+    
+    
+    
+
     // Query table tb_vehicle
 
+    $tb_vehicle_id = $codigoAleatorio;
    $tb_vehicle_vin = $_POST['campoVehicleVin'];
    $tb_vehicle_seller = $_POST['campoVehicleSeller'];
    $tb_vehicle_body_style = $_POST['campoVehicleBodyStyle'];
@@ -61,7 +93,8 @@ if($_POST['campoVehicleVin']){
 
 
 
-   $query_tb_vehicle = "INSERT tb_vehicle (vin_vehicle,
+   $query_tb_vehicle = "INSERT tb_vehicle (id_vehicle,
+                                            vin_vehicle,
                                             seller,
                                             body_style,
                                             major_color,
@@ -74,7 +107,8 @@ if($_POST['campoVehicleVin']){
                                             model,
                                             miles,
                                             id_buyer) VALUES 
-                                            ('$tb_vehicle_vin',
+                                            ('$tb_vehicle_id',
+                                            '$tb_vehicle_vin',
                                             '$tb_vehicle_seller',
                                             '$tb_vehicle_body_style',
                                             '$tb_vehicle_major_color',
