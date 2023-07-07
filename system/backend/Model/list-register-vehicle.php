@@ -29,7 +29,8 @@ while ($row = mysqli_fetch_array($result)) {
         'name_1' => $row['name_1'],
         'city' => $row['city'],
         'estado' => $row['estado'],
-        'phone' => $row['phone']
+        'phone' => $row['phone'],
+        'id_buyer' => $row['id_buyer']
 
     );
 }

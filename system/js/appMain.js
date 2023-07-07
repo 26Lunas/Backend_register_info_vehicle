@@ -48,7 +48,7 @@ $(document).ready(function () {
                 let plantilla = '';
                 listRegistro.forEach(listRegistro => {
                     plantilla += `
-                    <tr>
+                    <tr idState="${listRegistro.id_state}">
                     <td>${listRegistro.id_state}</td>
                     <td>${listRegistro.name_state}</td>
                     <td>${listRegistro.identificador_state}</td>
@@ -136,6 +136,37 @@ $(document).ready(function () {
         }
 
     });
+
+    
+    $("#body-listRegisterState").on("click", ".delete-register", function () {
+        if (confirm("¿Deseas eliminar este registro?")) {
+            // Obtén el valor del atributo idState del elemento padre (tr)
+            var idState = $(this).closest("tr").attr("idState");
+
+            console.log(idState);
+
+            // Realizar la solicitud AJAX
+            $.ajax({
+                url: "backend/Model/eliminar_registro_state.php",
+                type: "POST",
+                data: {
+                    idState: idState
+                },
+                success: function (response) {
+                    console.log("Registro eliminado", response);
+                    fetch_list_register_state();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error al eliminar el registro:", error);
+                    fetch_list_register_state();
+                }
+            });
+        }
+
+
+
+    });
+
 
 
 });

@@ -4,20 +4,22 @@ $(document).ready(function () {
 
     fetch_list_register_placas();
 
-    function fetch_list_register_placas(){
+    function fetch_list_register_placas() {
         $.ajax({
             type: "GET",
             url: "backend/Model/list-register-vehicle.php",
             success: function (response) {
-                    // console.log(response);
+                // console.log(response);
 
                 let listRegistro = JSON.parse(response);
-                
+
                 let plantilla = '';
                 listRegistro.forEach(listRegistro => {
-                    plantilla += 
-                    `
-                    <tr>
+
+                    // console.log(listRegistro.id_buyer);
+                    plantilla +=
+                        `
+                    <tr idRegisterVehicle="${listRegistro.id_buyer}">
                         <td>${listRegistro.id_vehicle}</td>
                         <td>${listRegistro.name_1}</td>
                         <td>${listRegistro.phone}</td>
@@ -33,6 +35,35 @@ $(document).ready(function () {
         });
     };
 
+
+    $("#body-listRegisterVehicle").on("click", ".delete-register", function () {
+        if (confirm("¿Deseas eliminar este registro?")) {
+            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+
+            console.log(idRegisterVehicle);
+
+            // Realizar la solicitud AJAX
+            $.ajax({
+                url: "backend/Model/eliminar_registro_vehicleBuyer.php",
+                type: "POST",
+                data: {
+                    idRegisterVehicle: idRegisterVehicle
+                },
+                success: function (response) {
+                    console.log("Registro eliminado", response);
+                    fetch_list_register_placas();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error al eliminar el registro:", error);
+                    fetch_list_register_placas();
+                }
+            });
+        }
+
+
+
+    });
 
 
 

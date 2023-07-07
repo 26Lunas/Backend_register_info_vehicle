@@ -10,7 +10,7 @@ $(function () {
     $('#campoBuyer-state').val(estado);
     localStorage.removeItem("estado");
 
-    $('.btn-cancel').click(function (){
+    $('.btn-cancel').click(                                                                                                                                       function (){
         window.location.href = "index.html"
     });
 
