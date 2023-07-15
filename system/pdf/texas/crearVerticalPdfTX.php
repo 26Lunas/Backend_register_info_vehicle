@@ -5,7 +5,12 @@ require_once '../dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 
 // Introducimos HTML de prueba
-$html = file_get_contents_curl("http://localhost/Software_registro_de_información/system/pdf/texas/datosVerticales.html");
+// $html = file_get_contents_curl("http://localhost/Software_registro_de_información/system/pdf/texas/datosVerticales.html");
+
+ob_start(); // Iniciar el almacenamiento en búfer de salida
+include "datosVerticales.php"; // Incluir el archivo que contiene el HTML a utilizar
+$html = ob_get_clean(); // Obtener el contenido almacenado en el búfer de salida
+
 
 // Instanciamos un objeto de la clase DOMPDF.
 $pdf = new DOMPDF();
@@ -21,7 +26,7 @@ $pdf->load_html(utf8_decode($html));
 $pdf->render();
 
 // Enviamos el fichero PDF al navegador.
-$pdf->stream('reportePdf.pdf',  array('Attachment' => 0));
+$pdf->stream('PdfVertical.pdf',  array('Attachment' => 0));
 
 // Guardamos el fichero PDF en el servidor.
 // $file = 'pruebaPDF-2.pdf';

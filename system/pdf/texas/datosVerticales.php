@@ -16,35 +16,42 @@
 
         @import url('https://fonts.googleapis.com/css2?family=Bacasime+Antique&display=swap'); */
 
-        @font-face {
-    font-family: 'MSReferenceSansSerif';
-    src: url('../img/fonts/ms-reference-sans-serif.ttf') format('truetype');
-    }
+        /* @font-face {
+    font-family: 'arialsys';
+    src: url('fonts/arial_bold.ttf') format('truetype');
+    } */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
         * {
-            font-family: 'Narnoor', serif;
+            font-family: 'Roboto', sans-serif;
+            color: rgba(0, 0, 0, 0.884);
+            font-weight: lighter !important;
         }
+        
 
         .title-v {
             z-index: 1;
             border-bottom: solid 1px black;
             width: 100%;
             text-align: center;
-            font-size: 20px;
-            font-weight: 700;
-            font-family: 'MSReferenceSansSerif' , 'Arial';
+            font-size: 24px;
+            font-weight: bold !important;
+            font-family: 'Times New Roman', Times, serif !important;
         }
 
         .fondo-marca {
             z-index: -1;
             position: absolute;
             top: 20mm;
+            left: 2mm;
             width: 100%;
+
         }
 
         .cont-text {
             position: absolute;
-            top: 12mm;
+            top: 15mm;
+            font-size: 11pt;
         }
 
 
@@ -71,29 +78,31 @@
             top: 20mm;
             left: 5mm;
             width: 165mm;
+            font-family: 'Times New Roman', Times, serif !important;
         }
 
         .cont-datos {
             position: absolute;
             top: 42.5mm;
             left: 5mm;
+            
         }
 
         .cont-datos .cont-text-info {
-            margin-bottom: 1mm;
+            margin-bottom: .5mm;
         }
 
         .cont-datos .cont-text-info span {
             position: relative;
-
+            /* font-size: 10pt; */
         }
 
         .cont-datos .issuDate span {
-            left: 25mm;
+            left: 22.5mm;
         }
 
         .cont-datos .vin span {
-            left: 35mm;
+            left: 35.5mm;
         }
 
         .cont-datos .year span {
@@ -113,15 +122,16 @@
             /* border: solid 3px red; */
             position: absolute;
             top: 52.5mm;
-            left: 100mm;
+            left: 98mm;
         }
 
         .cont-datos-2 .cont-text-info-2 {
-            margin-bottom: 1mm;
+            margin-bottom: .5mm;
         }
 
         .cont-datos-2 .cont-text-info-2 span {
             position: relative !important;
+            font-size: 11pt;
         }
 
         .cont-datos-2 .bodyStyle span {
@@ -140,15 +150,16 @@
         .cont-datos-3 {
             position: absolute;
             top: 80mm;
-            left: 22mm;
+            left: 17mm;
         }
 
         .cont-datos-3 .cont-text-info-3 {
-            margin-bottom: 1mm;
+            margin-bottom: .5mm;
         }
 
         .cont-datos-3 .cont-text-info-3 span {
             position: relative !important;
+            font-size: 11pt;
         }
 
         .cont-datos-3 .issuingDealer span {
@@ -164,15 +175,16 @@
         .cont-datos-4 {
             position: absolute;
             top: 95mm;
-            left: 22mm;
+            left: 17.5mm;
         }
 
         .cont-datos-4 .cont-text-info-4 {
-            margin-bottom: 1mm;
+            margin-bottom: .5mm;
         }
 
         .cont-datos-4 .cont-text-info-4 span {
             position: relative !important;
+            font-size: 11pt;
         }
 
         .cont-datos-4 .model span {
@@ -187,9 +199,11 @@
             position: absolute;
             bottom: 125mm;
             left: 75mm;
-            font-weight: 400;
-            font-size: 20px;
+            /* font-weight: 400; */
+            font-size: 15pt;
+            font-family: 'Times New Roman', Times, serif !important;
         }
+        
     </style>
 
     <h1 class="title-v">BUYER'S TAG RECEIPT - DEALER'S COPY</h1>
@@ -221,7 +235,7 @@
         <div class="cont-text-info-4 model">Name 1:<span>REIKITO DIAZ</span></div>
         <div class="cont-text-info-4 minorColor">Address:<span>4550 WILLOW MEMPHIS, TN 38115</span></div>
     </div>
-    <h2 class="title-fin-pdf">DEALER'S TAG-</h2>
+    <div class="title-fin-pdf">DEALER'S TAG-</div>
 
     <img class="fondo-marca" src="../img/texas/texas-nueva/imgFondoP2.jpg" alt="">
 

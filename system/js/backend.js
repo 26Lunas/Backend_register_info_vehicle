@@ -3,6 +3,7 @@ $(document).ready(function () {
     // Backend - list registers placas
 
     fetch_list_register_placas();
+    fetch_list_register_users();
 
     function fetch_list_register_placas() {
         $.ajax({
@@ -24,7 +25,7 @@ $(document).ready(function () {
                         <td>${listRegistro.name_1}</td>
                         <td>${listRegistro.phone}</td>
                         <td>${listRegistro.estado}</td>
-                        <td><i class="fa-solid fa-eye view-register"></i> |<a target="_blank" href="pdf/texas/crearHorizontalPdfTX.php?idRegisterVehicle=${listRegistro.id_buyer}"><i class="fa-solid fa-print print"></i></a> | <i class="fa-solid fa-pen-to-square edit-register"></i> | <i class="fa-solid fa-trash-can delete-register"></i></td>
+                        <td><i class="fa-solid fa-eye view-register"></i> | <i class="fa-solid fa-print print"></i> | <i class="fa-solid fa-pen-to-square edit-register"></i> | <i class="fa-solid fa-trash-can delete-register"></i></td>
                     </tr>
 
                     `
@@ -66,8 +67,54 @@ $(document).ready(function () {
     });
 
     $("#body-listRegisterVehicle").on("click", ".print", function () {
-
+        // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+        var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+        console.log(idRegisterVehicle);
+        
+        var pdfURL1 = "pdf/texas/crearHorizontalPdfTX.php?idRegisterVehicle=" + idRegisterVehicle;
+        var pdfURL2 = "pdf/texas/crearVerticalPdfTX.php?idRegisterVehicle=" + idRegisterVehicle;
+      
+        // Abrir el primer PDF en una nueva pestaña
+        var newTab1 = window.open(pdfURL1, "_blank");
+        newTab1.focus();
+      
+        // Abrir el segundo PDF en otra nueva pestaña después de un pequeño retraso
+        setTimeout(function() {
+          var newTab2 = window.open(pdfURL2, "_blank");
+          newTab2.focus();
+        }, 500);
     });
+
+    function fetch_list_register_users() {
+        $.ajax({
+            type: "GET",
+            url: "backend/Model/fetch_list_users.php",
+            success: function (response) {
+                // console.log(response);
+
+                let listRegistro = JSON.parse(response);
+
+                let plantilla = '';
+                listRegistro.forEach(listRegistro => {
+
+                    // console.log(listRegistro.ID_Usuario);
+                    plantilla +=
+                        `
+                    <tr idRegisterVehicle="${listRegistro.ID_Usuario}">
+                        <td>${listRegistro.ID_Usuario}</td>
+                        <td>${listRegistro.Nombre_User}</td>
+                        <td>${listRegistro.Correo_Electronico}</td>
+                        <td>${listRegistro.Rol_ID}</td>
+                        <td><i class="fa-solid fa-eye view-register"></i> | <i class="fa-solid fa-print print"></i> | <i class="fa-solid fa-pen-to-square edit-register"></i> | <i class="fa-solid fa-trash-can delete-register"></i></td>
+                    </tr>
+
+                    `
+                });
+
+                $('#body-listRegisterUser').html(plantilla);
+            }
+        });
+    };
 
 
 

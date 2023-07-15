@@ -20,22 +20,31 @@
     * {
         font-family: 'Arimo', sans-serif;
     }
+    .cont-borders{
+        position: absolute;
+        left: -12mm;
+        border-bottom: solid 2px #d9dbd8;
+        border-top: solid 2px #d9dbd8;
+        width: 110%;
+        height: 80%;
+    }
 
-    .fondoh {
+    .fondoh{
+        /* border: solid 3px red; */
         z-index: -1;
         position: absolute;
-        top: 0;
+        top: 16mm;
         width: 100%;
-        height: 90%;
+        height: 80%;
         object-fit: contain;
     }
 
     .cont-contenido {
         /* border: solid 3px red; */
-        z-index: 1;
+        z-index: 3;
         position: absolute;
+        top: 15mm;
         width: 100%;
-
     }
 
     .cont-row-1 {
@@ -45,15 +54,15 @@
     .cont-row-1 .estado {
         /* border: solid 3px rgb(255, 196, 0); */
         position: absolute;
-        top: 0;
-        left: 12mm;
+        top: -4mm;
+        left: 10mm;
 
 
     }
 
     .cont-row-1 .date-vehicle-make {
         position: absolute;
-        bottom: 30mm;
+        bottom: 36mm;
         left: 12mm;
     }
 
@@ -65,8 +74,8 @@
     .cont-row-1 .vin-seller {
         display: block;
         position: absolute;
-        bottom: 30mm;
-        right: 16mm;
+        bottom: 40mm;
+        right: 5mm;
         width: 400px;
         text-align: center;
         font-size: 28px;
@@ -78,7 +87,7 @@
         position: absolute;
         top: 19mm;
         right: 20mm;
-        width: 130px;
+        width: 110px;
 
     }
 
@@ -90,7 +99,7 @@
         margin: 0;
         position: absolute;
         top: 15mm;
-        left: 115mm;
+        left: 113mm;
         font-size: 40px;
         font-weight: 700;
     }
@@ -100,10 +109,11 @@
         margin: 0;
         position: absolute;
         top: 25mm;
-        left: 50mm;
-        width: 600px;
-        font-size: 85px;
+        left: 60mm;
+        /* width: 600px; */
+        font-size: 72pt;
         font-weight: 700;
+        text-transform: uppercase ;
     }
 
     .figuraH {
@@ -116,18 +126,19 @@
     .vin-lateral {
         /* border: solid 3px red; */
         z-index: 2;
-        background: black;
+        background: url('../img/texas/texas-nueva/img25.jpg') no-repeat;
+        background-size: cover;
         color: white;
         position: absolute;
         top: 0;
         right: 0;
-        width: 30px;
-        height: 85%;
-        font-size: 28px;
+        width: 24px;
+        height: 67%;
+        font-size: 30px;
         display: block;
-        font-weight: 400;
+        font-weight: 700;
         text-align: center;
-        padding-top: 40px;
+        padding-top: 25mm;
         padding-left: 5px;
         padding-right: 5px;
         /* Tamaño de los puntos */
@@ -137,9 +148,10 @@
     .code-id {
         position: absolute;
         top: 11mm;
-        left: 25mm;
+        left: 26mm;
         font-weight: 700;
-        font-size: 200px;
+        font-size: 198px;
+        text-transform: uppercase;
     }
 
     .circulos {
@@ -162,19 +174,19 @@
     .circulos-2 {
         position: absolute;
         top: 10mm;
-        right: 45mm;
+        right: 44mm;
     }
 
     .circulos-3 {
         position: absolute;
-        bottom: 30mm;
+        bottom: 40mm;
         left: 45mm;
     }
 
     .circulos-4 {
         position: absolute;
-        bottom: 30mm;
-        right: 45mm;
+        bottom: 40mm;
+        right: 44mm;
     }
 
     .circulo {
@@ -193,6 +205,26 @@
         bottom: 24.5px;
         left: 24px
     }
+    .fondoRectangular{
+        /* border: solid 3px red; */
+        z-index: .5;
+        position: absolute;
+        top: 15mm;
+        width: 104mm;
+        height: 80.5%;
+        background: #d9dbd8;
+
+    }
+    .fondoEstrella{
+        /* border: solid 3px red; */
+        z-index: 1;
+        position: absolute;
+        top: 44mm;
+        left: 10.6mm;
+        width: 80mm;
+
+    }
+    
     </style>
 
 <?php
@@ -220,28 +252,61 @@ foreach ($jsonData as $item) {
     $phone = $item->phone;
     $id_buyer = $item->id_buyer;
 
+    $fecha =  $sale_date;
+    if($fecha !== ''){
+        $fecha_objeto = strtotime($fecha);
+        $fecha_transformada = date("M d, Y", $fecha_objeto);
+    }else{
+        $fecha_transformada = '';
+    }
+    
+
+    // echo $fecha_transformada;
+
+
 
 ?>
 
     <img src="../img/texas/texas-nueva/imgFondo.png" alt="" class="fondoh">
+    <div class="fondoRectangular"></div>
+    <!-- <img src="../img/texas/texas-nueva/RectanguloGris.png" alt="" class="fondoRectangular"> -->
+    <img src="../img/texas/texas-nueva/Estrella-min-min.png" alt="" class="fondoEstrella">
 
     <div class="cont-contenido">
         <div class="cont-row-1">
             <h6 class="estado">TEXAS BUYER</h6>
             <div class="cont-date-expires">
                 <p>EXPIRES</p>
-                <h3><?php echo  $sale_date;?></h3>
+                <h3><?php echo  $fecha_transformada;?></h3>
             </div>
-            <img src="../img/texas/texas-nueva/QR.jpg" alt="">
+            <img src="../img/texas/texas-nueva/QR.jpg" alt="" class="QR">
             <h6 class="date-vehicle-make"><?php echo $year;?> <?php echo $make;?></h6>
-            <h6 class="vin-seller"><?php echo $vin_vehicle; ?> <br><span><?php echo $seller;?></span></h6>
+            <h6 class="vin-seller"><?php echo $vin_vehicle; ?> <br><span><?php echo $seller;?>,</span></h6>
 
         </div>
         <img src="../img/texas/texas-nueva/imgfigura.png" alt="" class="figuraH">
 
         <?php
+       
+        $elementos = array(2, 0, 2, 3, 3, 0, 6, 9, 'U', 'K');
+        $resultado = array();
+        
+        foreach ($elementos as $elemento) {
+            if (is_numeric($elemento)) {
+                $aleatorio = mt_rand(0, 9);
+                array_push($resultado, $aleatorio);
+            } else {
+                $letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $aleatorio = $letras[mt_rand(0, strlen($letras) - 1)];
+                array_push($resultado, $aleatorio);
+            }
+        }
+        
+        // echo implode("", $resultado);
+      
+        
            
-            $texto = $vin_vehicle;
+            $texto = implode("", $resultado);
             $caracteres = str_split($texto);
             echo '<div class="vin-lateral" id="falling-text">';
             foreach ($caracteres as $caracter) {
@@ -269,6 +334,8 @@ foreach ($jsonData as $item) {
             <div class="circulo circulo-1"></div>
             <div class="circulo circulo-2"></div>
         </div>
+
+        <div class="cont-borders"></div>
 
 
     </div>

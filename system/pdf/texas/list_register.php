@@ -2,11 +2,11 @@
 
 include('../../backend/connection.php');
 
-if($_GET['idRegisterVehicle']){
+if(true){
 
-$id_buyer = $_GET['idRegisterVehicle'];
+// $id_buyer = $_GET['idRegisterVehicle'];
     
-$query = "SELECT * FROM tb_vehicle  JOIN tb_buyer ON tb_vehicle.id_buyer = tb_buyer.id_buyer WHERE tb_buyer.id_buyer = '$id_buyer'";
+$query = "SELECT * FROM tb_vehicle  JOIN tb_buyer ON tb_vehicle.id_buyer = tb_buyer.id_buyer WHERE tb_buyer.id_buyer = 856906";
 
 
 $result = mysqli_query($Connection, $query);

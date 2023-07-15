@@ -131,7 +131,7 @@
 .form-vehicle input, .form-vehicle select{
     border: 1px solid #ced4da;
     border-radius: 15px;
-    color: #000 !important;
+    color: #8c8c8c !important;
     outline-color: #000 !important;
     font-size: 12px;
     height: 30px;

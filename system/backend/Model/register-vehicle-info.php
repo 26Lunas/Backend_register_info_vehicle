@@ -45,7 +45,7 @@ if($_POST['campoVehicleVin']){
     }
 
     function generarCodigoAleatorio() {
-        $letras = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $numeros = '0123456789';
     
         $codigo = '';
