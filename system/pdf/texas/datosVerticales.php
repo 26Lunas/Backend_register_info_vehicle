@@ -21,10 +21,10 @@
     src: url('fonts/arial_bold.ttf') format('truetype');
     } */
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-
+    @import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@1,700&display=swap');
         * {
-            font-family: 'Roboto', sans-serif;
-            color: rgba(0, 0, 0, 0.884);
+            
+            color: rgba(0, 0, 0, 0.863);
             font-weight: lighter !important;
         }
         
@@ -36,7 +36,8 @@
             text-align: center;
             font-size: 24px;
             font-weight: bold !important;
-            font-family: 'Times New Roman', Times, serif !important;
+            /* font-family: 'Times New Roman', Times, serif !important; */
+            font-family: 'PT Serif', serif;
         }
 
         .fondo-marca {
@@ -62,6 +63,7 @@
 
         .cont-number span {
             margin-left: 23mm !important;
+            font-family: 'Roboto', sans-serif ;
         }
 
         .cont-expiration {
@@ -70,6 +72,7 @@
 
         .cont-expiration span {
             margin-left: 10mm !important;
+            font-family: 'Roboto', sans-serif ;
         }
 
         .parrafo {
@@ -83,7 +86,7 @@
 
         .cont-datos {
             position: absolute;
-            top: 42.5mm;
+            top: 44mm;
             left: 5mm;
             
         }
@@ -94,7 +97,8 @@
 
         .cont-datos .cont-text-info span {
             position: relative;
-            /* font-size: 10pt; */
+            font-size: 10pt;
+            font-family: 'Roboto', sans-serif ;
         }
 
         .cont-datos .issuDate span {
@@ -102,27 +106,27 @@
         }
 
         .cont-datos .vin span {
-            left: 35.5mm;
-        }
-
-        .cont-datos .year span {
-            left: 34mm;
-        }
-
-        .cont-datos .make span {
             left: 32.5mm;
         }
 
+        .cont-datos .year span {
+            left: 32mm;
+        }
+
+        .cont-datos .make span {
+            left: 30.5mm;
+        }
+
         .cont-datos .majorColor span {
-            left: 21mm;
+            left: 19mm;
         }
 
         /* Estilos de los datos desde el body style */
         .cont-datos-2 {
             /* border: solid 3px red; */
             position: absolute;
-            top: 52.5mm;
-            left: 98mm;
+            top: 55mm;
+            left: 95mm;
         }
 
         .cont-datos-2 .cont-text-info-2 {
@@ -131,14 +135,17 @@
 
         .cont-datos-2 .cont-text-info-2 span {
             position: relative !important;
-            font-size: 11pt;
+            font-size: 10pt;
+            font-family: 'Roboto', sans-serif ;
         }
 
         .cont-datos-2 .bodyStyle span {
+            top: 1mm;
             left: 17mm;
         }
 
         .cont-datos-2 .model span {
+            top: 1.5mm;
             left: 25mm;
         }
 
@@ -148,8 +155,9 @@
 
         /* Estilos de los datos desde el Issuing Dealer */
         .cont-datos-3 {
+            /* border: solid 3px red; */
             position: absolute;
-            top: 80mm;
+            top: 84mm;
             left: 17mm;
         }
 
@@ -159,7 +167,8 @@
 
         .cont-datos-3 .cont-text-info-3 span {
             position: relative !important;
-            font-size: 11pt;
+            font-size: 10pt;
+            font-family: 'Roboto', sans-serif;
         }
 
         .cont-datos-3 .issuingDealer span {
@@ -173,8 +182,9 @@
 
         /* Estilos de los datos desde el Issuing Dealer */
         .cont-datos-4 {
+            /* border: solid 3px red; */
             position: absolute;
-            top: 95mm;
+            top: 100mm;
             left: 17.5mm;
         }
 
@@ -184,15 +194,21 @@
 
         .cont-datos-4 .cont-text-info-4 span {
             position: relative !important;
-            font-size: 11pt;
+            font-size: 10pt;
+            font-family: 'Roboto', sans-serif;
         }
 
-        .cont-datos-4 .model span {
+        .cont-datos-4 .name1 span {
             left: 63mm;
         }
 
-        .cont-datos-4 .minorColor span {
-            left: 62mm;
+        .cont-datos-4 .address>div {
+            /* border: solid 3px red; */
+            position: absolute;
+            left: 77.5mm;
+            width: 28mm;
+            font-size: 10pt;
+            font-family: 'Roboto', sans-serif;
         }
 
         .title-fin-pdf {
@@ -232,10 +248,10 @@
     </div>
     <div class="cont-datos-4">
         <div class="cont-text-info-4 purchaser">Purchaser </div>
-        <div class="cont-text-info-4 model">Name 1:<span>REIKITO DIAZ</span></div>
-        <div class="cont-text-info-4 minorColor">Address:<span>4550 WILLOW MEMPHIS, TN 38115</span></div>
+        <div class="cont-text-info-4 name1">Name 1:<span>REIKITO DIAZ</span></div>
+        <div class="cont-text-info-4 address">Address:<div>4550 WILLOW MEMPHIS, TN 38115</div></div>
     </div>
-    <div class="title-fin-pdf">DEALER'S TAG-</div>
+    <div class="title-fin-pdf">DEALER'S COPY</div>
 
     <img class="fondo-marca" src="../img/texas/texas-nueva/imgFondoP2.jpg" alt="">
 

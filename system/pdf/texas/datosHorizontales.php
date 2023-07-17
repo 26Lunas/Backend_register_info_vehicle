@@ -148,7 +148,7 @@
     .code-id {
         position: absolute;
         top: 11mm;
-        left: 26mm;
+        left: 25mm;
         font-weight: 700;
         font-size: 198px;
         text-transform: uppercase;
@@ -174,7 +174,7 @@
     .circulos-2 {
         position: absolute;
         top: 10mm;
-        right: 44mm;
+        right: 49mm;
     }
 
     .circulos-3 {
@@ -186,7 +186,7 @@
     .circulos-4 {
         position: absolute;
         bottom: 40mm;
-        right: 44mm;
+        right: 49mm;
     }
 
     .circulo {
@@ -219,7 +219,7 @@
         /* border: solid 3px red; */
         z-index: 1;
         position: absolute;
-        top: 44mm;
+        top: 42mm;
         left: 10.6mm;
         width: 80mm;
 
