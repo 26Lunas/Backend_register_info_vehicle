@@ -27,9 +27,9 @@
 
         .logo_fondo {
             position: absolute;
-            width: 320px;
-            top: 8mm;
-            left: 60mm;
+            width: 300px;
+            top: 11mm;
+            left: 62.5mm;
 
         }
 
@@ -40,6 +40,7 @@
             position: absolute;
             left: -6.5%;
             border-bottom: dashed 1.8px gray;
+            background: rgba(255, 255, 255, 0.527);
         }
 
         .subTitulo {
