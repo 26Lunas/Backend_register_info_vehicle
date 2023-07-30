@@ -17,14 +17,19 @@ $(document).ready(function () {
                 let plantilla = '';
                 listRegistro.forEach(listRegistro => {
 
+                    let phone = "<strong>No aplica</strong>";
                     // console.log(listRegistro.id_buyer);
+                    if(listRegistro.phone !== "0"){
+                        phone = listRegistro.phone;
+                    }
+
                     plantilla +=
                         `
                     <tr idRegisterVehicle="${listRegistro.id_buyer}">
                         <td>${listRegistro.id_vehicle}</td>
                         <td>${listRegistro.name_1}</td>
-                        <td>${listRegistro.phone}</td>
-                        <td>${listRegistro.estado}</td>
+                        <td>${phone}</td>
+                        <td>${listRegistro.name_state}</td>
                         <td><i class="fa-solid fa-eye view-register"></i> | <i class="fa-solid fa-print print"></i> | <i class="fa-solid fa-pen-to-square edit-register"></i> | <i class="fa-solid fa-trash-can delete-register"></i></td>
                     </tr>
 

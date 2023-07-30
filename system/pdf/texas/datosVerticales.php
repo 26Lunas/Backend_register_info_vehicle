@@ -1,3 +1,8 @@
+<?php
+
+
+?>
+
 <html lang="es">
 
 <head>
@@ -8,6 +13,7 @@
 
 <body>
 
+
     <style>
         /* @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Makasar&display=swap');
 
@@ -16,18 +22,19 @@
 
         @import url('https://fonts.googleapis.com/css2?family=Bacasime+Antique&display=swap'); */
 
-        /* @font-face {
-    font-family: 'arialsys';
-    src: url('fonts/arial_bold.ttf') format('truetype');
-    } */
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@1,700&display=swap');
+            /* @font-face {
+        font-family: 'arialsys';
+        src: url('fonts/arial_bold.ttf') format('truetype');
+        } */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@1,700&display=swap');
+
         * {
-            
+
             color: rgba(0, 0, 0, 0.863);
             font-weight: lighter !important;
         }
-        
+
 
         .title-v {
             z-index: 1;
@@ -63,7 +70,7 @@
 
         .cont-number span {
             margin-left: 23mm !important;
-            font-family: 'Roboto', sans-serif ;
+            font-family: 'Roboto', sans-serif;
         }
 
         .cont-expiration {
@@ -72,7 +79,7 @@
 
         .cont-expiration span {
             margin-left: 10mm !important;
-            font-family: 'Roboto', sans-serif ;
+            font-family: 'Roboto', sans-serif;
         }
 
         .parrafo {
@@ -88,7 +95,7 @@
             position: absolute;
             top: 44mm;
             left: 5mm;
-            
+
         }
 
         .cont-datos .cont-text-info {
@@ -98,7 +105,7 @@
         .cont-datos .cont-text-info span {
             position: relative;
             font-size: 10pt;
-            font-family: 'Roboto', sans-serif ;
+            font-family: 'Roboto', sans-serif;
         }
 
         .cont-datos .issuDate span {
@@ -136,7 +143,7 @@
         .cont-datos-2 .cont-text-info-2 span {
             position: relative !important;
             font-size: 10pt;
-            font-family: 'Roboto', sans-serif ;
+            font-family: 'Roboto', sans-serif;
         }
 
         .cont-datos-2 .bodyStyle span {
@@ -219,41 +226,90 @@
             font-size: 15pt;
             font-family: 'Times New Roman', Times, serif !important;
         }
-        
     </style>
 
+
+<?php
+
+include('list_register.php');
+
+$jsonData = json_decode($jsonString);
+
+foreach ($jsonData as $item) {
+    $id_vehicle = $item->id_vehicle;
+    $vin_vehicle = $item->vin_vehicle;
+    $seller = $item->seller;
+    $body_style = $item->body_style;
+    $major_color = $item->major_color;
+    $minor_color = $item->minor_color;
+    $sale_date = $item->sale_date;
+    $deler_number = $item->deler_number;
+    $year = $item->year;
+    $days = $item->days;
+    $make = $item->make;
+    $model = $item->model;
+    $miles = $item->miles;
+    $name_1 = $item->name_1;
+    $city = $item->city;
+    $estado = $item->estado;
+    $phone = $item->phone;
+    $adress = $item->adress;
+    $id_buyer = $item->id_buyer;
+
+
+    $fecha =  $sale_date;
+    if($fecha !== ''){
+        $fecha_objeto = strtotime($fecha);
+        $fecha_transformada = date("M d, Y", $fecha_objeto);
+    }else{
+        $fecha_transformada = '';
+    }
+    
+
+    // echo $fecha_transformada;
+
+
+
+?>
+
+
     <h1 class="title-v">BUYER'S TAG RECEIPT - DEALER'S COPY</h1>
-    <div class="cont-text cont-number">Tag Number: <span>5137NS6</span></div>
-    <div class="cont-text cont-expiration">Expiration Date: <span>AUG 28, 2023</span></div>
+    <div class="cont-text cont-number">Tag Number: <span><?php echo $id_vehicle; ?></span></div>
+    <div class="cont-text cont-expiration">Expiration Date: <span><?php echo  $fecha_transformada;?></span></div>
 
     <p class="parrafo">Give buyer's receipt to buyer. PLACE THIS DEALER'S COPY IN SALES FILE.<br>
         It is part of the sales records required to be kept and subject to inspection by TxDMV. Verify this
         information before distributing copies:</p>
 
     <div class="cont-datos">
-        <div class="cont-text-info issuDate">Issue Date: <span>Jun 29, 2023</span></div>
-        <div class="cont-text-info vin">VIN: <span>1C3CDZAB8CN214929</span></div>
-        <div class="cont-text-info year">Year: <span>2012</span></div>
-        <div class="cont-text-info make">Make: <span>DODG</span></div>
-        <div class="cont-text-info majorColor">Major Color: <span>ORANG</span></div>
+        <div class="cont-text-info issuDate">Issue Date: <span><?php echo  $fecha_transformada;?></span></div>
+        <div class="cont-text-info vin">VIN: <span><?php echo  $vin_vehicle;?></span></div>
+        <div class="cont-text-info year">Year: <span><?php echo  $year;?></span></div>
+        <div class="cont-text-info make">Make: <span><?php echo  $make;?></span></div>
+        <div class="cont-text-info majorColor">Major Color: <span><?php echo  $major_color;?></span></div>
     </div>
     <div class="cont-datos-2">
-        <div class="cont-text-info-2 bodyStyle">Body Style: <span>LL</span></div>
-        <div class="cont-text-info-2 model">Model: <span>AVE</span></div>
-        <div class="cont-text-info-2 minorColor">Minor Color: <span></span></div>
+        <div class="cont-text-info-2 bodyStyle">Body Style: <span><?php echo  $body_style;?></span></div>
+        <div class="cont-text-info-2 model">Model: <span><?php echo  $model;?></span></div>
+        <div class="cont-text-info-2 minorColor">Minor Color: <span><?php echo  $minor_color;?></span></div>
     </div>
     <div class="cont-datos-3">
-        <div class="cont-text-info-3 issuingDealer">Issuing Dealer: <span>HOUSTON AUTO MOTION</span></div>
-        <div class="cont-text-info-3 dealerNumber">Dealer Number:<span>P162053</span></div>
+        <div class="cont-text-info-3 issuingDealer">Issuing Dealer: <span><?php echo  $seller;?></span></div>
+        <div class="cont-text-info-3 dealerNumber">Dealer Number:<span><?php echo $deler_number;?></span></div>
     </div>
     <div class="cont-datos-4">
         <div class="cont-text-info-4 purchaser">Purchaser </div>
-        <div class="cont-text-info-4 name1">Name 1:<span>REIKITO DIAZ</span></div>
-        <div class="cont-text-info-4 address">Address:<div>4550 WILLOW MEMPHIS, TN 38115</div></div>
+        <div class="cont-text-info-4 name1">Name 1:<span><?php echo $name_1;?></span></div>
+        <div class="cont-text-info-4 address">Address:<div><?php echo $adress;?></div>
+        </div>
     </div>
     <div class="title-fin-pdf">DEALER'S COPY</div>
 
     <img class="fondo-marca" src="../img/texas/texas-nueva/imgFondoP2.jpg" alt="">
+
+    <?php
+}
+?> 
 
 </body>
 

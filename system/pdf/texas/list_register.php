@@ -4,9 +4,9 @@ include('../../backend/connection.php');
 
 if(true){
 
-// $id_buyer = $_GET['idRegisterVehicle'];
+$id_buyer = $_GET['idRegisterVehicle'];
     
-$query = "SELECT * FROM tb_vehicle  JOIN tb_buyer ON tb_vehicle.id_buyer = tb_buyer.id_buyer WHERE tb_buyer.id_buyer = 856906";
+$query = "SELECT * FROM tb_vehicle  JOIN tb_buyer ON tb_vehicle.id_buyer = tb_buyer.id_buyer WHERE tb_buyer.id_buyer = $id_buyer";
 
 
 $result = mysqli_query($Connection, $query);
@@ -24,6 +24,7 @@ while ($row = mysqli_fetch_array($result)) {
         'major_color' => $row['major_color'],
         'minor_color' => $row['minor_color'],
         'sale_date' => $row['sale_date'],
+        'deler_number' => $row['deler_number'],
         'year' => $row['year'],
         'days' => $row['days'],
         'make' => $row['make'],
@@ -33,6 +34,7 @@ while ($row = mysqli_fetch_array($result)) {
         'city' => $row['city'],
         'estado' => $row['estado'],
         'phone' => $row['phone'],
+        'adress' => $row['adress'],
         'id_buyer' => $row['id_buyer']
 
     );
