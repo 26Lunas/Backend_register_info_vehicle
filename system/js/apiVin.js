@@ -47,8 +47,8 @@ $(function () {
                 // console.log(model);
                 // console.log(modelYear);
                 // console.log(vin);
-
-                $('#campoVehicle-Make').val(make);
+               let makeDigitos4 = make.toString().slice(0, 4);
+                $('#campoVehicle-Make').val(makeDigitos4);
                 $('#campoVehicle-Model').val(model);
                 $('#campoVehicle-year').val(modelYear);
 
@@ -70,7 +70,7 @@ $(function () {
 
                     });
                     if (algunoVacio) {
-                        console.log('Al menos uno de los valores está vacío.');
+                        alert('Al menos uno de los valores está vacío.');
                     } else {
                         guardar_register_vehicle_info();
                         alert("Datos registrados con exito!");
