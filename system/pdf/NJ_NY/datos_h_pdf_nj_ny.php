@@ -471,7 +471,7 @@
                     <p>Insurance Company</p>
                 </div>
                 <div class="columna-4 text-campo">
-                    <p>Policy / Binder Number</p>
+                    <p>Policy / Binder Number</p<>
                 </div>
             </div>
             <div class="cont-row-5 cont-row">
