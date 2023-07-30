@@ -67,23 +67,36 @@ $(document).ready(function () {
     });
 
     $("#body-listRegisterVehicle").on("click", ".print", function () {
-        // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
-        var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-        console.log(idRegisterVehicle);
-        
-        var pdfURL1 = "pdf/texas/crearHorizontalPdfTX.php?idRegisterVehicle=" + idRegisterVehicle;
-        var pdfURL2 = "pdf/texas/crearVerticalPdfTX.php?idRegisterVehicle=" + idRegisterVehicle;
-      
-        // Abrir el primer PDF en una nueva pestaña
-        var newTab1 = window.open(pdfURL1, "_blank");
-        newTab1.focus();
-      
-        // Abrir el segundo PDF en otra nueva pestaña después de un pequeño retraso
-        setTimeout(function() {
-          var newTab2 = window.open(pdfURL2, "_blank");
-          newTab2.focus();
-        }, 500);
+
+        // Obtén el valor del cuarto td
+        var estado = $(this).closest("tr").find("td:eq(3)").text();
+        console.log(estado);
+        if (estado === "TX" || estado === "Texas Nueva") {
+            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+            console.log(idRegisterVehicle);
+
+            var pdfURL1 = "pdf/texas/crearHorizontalPdfTX.php?idRegisterVehicle=" + idRegisterVehicle;
+            var pdfURL2 = "pdf/texas/crearVerticalPdfTX.php?idRegisterVehicle=" + idRegisterVehicle;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+
+            // Abrir el segundo PDF en otra nueva pestaña después de un pequeño retraso
+            setTimeout(function () {
+                var newTab2 = window.open(pdfURL2, "_blank");
+                newTab2.focus();
+            }, 500);
+        }else{
+            alert("No hay PDF disponible para este registro");
+        }
+
+
     });
+    // $("#body-listRegisterVehicle").on("click", ".view-register", function () {
+
+    // });
 
     function fetch_list_register_users() {
         $.ajax({
