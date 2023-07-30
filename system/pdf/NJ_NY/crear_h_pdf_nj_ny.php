@@ -8,7 +8,7 @@ use Dompdf\Dompdf;
 // $html = file_get_contents_curl("http://localhost/Software_registro_de_información/system/pdf/texas/datosVerticales.html");
 
 ob_start(); // Iniciar el almacenamiento en búfer de salida
-include "datos_h_pdf_tag_md.php"; // Incluir el archivo que contiene el HTML a utilizar
+include "datos_h_pdf_nj_ny.php"; // Incluir el archivo que contiene el HTML a utilizar
 $html = ob_get_clean(); // Obtener el contenido almacenado en el búfer de salida
 
 
@@ -30,7 +30,7 @@ $pdf->load_html($html);
 $pdf->render();
 
 // Enviamos el fichero PDF al navegador.
-$pdf->stream('TAG-MD.pdf',  array('Attachment' => 0));
+$pdf->stream('NJ 11-2022.pdf',  array('Attachment' => 0));
 
 // Guardamos el fichero PDF en el servidor.
 // $file = 'pruebaPDF-2.pdf';

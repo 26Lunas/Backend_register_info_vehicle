@@ -32,7 +32,7 @@
             top: 3%;
             left: 2.5%;
             width: 95%;
-            height: 95%;
+            height: 96.9%;
         }
 
         .cont_main {
@@ -144,7 +144,7 @@
         .cont-footer{
             /* border: solid 1px red; */
             position: absolute;
-            bottom: 4.7mm;
+            bottom: 3.5mm;
             left: 6mm;
             height: 310px;
             width: 100%;
@@ -179,7 +179,7 @@
         .cont-code-expires{
             /* border: 1px solid red; */
             position: absolute;
-            bottom: 57mm;
+            bottom: 55mm;
             left: 30mm;
            
         }
@@ -220,23 +220,160 @@
         .cont-marco{
             /* border: solid 1px red; */
             position: absolute;
-            bottom: 36mm;
+            bottom: 0;
             left: 6mm;
+            padding-left: .5mm;
+            height: 206px;
+            width: 95%;
         }
         .cont-marco p, .cont-marco h4{
             margin: 0;
-            font-size: 8pt;
+            font-size: 8.71pt;
+            font-weight: 400;
+        }
+        .cont-marco>.cont-row-1>h4{
+            position: relative;
+            left: 5mm;
+            bottom: -.5mm;
+        }
+        .cont-marco p{
+            margin-bottom: .3.5mm;
+        }
+        .cont-marco>.cont-row-1>.columna-1>.address{
+            position: relative;
+            left: 2.5mm;
+        }
+        .cont-marco>.cont-row-1>.columna-1>p>span{
+            position: relative;
+        }
+        .cont-marco>.cont-row-1>.columna-1>p>.year{
+           left: 6mm;
+        }
+        .cont-marco>.cont-row-1>.columna-1>p>.vin{
+            left: 7mm;
+        }
+        .cont-marco>.cont-row-1>.columna-1>p>.owner{
+            left: 3mm;
+        }
+
+        .columna-2{
+            position: relative;
+            left: 64mm;
+            top: -20mm;
+        }
+        .columna-3{
+            position: relative;
+            left: 121mm;
+            top: -27.9mm;
+        }
+        .columna-4{
+            position: relative;
+            left: 89mm;
+            top: -28.5mm;
+        }
+        .columna-5{
+            position: relative;
+            left: 181.7mm;
+            top: -44mm;
+        }
+        .columna-6{
+            position: relative;
+            left: 176.5mm;
+            top: -44.5mm;
+        }
+
+        .cont-marco>.cont-row-2{
+            position: relative;
+            top: -41mm;
+        }
+        .cont-marco>.cont-row-2>h4{
+            font-weight: 700;
+        }
+        .cont-marco>.cont-row-2>.columna-1>p:first-child>span{
+            position: relative;
+            left: 20mm;
+        }
+        .cont-marco>.cont-row-2>.columna-2{
+            position: relative;
+            top: -15.6mm;
+            left: 121.1mm;
+        }
+        .cont-marco>.cont-row-2>.columna-2>p>span{
+            position: relative;
+            left: 24.5mm;
+        }
+
+        .cont-marco>.cont-row-3{
+            position: relative;
+            top: -45mm;
+        }
+        .cont-marco>.cont-row-3>h4{
+            font-weight: 700;
+            position: relative;
+            left: 105mm;
+        }
+        .cont-marco>.cont-row-3>.columna-2{
+            position: relative;
+            top: -8mm;
+            left: 121.1mm;
+        }
+        .cont-marco>.cont-row-3>.columna-2>p:nth-last-child(2)>span{
+            position: relative;
+            left: 15.5mm;
         }
     </style>
     <div class="cont-marco">
         <div class="cont-row-1">
             <h4>Vehicle and Owner Información</h4>
             <div class="columna-1">
-                <p>Year: <span>2006</span></p>
-                <p>VIN: <span>3A4FY58B66T323805</span></p>
-                <p>Owner: <span>CARLOS OSSIRIS TORRES RODRIGUEZ</span></p>
+                <p>Year: <span class="year">2006</span></p>
+                <p>VIN: <span class="vin">3A4FY58B66T323805</span></p>
+                <p>Owner: <span class="owner">CARLOS OSSIRIS TORRES RODRIGUEZ</span></p>
                 <p>Co-Owner:</p>
-                <p>Address of Purchaser(s) 546 DORIE ST , TX 78220</p>
+                <p class="address">Address of Purchaser(s) 546 DORIE ST , TX 78220</p>
+            </div>
+            <div class="columna-2">
+                <p>Make <span>CHRY</span></p>
+                <p>Odometer: <span>000000</span></p>
+            </div>
+            <div class="columna-3">
+                <p>Model: <span>PTC</span></p>
+                <p>State to be titled: <span>4D</span></p>
+            </div>
+            <div class="columna-4">
+                <p>Driver ID:</p>
+                <p>Driver ID:</p>
+            </div>
+            <div class="columna-5">
+                <p>Color 1: <span>SILVER</span></p>
+                <p>Color:</p>
+            </div>
+            <div class="columna-6">
+                <p>State Licensed:</p>
+                <p>State Licensed:</p>
+            </div>
+        </div>
+        <div class="cont-row-2">
+            <h4>Dealer and Insurance Information</h4>
+            <div class="columna-1">
+                <p>Dealer Name: <span>ENTERPRISE RAC COMPANY OF MARYLAND LLC</span></p>
+                <p>I certify under penalty of law that the vehicle noted on the face hereof is covered by at least the minimum amounts of insurance required by the Maryland Motor Vehicle Laws and that I have no
+                    outstanding violations with the Motor Vehicle Administration. I further certify under penalty of perjury, that the statements made herein are true and correct to the best of my knowledge,
+                    information and belief.</p>
+            </div>
+            <div class="columna-2">
+                <p>Dealer ID: <span>UD10000495</span></p>
+            </div>
+        </div>
+        <div class="cont-row-3">
+            <h4>Signatures and Date</h4>
+            <div class="columna-1">
+                <p>Owner:</p>
+                <p>Co-Owner:</p>
+            </div>
+            <div class="columna-2">
+                <p>Dealership:</p>
+                <p>Date of Delivery: <span>06/03/23</span></p>
             </div>
         </div>
     </div>
