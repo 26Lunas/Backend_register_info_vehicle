@@ -225,7 +225,7 @@ $jsonData = json_decode($jsonString);
 foreach ($jsonData as $item) {
     $id_vehicle = $item->id_vehicle;
     $vin_vehicle = $item->vin_vehicle;
-    $seller = $item->seller;
+    $seller = $item->seller; 
     $body_style = $item->body_style;
     $major_color = $item->major_color;
     $minor_color = $item->minor_color;
@@ -236,9 +236,12 @@ foreach ($jsonData as $item) {
     $model = $item->model;
     $miles = $item->miles;
     $name_1 = $item->name_1;
+    $name_2 = $item->name_2;
+    $adress = $item->adress;
     $city = $item->city;
     $estado = $item->estado;
     $phone = $item->phone;
+    $zip = $item->zip;
     $id_buyer = $item->id_buyer;
 
     $fecha =  $sale_date;

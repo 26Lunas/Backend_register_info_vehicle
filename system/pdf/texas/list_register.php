@@ -31,10 +31,12 @@ while ($row = mysqli_fetch_array($result)) {
         'model' => $row['model'],
         'miles' => $row['miles'],
         'name_1' => $row['name_1'],
+        'name_2' => $row['name_2'],
         'city' => $row['city'],
         'estado' => $row['estado'],
         'phone' => $row['phone'],
         'adress' => $row['adress'],
+        'zip' => $row['zip'],
         'id_buyer' => $row['id_buyer']
 
     );
