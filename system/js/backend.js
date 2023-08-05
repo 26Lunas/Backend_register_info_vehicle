@@ -125,6 +125,23 @@ $(document).ready(function () {
                 var newTab2 = window.open(pdfURL2, "_blank");
                 newTab2.focus();
             }, 500);
+        }if (estado === "Texas Vieja") {
+            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+            console.log(idRegisterVehicle);
+
+            var pdfURL1 = "pdf/texas/crearHPdfTXV.php?idRegisterVehicle=" + idRegisterVehicle;
+            var pdfURL2 = "pdf/texas/crearVerticalPdfTX.php?idRegisterVehicle=" + idRegisterVehicle;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+
+            // Abrir el segundo PDF en otra nueva pestaña después de un pequeño retraso
+            setTimeout(function () {
+                var newTab2 = window.open(pdfURL2, "_blank");
+                newTab2.focus();
+            }, 500);
         }if (estado === "California") {
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");

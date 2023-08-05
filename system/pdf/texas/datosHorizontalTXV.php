@@ -236,12 +236,9 @@ foreach ($jsonData as $item) {
     $model = $item->model;
     $miles = $item->miles;
     $name_1 = $item->name_1;
-    $name_2 = $item->name_2;
-    $adress = $item->adress;
     $city = $item->city;
     $estado = $item->estado;
     $phone = $item->phone;
-    $zip = $item->zip;
     $id_buyer = $item->id_buyer;
 
     $fecha =  $sale_date;
