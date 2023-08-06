@@ -287,27 +287,76 @@
        
       </style>
 
+<?php
+    include('../texas/list_register.php');
+
+    $jsonData = json_decode($jsonString);
+
+    foreach ($jsonData as $item) {
+        $id_vehicle = $item->id_vehicle;
+        $vin_vehicle = $item->vin_vehicle;
+        $seller = $item->seller;
+        $deler_number = $item->deler_number;
+        $body_style = $item->body_style;
+        $major_color = $item->major_color;
+        $minor_color = $item->minor_color;
+        $sale_date = $item->sale_date;
+        $year = $item->year;
+        $days = $item->days;
+        $make = $item->make;
+        $model = $item->model;
+        $miles = $item->miles;
+        $name_1 = $item->name_1;
+        $name_2 = $item->name_2;
+        $adress = $item->adress;
+        $city = $item->city;
+        $estado = $item->estado;
+        $phone = $item->phone;
+        $zip = $item->zip;
+        $id_buyer = $item->id_buyer;
+        $name_state = $item->name_state;
+
+        $fecha = $sale_date;
+        $facha_sale = new DateTime($fecha);
+        $sale_fecha_format = $facha_sale->format('d/m/Y');
+        // if ($fecha !== '') {
+        //     $fecha_objeto = strtotime($fecha);
+        //     $fecha_transformada = date("M d, Y", $fecha_objeto);
+        // } else {
+        //     $fecha_transformada = '';
+        // }
+        // echo $fecha_transformada;
+    
+        $name_state = str_replace(' ', '', $name_state);
+        
+        $sale_date = new DateTime($sale_date); // Suponiendo que $sale_date es la cadena de fecha
+        $expires = $sale_date->modify("+$days days");
+        $formattedDateExpires = $expires->format('M d, Y');
+        $formattedDateExpires2 = $expires->format('d/m/Y');
+
+        ?>
+
       <div class="cont-main">
         <h1 class="titulo">NEVADA</h1>
         <div class="contenedor-1">
             <h5>TEMPORARY PLACARD</h5>
             <div class="cont-vin-year-make-model">
-                <span class="vin">VIN: <strong>JM1BM1U72E1200227</strong></span>
-                <span class="year">YEAR: <strong>2014</strong></span>
-                <span class="make">MAKE: <strong>MAZD</strong></span>
-                <span class="model">MODEL: <strong>LL</strong></span>
+                <span class="vin">VIN: <strong><?php echo $vin_vehicle;?></strong></span>
+                <span class="year">YEAR: <strong><?php echo $year;?></strong></span>
+                <span class="make">MAKE: <strong><?php echo $make;?></strong></span>
+                <span class="model">MODEL: <strong><?php echo $model;?></strong></span>
             </div>
             <div class="code-id">NV-182-235</div>
             <div class="cont-section-espires">
-                <p class="Expiration">Expiration Date: <span>09/23/2022</span></p>
-                <p class="issueDate">ISSUE DATE: <span>07/23/2022</span></p>
+                <p class="Expiration">Expiration Date: <span><?php echo $formattedDateExpires2;?></span></p>
+                <p class="issueDate">ISSUE DATE: <span><?php echo $sale_fecha_format;?></span></p>
                 <p class="dealer_name">DEALER NAME: <span>NEVADA AUTO DEALER</span></p>
                 <p class="dealer_number">DEALER NUMBER: <span>DLR0000001</span></p>
             </div>
             <img src="img/img-placa.jpg" alt="" class="img_placa">
             <div class="cont-placa-img">
                 <p class="code-id-1">NV-182-235</p>
-                <p class="expiration">09-23-22</p>
+                <p class="expiration"><?php echo $formattedDateExpires2;?></p>
                 <p class="code-id-2">NV-182-235</p>
             </div>
             
@@ -317,11 +366,11 @@
             <div class="cont-columna-1">
                 <div class="cont-text issuDate">
                     <p>Issue Date</p>
-                    <strong>07/23/2022</strong>
+                    <strong><?php echo $sale_fecha_format;?></strong>
                 </div>
                 <div class="cont-text name">
                     <p>Owner Name</p>
-                    <strong>MARIA N PINEDA</strong>
+                    <strong><?php echo $name_1 ." ". $name_2;?></strong>
                 </div>
                 <div class="cont-text dealer_number">
                     <p>Dealer Number</p>
@@ -331,23 +380,23 @@
             <div class="cont-columna-2">
                 <div class="cont-text expiration_date">
                     <p>Expiration Date</p>
-                    <strong>09/23/2022</strong>
+                    <strong><?php echo $formattedDateExpires2;?></strong>
                 </div>
             </div>
             <div class="cont-columna-3">
                 <div class="cont-text dealer_number">
                     <p>Dealer Number</p>
-                    <strong>DLR0000001</strong>
+                    <strong><?php echo $deler_number;?></strong>
                 </div>
             </div>
             <div class="cont-columna-4">
                 <div class="cont-text vin">
                     <p>VIN</p>
-                    <strong>2HGEJ6348XH111150</strong>
+                    <strong><?php echo $vin_vehicle;?></strong>
                 </div>
                 <div class="cont-text adress">
                     <p>Mailing Address</p>
-                    <strong>5642 CASTLE GLADE</strong>
+                    <strong><?php echo $adress;?></strong>
                 </div>
             </div>
             <div class="cont-columna-5">
@@ -359,19 +408,19 @@
             <div class="cont-columna-6">
                 <div class="cont-text year">
                     <p>Year</p>
-                    <strong>2014</strong>
+                    <strong><?php echo $year;?></strong>
                 </div>
             </div>
             <div class="cont-columna-7">
                 <div class="cont-text city">
                     <p>City</p>
-                    <strong>SAN ANTONIO</strong>
+                    <strong><?php echo $city;?></strong>
                 </div>
             </div>
             <div class="cont-columna-8">
                 <div class="cont-text make">
                     <p>Make</p>
-                    <strong>MAZDA</strong>
+                    <strong><?php echo $make;?></strong>
                 </div>
                 <div class="cont-text state">
                     <p>State</p>
@@ -381,11 +430,11 @@
             <div class="cont-columna-9">
                 <div class="cont-text model">
                     <p>Model</p>
-                    <strong>LL</strong>
+                    <strong><?php echo $model;?></strong>
                 </div>
                 <div class="cont-text zip">
                     <p>Zip</p>
-                    <strong>78218</strong>
+                    <strong><?php echo $zip;?></strong>
                 </div>
             </div>
 
@@ -393,6 +442,10 @@
         </div>
         <p class="text_code_bar"><em>Bar Code</em></p>
       </div>
+
+      <?php
+    }
+    ?>
 
     
 </body>

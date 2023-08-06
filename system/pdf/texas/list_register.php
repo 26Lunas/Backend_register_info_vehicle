@@ -6,7 +6,11 @@ if(true){
 
 $id_buyer = $_GET['idRegisterVehicle'];
     
-$query = "SELECT * FROM tb_vehicle  JOIN tb_buyer ON tb_vehicle.id_buyer = tb_buyer.id_buyer WHERE tb_buyer.id_buyer = $id_buyer";
+$query = "SELECT v.*, b.*, s.*
+FROM tb_vehicle v
+JOIN tb_buyer b ON v.id_buyer = b.id_buyer
+JOIN tb_state s ON b.estado = s.identificador_state
+WHERE b.id_buyer = '$id_buyer'";;
 
 
 $result = mysqli_query($Connection, $query);
@@ -37,7 +41,8 @@ while ($row = mysqli_fetch_array($result)) {
         'phone' => $row['phone'],
         'adress' => $row['adress'],
         'zip' => $row['zip'],
-        'id_buyer' => $row['id_buyer']
+        'id_buyer' => $row['id_buyer'],
+        'name_state' => $row['name_state']
 
     );
 }

@@ -1,6 +1,3 @@
-<?php
-    include('../../root_main.php');
-?>
 
 <html lang="es">
 
@@ -97,21 +94,64 @@
         }
     </style>
 
+
+<?php
+
+include('../texas/list_register.php');
+
+$jsonData = json_decode($jsonString);
+
+foreach ($jsonData as $item) {
+    $id_vehicle = $item->id_vehicle;
+    $vin_vehicle = $item->vin_vehicle;
+    $seller = $item->seller;
+    $body_style = $item->body_style;
+    $major_color = $item->major_color;
+    $minor_color = $item->minor_color;
+    $sale_date = $item->sale_date;
+    $year = $item->year;
+    $days = $item->days;
+    $make = $item->make;
+    $model = $item->model;
+    $miles = $item->miles;
+    $name_1 = $item->name_1;
+    $city = $item->city;
+    $estado = $item->estado;
+    $phone = $item->phone;
+    $id_buyer = $item->id_buyer;
+
+    $fecha =  $sale_date;
+    if($fecha !== ''){
+        $fecha_objeto = strtotime($fecha);
+        $fecha_transformada = date("M d, Y", $fecha_objeto);
+    }else{
+        $fecha_transformada = '';
+    }
+    
+
+    // echo $fecha_transformada;
+
+
+
+?>
     <div class="cont_main">
         <img src="img/img_logo_1.jpg" alt="">
         <div class="cont-vin-year-make-color">
-            <span class="vin">VIN: <strong>JTHBA30G240008139</strong></span>
-            <span class="make">MAKE: <strong>LEXS</strong></span>
-            <span class="color">COLOR: <strong>GOLD</strong></span>
-            <span class="year">YEAR: <strong>2004</strong></span>
+            <span class="vin">VIN: <strong><?php echo $vin_vehicle;?></strong></span>
+            <span class="make">MAKE: <strong><?php echo $make;?></strong></span>
+            <span class="color">COLOR: <strong><?php echo $major_color;?></strong></span>
+            <span class="year">YEAR: <strong><?php echo $year;?></strong></span>
         </div>
         <h1>LOUISIANA</h1>
         <!-- <h1 style="font-size: 50.4pt;">LOUISIANA</h1>
         <h1 style="font-size: 50.5pt;">LOUISIANA</h1> -->
 
         <h2>Exp: 06/24/2022</h2>
-        <div class="code_id">UZ89X7L</div>
+        <div class="code_id"><?php echo $id_vehicle;?></div>
     </div>
+    <?php
+}
+?>
 
 </body>
 

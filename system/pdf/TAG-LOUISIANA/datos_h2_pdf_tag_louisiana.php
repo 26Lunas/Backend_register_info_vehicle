@@ -7,6 +7,7 @@
 </head>
 
 <body>
+
     <style>
         * {
             font-family: Arial, Helvetica, sans-serif;
@@ -82,6 +83,49 @@
             width: 109.1%;
         }
     </style>
+    
+<?php
+include('../texas/list_register.php');
+
+$jsonData = json_decode($jsonString);
+
+foreach ($jsonData as $item) {
+    $id_vehicle = $item->id_vehicle;
+    $vin_vehicle = $item->vin_vehicle;
+    $seller = $item->seller;
+    $deler_number=$item->deler_number;
+    $body_style = $item->body_style;
+    $major_color = $item->major_color;
+    $minor_color = $item->minor_color;
+    $sale_date = $item->sale_date;
+    $year = $item->year;
+    $days = $item->days;
+    $make = $item->make;
+    $model = $item->model;
+    $miles = $item->miles;
+    $name_1 = $item->name_1;
+    $name_2 = $item->name_2;
+    $adress = $item->adress;
+    $city = $item->city;
+    $estado = $item->estado;
+    $phone = $item->phone;
+    $zip = $item->zip;
+    $id_buyer = $item->id_buyer;
+
+    $fecha =  $sale_date;
+    if($fecha !== ''){
+        $fecha_objeto = strtotime($fecha);
+        $fecha_transformada = date("M d, Y", $fecha_objeto);
+    }else{
+        $fecha_transformada = '';
+    }
+    
+
+    // echo $fecha_transformada;
+
+
+
+?>
 
     <div class="cont_main">
         <div class="cont-img-date">
@@ -93,7 +137,7 @@
             <div class="cont-parrafo">
                 <p>Cuthere - Keep this section with vehicle until registered and plated</p>
                 <p class="p-strong"><strong>Louisiana Temporary Registration Certificate VR-007)</strong></p>
-                <p class="valid"><span>Valid for 60 days</span></p>
+                <p class="valid"><span>Valid for <?php echo $days;?> days</span></p>
             </div>
         </div>
 
@@ -215,31 +259,34 @@
             }
             
         </style>
+
+
+
         <div class="cont-marco">
             <img src="img/marco.png" alt="">
             <div class="cont-row-1">
                 <h2>Vehicle and OwnerInformation</h2>
                 <div class="columna-1">
-                    <p class="year">Year: <span>2004</span></p>
-                    <p class="vin">Vin: <span>JTHBA30G240008139</span></p>
-                    <p class="owner">Owner: <span>JERRY CENTENO</span></p>
+                    <p class="year">Year: <span><?php echo $year;?></span></p>
+                    <p class="vin">Vin: <span><?php echo $vin_vehicle;?></span></p>
+                    <p class="owner">Owner: <span><?php echo $name_1;?></span></p>
                     <p class="vehicle">Vehicle and OwnerInformation</p>
-                    <p class="adress">Address: <span>1662 E WALKER CT BATON ROUGE, LA 70815</span></p>
+                    <p class="adress">Address: <span><?php echo $adress;?></span></p>
                 </div>
                 <div class="columna-2">
-                    <p class="make">Make: <span>LEXS</span></p>
+                    <p class="make">Make: <span><?php echo $make;?></span></p>
                     <p class="odmeter">Odometer: <span></span></p>
                 </div>
                 <div class="columna-3">
-                    <p class="model">Model: <span>ES</span></p>
-                    <p class="state">State to be titled : <span>MD</span></p>
+                    <p class="model">Model: <span><?php echo $model;?></span></p>
+                    <p class="state">State to be titled : <span><?php echo $city;?></span></p>
                 </div>
                 <div class="columna-4">
                     <p class="drive">Driver ID: <span></span></p>
                     <p class="drive1">Driver ID: <span></span></p>
                 </div>
                 <div class="columna-5">
-                    <p class="color">Color: GOLD <span></span></p>
+                    <p class="color">Color: <span><?php echo $major_color;?></span></p>
                 </div>
                 <div class="columna-6">
                     <p class="state_licesed">State Licensed: <span></span></p>
@@ -250,7 +297,7 @@
             <div class="cont-row-2">
                 <h2>Dealer and Insurance Information</h2>
                 <div class="columna-1">
-                    <p class="name">Daeler Name: <span>PRIME AUTO FINANCE,</span></p>
+                    <p class="name">Daeler Name: <span><?php echo $seller;?>,</span></p>
                     <p class="parrafo">I certify under penalty of law that the vehicle noted on the face hereof is
                         covered by at least the minimun amounts of insurance required by Louisiana Motor Vehicle Laws
                         and that I have no outstanding violations with the Motor Vehicle Administration. I furthe
@@ -258,7 +305,7 @@
                         best of my knowledge, information and belief.</p>
                 </div>
                 <div class="columna-2">
-                    <p class="daeler_id">Daeler ID: <span>P163908</span></p>
+                    <p class="daeler_id">Daeler ID: <span><?php echo $deler_number;?></span></p>
                 </div>
             </div>
             <div class="cont-row-3">
@@ -275,6 +322,11 @@
             
         </div>
     </div>
+
+
+    <?php
+}
+?>
 
 </body>
 
