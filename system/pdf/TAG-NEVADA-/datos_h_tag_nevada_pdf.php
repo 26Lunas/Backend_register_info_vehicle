@@ -351,7 +351,7 @@
                 <p class="Expiration">Expiration Date: <span><?php echo $formattedDateExpires2;?></span></p>
                 <p class="issueDate">ISSUE DATE: <span><?php echo $sale_fecha_format;?></span></p>
                 <p class="dealer_name">DEALER NAME: <span>NEVADA AUTO DEALER</span></p>
-                <p class="dealer_number">DEALER NUMBER: <span>DLR0000001</span></p>
+                <p class="dealer_number">DEALER NUMBER: <span><?php echo $deler_number;?></span></p>
             </div>
             <img src="img/img-placa.jpg" alt="" class="img_placa">
             <div class="cont-placa-img">
