@@ -1,7 +1,3 @@
-<?php
-    include('../../root_main.php');
-?>
-
 <html lang="es">
 
 <head>
@@ -120,24 +116,74 @@
         }
     </style>
 
+    
+<?php
+    include('../texas/list_register.php');
+
+    $jsonData = json_decode($jsonString);
+
+    foreach ($jsonData as $item) {
+        $id_vehicle = $item->id_vehicle;
+        $vin_vehicle = $item->vin_vehicle;
+        $seller = $item->seller;
+        $deler_number = $item->deler_number;
+        $body_style = $item->body_style;
+        $major_color = $item->major_color;
+        $minor_color = $item->minor_color;
+        $sale_date = $item->sale_date;
+        $year = $item->year;
+        $days = $item->days;
+        $make = $item->make;
+        $model = $item->model;
+        $miles = $item->miles;
+        $name_1 = $item->name_1;
+        $name_2 = $item->name_2;
+        $adress = $item->adress;
+        $city = $item->city;
+        $estado = $item->estado;
+        $phone = $item->phone;
+        $zip = $item->zip;
+        $id_buyer = $item->id_buyer;
+        $name_state = $item->name_state;
+
+        $fecha = $sale_date;
+        $facha_sale = new DateTime($fecha);
+        $sale_fecha_format = $facha_sale->format('d/m/Y');
+        // if ($fecha !== '') {
+        //     $fecha_objeto = strtotime($fecha);
+        //     $fecha_transformada = date("M d, Y", $fecha_objeto);
+        // } else {
+        //     $fecha_transformada = '';
+        // }
+        // echo $fecha_transformada;
+    
+        $name_state = str_replace(' ', '', $name_state);
+        
+        $sale_date = new DateTime($sale_date); // Suponiendo que $sale_date es la cadena de fecha
+        $expires = $sale_date->modify("+$days days");
+        $formattedDateExpires = $expires->format('M d, Y');
+        $formattedDateExpires2 = $expires->format('d/m/y');
+
+        ?>
+
     <img src="img/img_fondo.jpg" alt="" class="fondo">
     <div class="cont_main">
 
         <div class="cont-vin-year-make-color">
             <em>
-                <span class="vin">VIN <span class="vin-valor">3A4FY58B66T323805</span></span>
+                <span class="vin">VIN <span class="vin-valor"><?php echo $vin_vehicle;?></span></span>
                 <div class="cont-desde-make">
-                    <span class="make">CHRY</span>
-                    <span class="color">SILVER</span>
-                    <span class="year">2006</span>
+                    <span class="make"><?php echo $make;?></span>
+                    <span class="color"><?php echo $major_color;?></span>
+                    <span class="year"><?php echo $year;?></span>
                 </div>
                 
             </em>
 
         </div>
         <h1>M A R Y L A N D</h1>
-        <h2><span>Exp: </span>08/02/23</h2>
-        <div class="code_id">C67626D1</div>
+        <h2><span>Exp: </span><?php echo $formattedDateExpires2;?></h2>
+        <div class="code_id"><?php echo $id_vehicle;?></div>
     </div>
 
     <style>
@@ -199,20 +245,21 @@
             bottom: -.6mm;
         }
     </style>
+
     <div class="cont-code-expires">
-        <p>C67626D1</p>
-        <p>Exp 08/02/23</p>
+        <p><?php echo $id_vehicle;?></p>
+        <p>Exp <?php echo $formattedDateExpires2;?></p>
     </div>
     <div class="cont-code-expires">
-        <p>C67626D1</p>
-        <p>Exp 08/02/23</p>
+        <p><?php echo $id_vehicle;?></p>
+        <p>Exp <?php echo $formattedDateExpires2;?></p>
     </div>
     <div class="cont-footer">
         <h3>SOLD BY: ENTERPRISE RAC COMPANY OF MARYLAND LLC</h3>
         <div class="cont-subtitle">
             <p>Cut here -- Keep this seccion with vehicle until registered and plated</p>
             <p><strong>Maryland Temporary Registration Certificate (VR-007)</strong></p>
-            <p class="valid">Valid for <span>60</span> days</p>
+            <p class="valid">Valid for <span><?php echo $days;?></span> days</p>
         </div>
     </div>
 
@@ -322,31 +369,34 @@
             left: 15.5mm;
         }
     </style>
+
+
+
     <div class="cont-marco">
         <div class="cont-row-1">
             <h4>Vehicle and Owner Información</h4>
             <div class="columna-1">
-                <p>Year: <span class="year">2006</span></p>
-                <p>VIN: <span class="vin">3A4FY58B66T323805</span></p>
-                <p>Owner: <span class="owner">CARLOS OSSIRIS TORRES RODRIGUEZ</span></p>
+                <p>Year: <span class="year"><?php echo $year;?></span></p>
+                <p>VIN: <span class="vin"><?php echo $vin_vehicle;?></span></p>
+                <p>Owner: <span class="owner"><?php echo $name_1 ." ". $name_2;?></span></p>
                 <p>Co-Owner:</p>
-                <p class="address">Address of Purchaser(s) 546 DORIE ST , TX 78220</p>
+                <p class="address"><?php echo $adress;?></p>
             </div>
             <div class="columna-2">
-                <p>Make <span>CHRY</span></p>
+                <p>Make <span><?php echo $make;?></span></p>
                 <p>Odometer: <span>000000</span></p>
             </div>
             <div class="columna-3">
-                <p>Model: <span>PTC</span></p>
-                <p>State to be titled: <span>4D</span></p>
+                <p>Model: <span><?php echo $model;?></span></p>
+                <p>State to be titled: <span><?php echo $body_style;?></span></p>
             </div>
             <div class="columna-4">
                 <p>Driver ID:</p>
                 <p>Driver ID:</p>
             </div>
             <div class="columna-5">
-                <p>Color 1: <span>SILVER</span></p>
-                <p>Color:</p>
+                <p>Color 1: <span><?php echo $major_color;?></span></p>
+                <p>Color: <span><?php echo $minor_color;?></span></p>
             </div>
             <div class="columna-6">
                 <p>State Licensed:</p>
@@ -362,7 +412,7 @@
                     information and belief.</p>
             </div>
             <div class="columna-2">
-                <p>Dealer ID: <span>UD10000495</span></p>
+                <p>Dealer ID: <span><?php echo $deler_number;?></span></p>
             </div>
         </div>
         <div class="cont-row-3">
@@ -373,10 +423,14 @@
             </div>
             <div class="columna-2">
                 <p>Dealership:</p>
-                <p>Date of Delivery: <span>06/03/23</span></p>
+                <p>Date of Delivery: <span><?php echo $sale_fecha_format;?></span></p>
             </div>
         </div>
     </div>
+
+    <?php
+    }
+    ?>
 
 </body>
 

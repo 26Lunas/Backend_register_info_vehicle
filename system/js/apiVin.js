@@ -14,6 +14,16 @@ $(function () {
         window.location.href = "index.html"
     });
 
+    
+    $('.inputDigits').on('input', function() {
+        var inputValue = $(this).val();
+        var maxLength = 3;
+        
+        if (inputValue.length > maxLength) {
+            $(this).val(inputValue.slice(0, maxLength));
+        }
+    });
+
 
 
     let valueCampoVin = $("#campoVehicle-vin").val();
@@ -49,7 +59,7 @@ $(function () {
                 // console.log(vin);
                let makeDigitos4 = make.toString().slice(0, 4);
                 $('#campoVehicle-Make').val(makeDigitos4);
-                $('#campoVehicle-Model').val(model);
+                $('#campoVehicle-Model').val(model.toString().slice(0, 3));
                 $('#campoVehicle-year').val(modelYear);
 
 
@@ -166,6 +176,7 @@ $(function () {
                     } else {
                         guardar_register_make_inspect();
                         alert("Datos registrados con exito!");
+                        window.location.href = "list_register_inspect.html"
                     }
                 });
 

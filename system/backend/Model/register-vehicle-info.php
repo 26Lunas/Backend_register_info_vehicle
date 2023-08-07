@@ -44,31 +44,49 @@ if($_POST['campoVehicleVin']){
         // echo "Datos registrados con exito! tb_buyer";
     }
 
-    function generarCodigoAleatorio() {
+    function generarCodigoAleatorio($logitudN) {
         $letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $numeros = '0123456789';
-    
         $codigo = '';
     
-        // Generar cuatro números aleatorios
-        for ($i = 0; $i < 4; $i++) {
-            $posicion = rand(0, strlen($numeros) - 1);
-            $codigo .= $numeros[$posicion];
+        // Generar dos letras aleatorias en posiciones aleatorias
+        for ($i = 0; $i < 2; $i++) {
+            $posicionLetra = rand(0, strlen($letras) - 1);
+            $codigo .= $letras[$posicionLetra];
         }
     
-        // Generar dos letras aleatorias
-        $codigo .= $letras[rand(0, strlen($letras) - 1)];
-        $codigo .= $letras[rand(0, strlen($letras) - 1)];
+        // Generar seis números aleatorios
+        for ($i = 0; $i < $logitudN; $i++) {
+            $posicionNumero = rand(0, strlen($numeros) - 1);
+            $codigo .= $numeros[$posicionNumero];
+        }
     
-        // Generar un número aleatorio
-        $posicion = rand(0, strlen($numeros) - 1);
-        $codigo .= $numeros[$posicion];
+        // Mezclar el código para obtener posiciones aleatorias
+        $codigo = str_shuffle($codigo);
     
         return $codigo;
     }
-    
+
     // Uso del código generador
-    $codigoAleatorio = generarCodigoAleatorio();
+    $codigoAleatorio = generarCodigoAleatorio(5);
+    
+    if($buyer_state === "MD"){
+        $codigoAleatorio = generarCodigoAleatorio(6);
+    }else if($buyer_state ==="NV"){
+        
+        // Generar números aleatorios
+        $numero1 = rand(100, 999);
+        $numero2 = rand(100, 999);
+
+        // Crear el código
+        $codigo = "NV-" . $numero1 . "-" . $numero2;
+
+        // Mostrar el código generado
+        $codigoAleatorio = $codigo;
+
+    }
+    
+    
     
     // echo "Código aleatorio: " . $codigoAleatorio;
     

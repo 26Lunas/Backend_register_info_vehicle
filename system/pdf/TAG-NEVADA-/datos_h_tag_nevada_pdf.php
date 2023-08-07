@@ -346,7 +346,7 @@
                 <span class="make">MAKE: <strong><?php echo $make;?></strong></span>
                 <span class="model">MODEL: <strong><?php echo $model;?></strong></span>
             </div>
-            <div class="code-id">NV-182-235</div>
+            <div class="code-id"><?php echo $id_vehicle;?></div>
             <div class="cont-section-espires">
                 <p class="Expiration">Expiration Date: <span><?php echo $formattedDateExpires2;?></span></p>
                 <p class="issueDate">ISSUE DATE: <span><?php echo $sale_fecha_format;?></span></p>
@@ -355,9 +355,9 @@
             </div>
             <img src="img/img-placa.jpg" alt="" class="img_placa">
             <div class="cont-placa-img">
-                <p class="code-id-1">NV-182-235</p>
+                <p class="code-id-1"><?php echo $id_vehicle;?></p>
                 <p class="expiration"><?php echo $formattedDateExpires2;?></p>
-                <p class="code-id-2">NV-182-235</p>
+                <p class="code-id-2"><?php echo $id_vehicle;?></p>
             </div>
             
         </div>

@@ -230,4 +230,8 @@
     background: rgba(238, 51, 51, 0.178) !important;
 }
 
+.text-capitalize{
+    text-transform: uppercase !important;
+}
+
 /* Fin List register Vehicle info */

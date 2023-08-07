@@ -4,6 +4,7 @@ $(document).ready(function () {
 
     fetch_list_register_placas();
     fetch_list_register_users();
+    fetch_list_register_inspect();
 
     function fetch_list_register_placas() {
         $.ajax({
@@ -27,9 +28,9 @@ $(document).ready(function () {
                         `
                     <tr idRegisterVehicle="${listRegistro.id_buyer}">
                         <td>${listRegistro.id_vehicle}</td>
-                        <td>${listRegistro.name_1}</td>
+                        <td class="text-capitalize">${listRegistro.name_1}</td>
                         <td>${phone}</td>
-                        <td>${listRegistro.name_state}</td>
+                        <td class="text-capitalize">${listRegistro.name_state}</td>
                         <td><i class="fa-solid fa-eye view-register"></i> | <i class="fa-solid fa-print print"></i> | <i class="fa-solid fa-pen-to-square edit-register"></i> | <i class="fa-solid fa-trash-can delete-register"></i></td>
                     </tr>
 
@@ -69,6 +70,37 @@ $(document).ready(function () {
                 });
 
                 $('#body-listRegisterUser').html(plantilla);
+            }
+        });
+    };
+
+    function fetch_list_register_inspect() {
+        $.ajax({
+            type: "GET",
+            url: "backend/Model/list_register_make_inspect.php",
+            success: function (response) {
+                // console.log(response);
+
+                let listRegistro = JSON.parse(response);
+
+                let plantilla = '';
+                listRegistro.forEach(listRegistro => {
+
+
+                    plantilla +=
+                        `
+                    <tr idRegisterInspect="${listRegistro.id_make_inspect}">
+                        <td>${listRegistro.id_make_inspect}</td>
+                        <td class="text-capitalize">${listRegistro.vin}</td>
+                        <td>${listRegistro.sale_date}</td>
+                        <td class="text-capitalize">${listRegistro.license}</td>
+                        <td><i class="fa-solid fa-eye view-register"></i> | <i class="fa-solid fa-print print"></i> | <i class="fa-solid fa-pen-to-square edit-register"></i> | <i class="fa-solid fa-trash-can delete-register"></i></td>
+                    </tr>
+
+                    `
+                });
+
+                $('#body-listRegisterInspect').html(plantilla);
             }
         });
     };
@@ -182,16 +214,72 @@ $(document).ready(function () {
             // Abrir el primer PDF en una nueva pestaña
             var newTab1 = window.open(pdfURL1, "_blank");
             newTab1.focus();
-        }
-        else {
+        }else if (estado === "Maryland") {
+            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+            console.log(idRegisterVehicle);
+
+            var pdfURL1 = "pdf/TAG-MD/crear_h_pdf_tag_md.php?idRegisterVehicle=" + idRegisterVehicle;
+        
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+        }else {
             alert("No hay PDF disponible para este registro");
         }
 
 
     });
+
+    $("#body-listRegisterInspect").on("click", ".print", function () {
+       
+            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+            // console.log(idRegisterVehicle);
+
+            var pdfURL1 = "pdf/INSPECT/inspect.php?idRegisterVehicle=" + idRegisterVehicle;
+        
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+    
+    });
+
+    $("#body-listRegisterInspect").on("click", ".delete-register", function () {
+        if (confirm("¿Deseas eliminar este registro?")) {
+            // Obtén el valor del atributo idRegisterInspect del elemento padre (tr)
+            var idRegisterInspect = $(this).closest("tr").attr("idRegisterInspect");
+
+            console.log(idRegisterInspect);
+
+            // Realizar la solicitud AJAX
+            $.ajax({
+                url: "backend/Model/eliminar_registro_inspect.php",
+                type: "POST",
+                data: {
+                    idRegisterInspect: idRegisterInspect
+                },
+                success: function (response) {
+                    console.log("Registro eliminado", response);
+                    fetch_list_register_inspect()
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error al eliminar el registro:", error);
+                    fetch_list_register_inspect()
+                }
+            });
+        }
+
+
+
+    });
+
+
+    
     // $("#body-listRegisterVehicle").on("click", ".view-register", function () {
 
     // });
+    
 
     
 
