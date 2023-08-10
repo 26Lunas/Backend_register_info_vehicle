@@ -4,6 +4,32 @@
 require_once '../dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
 
+
+require '../generarQR/vendor/autoload.php'; // Carga las clases de la librería
+
+use BaconQrCode\Renderer\Image\Png;
+use BaconQrCode\Writer;
+
+$id = $_GET['idRegisterVehicle'];
+
+// Texto que se convertirá en el código QR
+$textoQR = "https://txdmvgot.com/system/pdf/generarQR/qr.php?idRegisterVehicle=".$id;
+// Convertir el texto a UTF-8
+$textoQR = utf8_encode($textoQR);
+
+// Configuración de la imagen QR
+$renderer = new Png();
+$renderer->setWidth(1000);
+$renderer->setHeight(1000);
+
+$writer = new Writer($renderer);
+
+// Generar el código QR
+
+// $rutaCarpetaQR = "img/";
+$archivoQR = 'codigo_qr.png';
+$writer->writeFile($textoQR, $archivoQR);
+
 // Introducimos HTML de prueba
 // $html = file_get_contents("http://localhost/Software_registro_de_información/system/pdf/texas/datosHorizontales.php");
 ob_start(); // Iniciar el almacenamiento en búfer de salida
@@ -50,3 +76,6 @@ echo $pdf->output();
 // Devuelve el contenido del PDF como respuesta al AJAX
 // $pdfOutput = $pdf->output();
 // echo base64_encode($pdfOutput);
+
+// Eliminar el archivo generado
+unlink($archivoQR);

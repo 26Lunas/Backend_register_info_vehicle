@@ -224,7 +224,35 @@ $(document).ready(function () {
             // Abrir el primer PDF en una nueva pestaña
             var newTab1 = window.open(pdfURL1, "_blank");
             newTab1.focus();
-        }else {
+        }else if (estado === "Tennessee") {
+            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+            console.log(idRegisterVehicle);
+
+            var pdfURL1 = "pdf/TAG-TENNESSEE-/crear_v_pdf_tag_tennessee.php?idRegisterVehicle=" + idRegisterVehicle;
+        
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+        }else if (estado === "North California") {
+            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+            console.log(idRegisterVehicle);
+
+            var pdfURL1 = "pdf/NC_NORTE_CALIFORNIA/crear_h_pdf_norte_california.php?idRegisterVehicle=" + idRegisterVehicle;
+            var pdfURL2 = "pdf/NC_NORTE_CALIFORNIA/crear_v2_pdf_norte_california.php?idRegisterVehicle=" + idRegisterVehicle;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+
+            // Abrir el segundo PDF en otra nueva pestaña después de un pequeño retraso
+            setTimeout(function () {
+                var newTab2 = window.open(pdfURL2, "_blank");
+                newTab2.focus();
+            }, 500);
+        }
+        else {
             alert("No hay PDF disponible para este registro");
         }
 
@@ -233,11 +261,11 @@ $(document).ready(function () {
 
     $("#body-listRegisterInspect").on("click", ".print", function () {
        
-            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
-            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            // console.log(idRegisterVehicle);
+            // Obtén el valor del atributo idRegisterInspect del elemento padre (tr)
+            var idRegisterInspect = $(this).closest("tr").attr("idRegisterInspect");
+            // console.log(idRegisterInspect);
 
-            var pdfURL1 = "pdf/INSPECT/inspect.php?idRegisterVehicle=" + idRegisterVehicle;
+            var pdfURL1 = "pdf/INSPECT/Inspect.php?idRegisterInspect=" + idRegisterInspect;
         
             // Abrir el primer PDF en una nueva pestaña
             var newTab1 = window.open(pdfURL1, "_blank");

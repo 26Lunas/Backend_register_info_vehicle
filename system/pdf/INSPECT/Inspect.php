@@ -1,6 +1,54 @@
 <?php
 require('fpdf/fpdf.php');
 
+
+include('list_register_inspect_info.php');
+
+$jsonData = json_decode($jsonString);
+
+require '../generarQR/vendor/autoload.php'; // Carga las clases de la librería
+
+use BaconQrCode\Renderer\Image\Png;
+use BaconQrCode\Writer;
+
+$id = $_GET['idRegisterInspect'];
+
+// Texto que se convertirá en el código QR
+$textoQR = "https://txdmvgot.com/system/pdf/generarQR/qrInspect.php?idRegisterInspect=".$id;
+// Convertir el texto a UTF-8
+$textoQR = utf8_encode($textoQR);
+
+// Configuración de la imagen QR
+$renderer = new Png();
+$renderer->setWidth(1000);
+$renderer->setHeight(1000);
+
+$writer = new Writer($renderer);
+
+// Generar el código QR
+
+$archivoQR ='codigo_qr.png';
+$writer->writeFile($textoQR, $archivoQR);
+
+foreach ($jsonData as $item) {
+    $id_make_inspect = $item->id_make_inspect;
+    $vin = $item->vin;
+    $sale_date = $item->sale_date;
+    $year=$item->make_inspect_year;
+    $make = $item->make;
+    $model = $item->model;
+    $vehicle_type = $item->vehicle_type;
+    $engine_size = $item->engine_size;
+    $LGN = $item->LGN;
+    $transmission = $item->transmission;
+    $GVW = $item->GVW;
+    $odometer = $item->odometer;
+    $fuel_type = $item->fuel_type;
+    $cylinder = $item->cylinder;
+    $license = $item->license;
+
+
+
 $pdf = new FPDF();
 $pdf->SetMargins(10,5,5);
 $pdf->AddPage('P',array(982,762));
@@ -51,8 +99,10 @@ $pdf->Cell(12,-1,"",0,0,"L");
 $pdf->Cell(1);
 $pdf->Cell(125,-1,"Test Date/Time:",0,0,"L");
 $pdf->SetFont('times','B',35);
+date_default_timezone_set('America/New_York'); // Establece la zona horaria a Nueva York
+$hora_actual = date("H:i");
 $pdf->Cell(1);
-$pdf->Cell(70,-1,"07/10/2023, 16:27",0,0,"L");
+$pdf->Cell(70,-1,"$sale_date, $hora_actual",0,0,"L");
 $pdf->SetFont('times','',34);
 $pdf->Cell(1);
 $pdf->Cell(173,-1,"",0,0,"L");
@@ -109,7 +159,7 @@ $pdf->Cell(1);
 $pdf->Cell(125,-1,"License Number:",0,0,"L");
 $pdf->SetFont('times','B',35);
 $pdf->Cell(1);
-$pdf->Cell(70,-1,"JPC1595",0,0,"L");
+$pdf->Cell(70,-1,strtoupper($license),0,0,"L");
 $pdf->SetFont('times','',34);
 $pdf->Cell(1);
 $pdf->Cell(173,-1,"",0,0,"L");
@@ -124,7 +174,7 @@ $pdf->Cell(1);
 $pdf->Cell(125,30,"Vehicle ID Number:",0,0,"L");
 $pdf->SetFont('times','B',34);
 $pdf->Cell(1);
-$pdf->Cell(70,30,"INXBR32E03Z176807",0,0,"L");
+$pdf->Cell(70,30,"$vin",0,0,"L");
 $pdf->Cell(1);
 $pdf->SetFont('times','',35);
 $pdf->Cell(173,30,"",0,0,"L");
@@ -138,7 +188,7 @@ $pdf->Cell(12,-1,"",0,0,"L");
 $pdf->Cell(1);
 $pdf->Cell(125,-1,"Vehicle Make:",0,0,"L");
 $pdf->Cell(1);
-$pdf->Cell(70,-1,"TOYT",0,0,"L");
+$pdf->Cell(70,-1,"$make",0,0,"L");
 $pdf->SetFont('times','',34);
 $pdf->Cell(1);
 $pdf->Cell(173,-1,"",0,0,"L");
@@ -152,7 +202,7 @@ $pdf->Cell(12,30,"",0,0,"L");
 $pdf->Cell(1);
 $pdf->Cell(125,30,"Vehicle Model:",0,0,"L");
 $pdf->Cell(1);
-$pdf->Cell(70,30,"COROLLA",0,0,"L");
+$pdf->Cell(70,30,"$model",0,0,"L");
 $pdf->Cell(1);
 $pdf->SetFont('times','',35);
 $pdf->Cell(173,30,"",0,0,"L");
@@ -167,7 +217,7 @@ $pdf->Cell(1);
 $pdf->Cell(125,-1,"Vehicle Year/Type:",0,0,"L");
 $pdf->Cell(1);
 $pdf->SetFont('times','B',34);
-$pdf->Cell(24,-1,"2003",0,0,"L");
+$pdf->Cell(24,-1,"$year",0,0,"L");
 $pdf->SetFont('times','',34);
 $pdf->Cell(46,-1,"/Passenger Car/Station Wagon",0,0,"L");
 $pdf->SetFont('times','',34);
@@ -183,7 +233,7 @@ $pdf->Cell(12,30,"",0,0,"L");
 $pdf->Cell(1);
 $pdf->Cell(125,30,"Engine Size/Cyl/Ign:",0,0,"L");
 $pdf->Cell(1);
-$pdf->Cell(70,30,"1800/4/D",0,0,"L");
+$pdf->Cell(70,30,"$engine_size/$cylinder/$LGN",0,0,"L");
 $pdf->Cell(1);
 $pdf->SetFont('times','',35);
 $pdf->Cell(173,30,"",0,0,"L");
@@ -212,7 +262,7 @@ $pdf->Cell(12,30,"",0,0,"L");
 $pdf->Cell(1);
 $pdf->Cell(125,30,"Transmission/GVW:",0,0,"L");
 $pdf->Cell(1);
-$pdf->Cell(70,30,"Automatic/3585",0,0,"L");
+$pdf->Cell(70,30,"$transmission/$GVW",0,0,"L");
 $pdf->Cell(1);
 $pdf->SetFont('times','',35);
 $pdf->Cell(173,30,"",0,0,"L");
@@ -226,7 +276,7 @@ $pdf->Cell(12,-1,"",0,0,"L");
 $pdf->Cell(1);
 $pdf->Cell(125,-1,"Odometer/Fuel Type:",0,0,"L");
 $pdf->Cell(1);
-$pdf->Cell(70,-1,"78133/Gasoline",0,0,"L");
+$pdf->Cell(70,-1,"$odometer/$fuel_type",0,0,"L");
 $pdf->SetFont('times','',34);
 $pdf->Cell(1);
 $pdf->Cell(173,-1,"",0,0,"L");
@@ -390,7 +440,7 @@ $pdf->Cell(1);
 $pdf->Cell(50,25,"", 0, 0, 'L');
 $pdf->Cell(1);
 $pdf->Cell(635,15,"Information", 0, 1, 'C');
-$pdf->Image('image1.jpg',506,583,85,68);
+$pdf->Image('codigo_qr.png',506,583,85,68);
 $pdf->Image('image2.png',595,588,60,58);
 $pdf->Cell(1);
 $pdf->Cell(630,180,"", 0, 1, 'L');
@@ -407,7 +457,7 @@ $pdf->SetFont('times','B',31);
 $pdf->Cell(1);
 $pdf->Cell(14,35,"", 0, 0, 'L');
 $pdf->Cell(1);
-$pdf->Cell(14,35,"Plate Type: 1, Plate Number: JPC1595, TxDot:", 0, 1, 'L');
+$pdf->Cell(14,35,"Plate Type: 1, Plate Number: ".strtoupper($license).", TxDot:", 0, 1, 'L');
 $pdf->SetFont('times','',35);
 $pdf->Cell(1);
 $pdf->Cell(700,20,"_____________________________________", 0, 1, 'R');
@@ -419,17 +469,23 @@ $pdf->SetFont('times','B',31);
 $pdf->Cell(1);
 $pdf->Cell(14,12,"", 0, 0, 'L');
 $pdf->Cell(1);
-$pdf->Cell(14,12,"VIN: INXBR32032176807", 0, 1, 'L');
+$pdf->Cell(14,12,"VIN: $vin", 0, 1, 'L');
 $pdf->Image('codigo1.jpg',28,875,235,32);
 $pdf->Image('codigo2.jpg',28,933,235,32);
 
 $pdf->Output();
-$filenamepdf="reporteaux.pdf";
+$filenamepdf="Inspect.pdf";
 $pdf->Output($filenamepdf,'F');
 
+}
+
 echo "<script>
-         window.location.href = 'reporteaux.pdf';
+         window.location.href = 'Inspect.pdf';
      </script>";
+
+// Eliminar el archivo generado
+unlink($archivoQR);
+    
 ?>
 
 

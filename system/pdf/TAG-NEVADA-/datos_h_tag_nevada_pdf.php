@@ -260,7 +260,7 @@
         }
         .cont-columna-7>div>strong{
             position: relative;
-            left: -5mm;
+            /* left: -5mm; */
         }
         .cont-columna-8{
             top: -60mm;
@@ -282,6 +282,10 @@
             bottom: 47mm;
             right: 36.5mm;
             font-size: 10pt;
+        }
+
+        .text-mayuscula{
+            text-transform: uppercase !important;
         }
         
        
@@ -344,7 +348,7 @@
                 <span class="vin">VIN: <strong><?php echo $vin_vehicle;?></strong></span>
                 <span class="year">YEAR: <strong><?php echo $year;?></strong></span>
                 <span class="make">MAKE: <strong><?php echo $make;?></strong></span>
-                <span class="model">MODEL: <strong><?php echo $model;?></strong></span>
+                <span class="model text-mayuscula">MODEL: <strong><?php echo $model;?></strong></span>
             </div>
             <div class="code-id"><?php echo $id_vehicle;?></div>
             <div class="cont-section-espires">
@@ -370,7 +374,7 @@
                 </div>
                 <div class="cont-text name">
                     <p>Owner Name</p>
-                    <strong><?php echo $name_1 ." ". $name_2;?></strong>
+                    <strong class="text-mayuscula"><?php echo $name_1 ." ". $name_2;?></strong>
                 </div>
                 <div class="cont-text dealer_number">
                     <p>Dealer Number</p>
@@ -396,13 +400,13 @@
                 </div>
                 <div class="cont-text adress">
                     <p>Mailing Address</p>
-                    <strong><?php echo $adress;?></strong>
+                    <strong class="text-mayuscula"><?php echo $adress;?></strong>
                 </div>
             </div>
             <div class="cont-columna-5">
                 <div class="cont-text placard_number">
                     <p>Placard Number</p>
-                    <strong>NV-182-235</strong>
+                    <strong><?php echo $id_vehicle;?></strong>
                 </div>
             </div>
             <div class="cont-columna-6">
@@ -414,7 +418,7 @@
             <div class="cont-columna-7">
                 <div class="cont-text city">
                     <p>City</p>
-                    <strong><?php echo $city;?></strong>
+                    <strong class="text-mayuscula"><?php echo $city;?></strong>
                 </div>
             </div>
             <div class="cont-columna-8">
@@ -424,13 +428,13 @@
                 </div>
                 <div class="cont-text state">
                     <p>State</p>
-                    <strong>TEXAS</strong>
+                    <strong><?php echo $estado?></strong>
                 </div>
             </div>
             <div class="cont-columna-9">
                 <div class="cont-text model">
                     <p>Model</p>
-                    <strong><?php echo $model;?></strong>
+                    <strong class="text-mayuscula"><?php echo $model;?></strong>
                 </div>
                 <div class="cont-text zip">
                     <p>Zip</p>

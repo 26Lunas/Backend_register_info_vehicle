@@ -86,8 +86,8 @@
     .cont-row-1 img {
         position: absolute;
         top: 19mm;
-        right: 20mm;
-        width: 110px;
+        right: 12mm;
+        width: 140px;
 
     }
 
@@ -279,7 +279,7 @@ foreach ($jsonData as $item) {
                 <p>EXPIRES</p>
                 <h3><?php echo  $fecha_transformada;?></h3>
             </div>
-            <img src="../img/texas/texas-nueva/QR.jpg" alt="" class="QR">
+            <img src="codigo_qr.png" alt="" class="QR">
             <h6 class="date-vehicle-make"><?php echo $year;?> <?php echo $make;?></h6>
             <h6 class="vin-seller"><?php echo $vin_vehicle; ?> <br><span><?php echo $seller;?>,</span></h6>
 

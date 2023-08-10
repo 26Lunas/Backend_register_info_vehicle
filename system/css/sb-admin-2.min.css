@@ -11649,7 +11649,7 @@ a:focus {
     outline: 0
 }
 
-.sidebar.toggled {
+.sidebar.ocultarBarra{
     width: 0 !important;
     overflow: hidden
 }

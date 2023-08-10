@@ -114,6 +114,9 @@
             width: 155px;
             height: 170px;
         }
+        .text-mayuscula{
+            text-transform: uppercase;
+        }
     </style>
 
     
@@ -378,17 +381,17 @@
             <div class="columna-1">
                 <p>Year: <span class="year"><?php echo $year;?></span></p>
                 <p>VIN: <span class="vin"><?php echo $vin_vehicle;?></span></p>
-                <p>Owner: <span class="owner"><?php echo $name_1 ." ". $name_2;?></span></p>
+                <p>Owner: <span class="owner text-mayuscula"><?php echo $name_1 ." ". $name_2;?></span></p>
                 <p>Co-Owner:</p>
-                <p class="address"><?php echo $adress;?></p>
+                <p class="address text-mayuscula"><?php echo $adress;?></p>
             </div>
             <div class="columna-2">
-                <p>Make <span><?php echo $make;?></span></p>
+                <p>Make: <span><?php echo $make;?></span></p>
                 <p>Odometer: <span>000000</span></p>
             </div>
             <div class="columna-3">
-                <p>Model: <span><?php echo $model;?></span></p>
-                <p>State to be titled: <span><?php echo $body_style;?></span></p>
+                <p>Model: <span class="text-mayuscula"><?php echo $model;?></span></p>
+                <p>State to be titled: <span class="text-mayuscula"><?php echo $body_style;?></span></p>
             </div>
             <div class="columna-4">
                 <p>Driver ID:</p>
@@ -418,8 +421,8 @@
         <div class="cont-row-3">
             <h4>Signatures and Date</h4>
             <div class="columna-1">
-                <p>Owner:</p>
-                <p>Co-Owner:</p>
+                <p>Owner: <span class="text-mayuscula"></span></p>
+                <p>Co-Owner: <span class="text-mayuscula"></span></p>
             </div>
             <div class="columna-2">
                 <p>Dealership:</p>

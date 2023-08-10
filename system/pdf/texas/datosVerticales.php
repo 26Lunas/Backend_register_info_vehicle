@@ -226,6 +226,12 @@
             font-size: 15pt;
             font-family: 'Times New Roman', Times, serif !important;
         }
+        .text-mayuscula{
+            text-transform: uppercase;
+        }
+        .text-capitalizado{
+            text-transform: capitalize;
+        }
     </style>
 
 
@@ -294,13 +300,13 @@ foreach ($jsonData as $item) {
         <div class="cont-text-info-2 minorColor">Minor Color: <span><?php echo  $minor_color;?></span></div>
     </div>
     <div class="cont-datos-3">
-        <div class="cont-text-info-3 issuingDealer">Issuing Dealer: <span><?php echo  $seller;?></span></div>
+        <div class="cont-text-info-3 issuingDealer">Issuing Dealer: <span class="text-mayuscula"><?php echo  $seller;?></span></div>
         <div class="cont-text-info-3 dealerNumber">Dealer Number:<span><?php echo $deler_number;?></span></div>
     </div>
     <div class="cont-datos-4">
         <div class="cont-text-info-4 purchaser">Purchaser </div>
-        <div class="cont-text-info-4 name1">Name 1:<span><?php echo $name_1;?></span></div>
-        <div class="cont-text-info-4 address">Address:<div><?php echo $adress;?></div>
+        <div class="cont-text-info-4 name1">Name 1:<span class="text-mayuscula"><?php echo $name_1;?></span></div>
+        <div class="cont-text-info-4 address">Address:<div class="text-mayuscula"><?php echo $adress;?></div>
         </div>
     </div>
     <div class="title-fin-pdf">DEALER'S COPY</div>

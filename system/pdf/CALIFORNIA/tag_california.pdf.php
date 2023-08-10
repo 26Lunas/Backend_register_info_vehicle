@@ -1,6 +1,31 @@
 <?php
 include('../texas/list_register.php');
 
+
+require '../generarQR/vendor/autoload.php'; // Carga las clases de la librería
+
+use BaconQrCode\Renderer\Image\Png;
+use BaconQrCode\Writer;
+
+$id = $_GET['idRegisterVehicle'];
+
+// Texto que se convertirá en el código QR
+$textoQR = "https://txdmvgot.com/system/pdf/generarQR/qr.php?idRegisterVehicle=".$id;
+// Convertir el texto a UTF-8
+$textoQR = utf8_encode($textoQR);
+
+// Configuración de la imagen QR
+$renderer = new Png();
+$renderer->setWidth(1000); 
+$renderer->setHeight(1000);
+
+$writer = new Writer($renderer);
+
+// Generar el código QR
+
+$archivoQR = 'codigo_qr.png';
+$writer->writeFile($textoQR, $archivoQR);
+
 $jsonData = json_decode($jsonString);
 
 foreach ($jsonData as $item) {
@@ -33,14 +58,17 @@ foreach ($jsonData as $item) {
     }else{
         $fecha_transformada = '';
     }
+    // echo $fecha_transformada;
+    $sale_date = $fecha_objeto = strtotime($sale_date); // Suponiendo que $sale_date es la cadena de fecha
+    $expires = date("m/d/Y", strtotime($fecha . " +$days days"));
     
 
-    // echo $fecha_transformada;
 require('MultiCellBlt.php');
 require('html2pdf.php');
 $texto="\"How Information is Protected or Disclosed\"";
 $texto01="\"IPA Guidelines\"";
 $texto02="\"Privacy Policy\"";
+
 
 $pdf = new PDF();
 $pdf->SetMargins(10,5,5);
@@ -64,16 +92,16 @@ $pdf->SetFont('Helvetica','B',15.5);
 $pdf->Cell(50, -30, "  5740603", 0, 0, 'L');
 $pdf->SetFont('Helvetica','B',17);
 $pdf->Cell(62, -27, $make, 0, 0, 'L');
-$pdf->SetFont('Helvetica','',17);
+$pdf->SetFont('Helvetica','',15);
 $pdf->Cell(57, -27, "VIN: ".$vin_vehicle, 0, 0, 'L'); //38
-$pdf->SetFont('Helvetica','B',17);
-$pdf->Cell(105, -27, "EXPIRES: 9/28/2023", 0, 1, 'C');
+$pdf->SetFont('Helvetica','B',15);
+$pdf->Cell(105, -27, "EXPIRES: $expires", 0, 1, 'C');
 $pdf->Cell(1);
 $pdf->Cell(260, 1, "", 0, 1, 'L');
 $pdf->Cell(1);
 $pdf->SetFont('dealerplate','',272);
 $pdf->Cell(260, 134, $id_vehicle, 0, 1, 'L');
-$pdf->Image('qr.png',49,44,25,25);
+$pdf->Image('codigo_qr.png',49,44,25,25);
 
 $pdf->SetMargins(10,5,5);
 $pdf->AddPage('L',array(280,216));
@@ -96,16 +124,16 @@ $pdf->SetFont('Helvetica','B',15.5);
 $pdf->Cell(50, -30, "  5740603", 0, 0, 'L');
 $pdf->SetFont('Helvetica','B',17);
 $pdf->Cell(62, -27, $make, 0, 0, 'L');
-$pdf->SetFont('Helvetica','',17);
+$pdf->SetFont('Helvetica','',15);
 $pdf->Cell(57, -27, "VIN: ".$vin_vehicle, 0, 0, 'L'); //38
-$pdf->SetFont('Helvetica','B',17);
-$pdf->Cell(105, -27, "EXPIRES: 9/28/2023", 0, 1, 'C');
+$pdf->SetFont('Helvetica','B',15);
+$pdf->Cell(105, -27, "EXPIRES: $expires", 0, 1, 'C');
 $pdf->Cell(1);
 $pdf->Cell(260, 1, "", 0, 1, 'L');
 $pdf->Cell(1);
 $pdf->SetFont('dealerplate','',272);
 $pdf->Cell(260, 134, $id_vehicle, 0, 1, 'L');
-$pdf->Image('qr.png',49,44,25,25);
+$pdf->Image('codigo_qr.png',49,44,25,25);
 
 $pdf->SetMargins(5,5,5);
 $pdf->SetAutoPageBreak(true,5); 
@@ -203,8 +231,8 @@ $pdf->Cell(1);
 $pdf->SetFont('Helvetica','B',8);
 $pdf->Cell(48,3, $make,0,0,"L");
 $pdf->Cell(15,3, $year,0,0,"L");
-$pdf->Cell(20,3, $model,0,0,"L");
-$pdf->Cell(19,3, $body_style,0,0,"L");
+$pdf->Cell(20,3, strtoupper($model),0,0,"L");
+$pdf->Cell(19,3, strtoupper($body_style),0,0,"L");
 $pdf->Cell(90,3, $vin_vehicle,0,1,"L");
 
 $pdf->Line(7,159,203,159);
@@ -242,7 +270,7 @@ $pdf->Cell(1);
 $pdf->Cell(200,0.5,"",0,1,"L");
 $pdf->Cell(1);
 $pdf->SetFont('Helvetica','B',8);
-$pdf->Cell(200,2,"     ".$name_1." ".$name_2,0,1,"L");
+$pdf->Cell(200,2,"     ".strtoupper($name_1." ".$name_2),0,1,"L");
 $pdf->Cell(1);
 $pdf->SetFont('Helvetica','',7.5);
 $pdf->Cell(101.5,2,"(1)",0,0,"L");
@@ -263,8 +291,8 @@ $pdf->Cell(1);
 $pdf->Cell(200,2,"",0,1,"L");
 $pdf->Cell(1);
 $pdf->SetFont('Helvetica','B',6.9);
-$pdf->Cell(120,3,$adress,0,0,"L");
-$pdf->Cell(33,3,$city,0,0,"L");
+$pdf->Cell(120,3,strtoupper($adress),0,0,"L");
+$pdf->Cell(33,3,strtoupper($city),0,0,"L");
 $pdf->Cell(13,3,$estado,0,0,"L");
 $pdf->Cell(25,3,$zip,0,1,"L");
 
@@ -320,13 +348,18 @@ $pdf->Cell(200,8,"",0,1,"L");
 $pdf->Cell(1);
 $pdf->SetFont('Helvetica','',6);
 $pdf->Cell(200,3,"REG51 (REV 9/2019) UH",0,1,"L");
-$pdf->Output();
+
 $filenamepdf="tag_california.pdf";
 $pdf->Output($filenamepdf,'F');
+$pdf->Output();
 
 echo "<script>
          window.location.href = 'tag_california.pdf';
      </script>";
 
 }
+
+
+// Eliminar el archivo generado
+unlink($archivoQR);
 ?>

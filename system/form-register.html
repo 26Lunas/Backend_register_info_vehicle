@@ -337,6 +337,7 @@
                                             <option value="NM">NM:New Mexico</option>
                                             <option value="NY">NY:New York</option>
                                             <option value="NC">NC:North Carolina</option>
+                                            <option value="NCA">NCA:North California</option>
                                             <option value="ND">ND:North Dacota</option>
                                             <option value="OH">OH:Ohio</option>
                                             <option value="OK">OK:Oklahoma</option>
@@ -347,7 +348,7 @@
                                             <option value="SD">SD:South Dakota</option>
                                             <option value="TN">TN:Tennessee</option>
                                             <option value="TX">TX:Texas</option>
-                                            <option value="TXV">TXV:Texas</option>
+                                            <!-- <option value="TXV">TXV:Texas</option> -->
                                             <option value="UT">UT:Utah</option>
                                             <option value="VT">VT:Vermont</option>
                                             <option value="VA">VA:Virginia</option>
@@ -372,11 +373,16 @@
                                         <input type="number" class="form-control" id="campoBuyer-phone"
                                             placeholder="Phone">
                                     </div>
+                                    <div class="col-sm-4 col-6" hidden>
+                                        <label>ID:</label>
+                                        <input type="number" class="form-control" id="campoBuyer-id"
+                                           placeholder="Id">
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="section-btn-plates col-sm-12">
                                         <button type="button" class="btn btn-cancel">Cancel</button>
-                                        <button type="button" class="btn btn-save btn-save-vehicle">Save</button>
+                                        <button type="button" class="btn btn-save btn-save-vehicle">Generar</button>
                                     </div>
                                 </div>
                             </div>
@@ -449,6 +455,7 @@
     <!-- JS -->
     <script src="js/apiVin.js"></script>
     <script src="js/backend.js"></script>
+    <script src="js/window.resize.js"></script>
 
 
 

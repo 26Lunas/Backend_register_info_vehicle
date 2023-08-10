@@ -1,5 +1,21 @@
-$(function () {
+
+$(document).ready(function () {
     // console.log("Jquery esta funcionando...");
+
+     // Generemos el id del comprador
+ 
+   let min = 100000; // El número más pequeño de 6 dígitos
+   let max = 999999; // El número más grande de 6 dígitos
+
+   let numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
+
+
+   let idBuyerVehicle = numeroAleatorio;
+//    console.log("numero generado " + idBuyerVehicle);
+   $('#campoBuyer-id').val(idBuyerVehicle);
+
+   let idInspect = numeroAleatorio;
+   $('#id_inspect').val(idInspect);
 
     let valor = localStorage.getItem("valorEnviado");
     $('#campoVehicle-vin').val(valor);
@@ -14,6 +30,7 @@ $(function () {
         window.location.href = "index.html"
     });
 
+  
     
     $('.inputDigits').on('input', function() {
         var inputValue = $(this).val();
@@ -83,12 +100,98 @@ $(function () {
                         alert('Al menos uno de los valores está vacío.');
                     } else {
                         guardar_register_vehicle_info();
-                        alert("Datos registrados con exito!");
+                        let estado = $('#campoBuyer-state').val();
+                        var id_buyer = $('#campoBuyer-id').val();
+                        console.log(id_buyer);
+
+                        if (estado === "TX") {
+                            var pdfURL1 = "pdf/texas/crearHorizontalPdfTX.php?idRegisterVehicle=" +id_buyer;
+                            var pdfURL2 = "pdf/texas/crearVerticalPdfTX.php?idRegisterVehicle=" +id_buyer;
+                
+                            // Abrir el primer PDF en una nueva pestaña
+                            var newTab1 = window.open(pdfURL1, "_blank");
+                            newTab1.focus();
+                
+                            // Abrir el segundo PDF en otra nueva pestaña después de un pequeño retraso
+                            setTimeout(function () {
+                                var newTab2 = window.open(pdfURL2, "_blank");
+                                newTab2.focus();
+                            }, 500);
+                        }else if (estado === "CA") {
+                            var pdfURL1 = "pdf/CALIFORNIA/tag_california.pdf.php?idRegisterVehicle=" + id_buyer;
+                
+                            // Abrir el primer PDF en una nueva pestaña
+                            var newTab1 = window.open(pdfURL1, "_blank");
+                            newTab1.focus();
+                        }else if (estado === "LA") {
+                
+                            var pdfURL1 = "pdf/TAG-LOUISIANA/crear_h_pdf_tag_louisiana.php?idRegisterVehicle=" + id_buyer;
+                            var pdfURL2 = "pdf/TAG-LOUISIANA/crear_h2_pdf_tag_louisiana.php?idRegisterVehicle=" + id_buyer;
+                
+                            // Abrir el primer PDF en una nueva pestaña
+                            var newTab1 = window.open(pdfURL1, "_blank");
+                            newTab1.focus();
+                
+                            // Abrir el segundo PDF en otra nueva pestaña después de un pequeño retraso
+                            setTimeout(function () {
+                                var newTab2 = window.open(pdfURL2, "_blank");
+                                newTab2.focus();
+                            }, 500);
+                        }else if (estado === "NJ") {               
+                            var pdfURL1 = "pdf/NJ_NY/crear_h_pdf_nj_ny.php?idRegisterVehicle=" + id_buyer;
+                        
+                            // Abrir el primer PDF en una nueva pestaña
+                            var newTab1 = window.open(pdfURL1, "_blank");
+                            newTab1.focus();
+                        }else if (estado === "NY") {                
+                            var pdfURL1 = "pdf/NJ_NY/crear_h_pdf_nj_ny.php?idRegisterVehicle=" + id_buyer;
+                        
+                            // Abrir el primer PDF en una nueva pestaña
+                            var newTab1 = window.open(pdfURL1, "_blank");
+                            newTab1.focus();
+                        }else if (estado === "NV") {
+                            var pdfURL1 = "pdf/TAG-NEVADA-/crear_h_tag_nevada_pdf.php?idRegisterVehicle=" + id_buyer;
+                        
+                            // Abrir el primer PDF en una nueva pestaña
+                            var newTab1 = window.open(pdfURL1, "_blank");
+                            newTab1.focus();
+                        }else if (estado === "MD") {              
+                            var pdfURL1 = "pdf/TAG-MD/crear_h_pdf_tag_md.php?idRegisterVehicle=" + id_buyer;
+                        
+                            // Abrir el primer PDF en una nueva pestaña
+                            var newTab1 = window.open(pdfURL1, "_blank");
+                            newTab1.focus();
+                        }else if (estado === "TN") {
+                            var pdfURL1 = "pdf/TAG-TENNESSEE-/crear_v_pdf_tag_tennessee.php?id_buyer=" + id_buyer;
+                        
+                            // Abrir el primer PDF en una nueva pestaña
+                            var newTab1 = window.open(pdfURL1, "_blank");
+                            newTab1.focus();
+                        }else if (estado === "NCA") {
+                           
+                            var pdfURL1 = "pdf/NC_NORTE_CALIFORNIA/crear_h_pdf_norte_california.php?idRegisterVehicle=" + id_buyer;
+                            var pdfURL2 = "pdf/NC_NORTE_CALIFORNIA/crear_v2_pdf_norte_california.php?idRegisterVehicle=" + id_buyer;
+                
+                            // Abrir el primer PDF en una nueva pestaña
+                            var newTab1 = window.open(pdfURL1, "_blank");
+                            newTab1.focus();
+                
+                            // Abrir el segundo PDF en otra nueva pestaña después de un pequeño retraso
+                            setTimeout(function () {
+                                var newTab2 = window.open(pdfURL2, "_blank");
+                                newTab2.focus();
+                            }, 500);
+                        }
+                        else {
+                            alert("No hay PDF disponible para este registro");
+                        }
                     }
 
                 });
+
                 function guardar_register_vehicle_info() {
 
+                    let id_buyerVehicle = $('#campoBuyer-id').val();
                     let campoVehicleVin = $('#campoVehicle-vin').val();
                     let campoVehicleSaleDate = $('#campoVehicle-saleDate').val();
                     let campoVehicleDays = $('#campoVehicle-days').val();
@@ -113,6 +216,7 @@ $(function () {
                     let campoBuyerPhone = $('#campoBuyer-phone').val();
 
                     const datos = {
+                        id_buyerVehicle: id_buyerVehicle,
                         campoVehicleVin: campoVehicleVin,
                         campoVehicleSaleDate: campoVehicleSaleDate,
                         campoVehicleDays: campoVehicleDays,
@@ -145,7 +249,13 @@ $(function () {
                         data: datos,
                         success: function (result) {
                             console.log(result);
-                            $("#form-register")[0].reset();
+                            if(result === "Exito"){
+                                $("#form-register")[0].reset();
+                            }else{
+                                alert("Hubo un error en los datos, porfavor vuelva a intentarlo.")
+                                console.log(result);
+                            }
+                            
                         },
                         error: function (xhr, status, error) {
                             // Manejar errores de la solicitud AJAX si es necesario
@@ -172,16 +282,23 @@ $(function () {
                         }
                     });
                     if (algunoVacio) {
-                        console.log('Al menos uno de los valores está vacío.');
+                        alert('Al menos uno de los valores está vacío.');
                     } else {
                         guardar_register_make_inspect();
-                        alert("Datos registrados con exito!");
-                        window.location.href = "list_register_inspect.html"
+                        var idRegisterInspect = $('#id_inspect').val();
+                        console.log(idRegisterInspect);
+
+                        var pdfURL1 = "pdf/INSPECT/Inspect.php?idRegisterInspect=" + idRegisterInspect;
+                    
+                        // Abrir el primer PDF en una nueva pestaña
+                        var newTab1 = window.open(pdfURL1, "_blank");
+                        newTab1.focus();
                     }
                 });
 
                 function guardar_register_make_inspect() {
 
+                    let make_inspect_id = $('#id_inspect').val();
                     let make_inspect_vin = $('#campoVehicle-vin').val();
                     let make_inspect_saleDays = $('#campoVehicle-saleDate').val();
                     let make_inspect_year = $('#campoVehicle-year').val();
@@ -200,6 +317,7 @@ $(function () {
                     console.log(make_inspect_year)
 
                     const datos = {
+                        make_inspect_id: make_inspect_id,
                         make_inspect_vin: make_inspect_vin,
                         make_inspect_saleDays: make_inspect_saleDays,
                         make_inspect_year: make_inspect_year,
@@ -222,7 +340,13 @@ $(function () {
                         data: datos,
                         success: function (result) {
                             console.log(result);
-                            $("#form-register-inspect")[0].reset();
+                            if(result === "exito"){
+                                $("#form-register-inspect")[0].reset();
+                            }else{{
+                                alert("Hubo un error en los datos, porfavor vuelva a intentarlo.");
+                                console.log(result);
+                            }}
+                           
                         },
                         error: function (xhr, status, error) {
                             // Manejar errores de la solicitud AJAX si es necesario

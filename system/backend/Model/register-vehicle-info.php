@@ -8,7 +8,7 @@ if($_POST['campoVehicleVin']){
     // Generar número de 6 dígitos aleatorio
     $numeroAleatorio = mt_rand(100000, 999999);
 
-    $id_buyer = $numeroAleatorio;
+    $id_buyer = $_POST['id_buyerVehicle'];
     $name_1 = $_POST['campoBuyerName1'];
     $name_2 = $_POST['campoBuyerName2'];
     $buyer_city = $_POST['campoBuyerCity'];
@@ -45,7 +45,7 @@ if($_POST['campoVehicleVin']){
     }
 
     function generarCodigoAleatorio($logitudN) {
-        $letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $letras = 'ABCDEFGHIJKLMNOPQRSTUVXY';
         $numeros = '0123456789';
         $codigo = '';
     
@@ -84,15 +84,21 @@ if($_POST['campoVehicleVin']){
         // Mostrar el código generado
         $codigoAleatorio = $codigo;
 
+    }else if($buyer_state ==="NJ" || $buyer_state ==="NY"){
+        
+        function generarCodigo() {
+            $letraInicial = chr(rand(65, 90)); // Generar una letra mayúscula ASCII entre 65 y 90
+            $digitos = rand(100000, 999999); // Generar un número de 6 dígitos
+        
+            $codigo = $letraInicial . $digitos;
+            return $codigo;
+        }
+
+        // Mostrar el código generado
+        $codigoAleatorio = generarCodigo();
+
     }
     
-    
-    
-    // echo "Código aleatorio: " . $codigoAleatorio;
-    
-    
-    
-
     // Query table tb_vehicle
 
     $tb_vehicle_id = $codigoAleatorio;
@@ -144,7 +150,7 @@ $result_tb_vehicle = mysqli_query($Connection, $query_tb_vehicle);
     if(!$result_tb_buyer){
         die('Error en la consulta ' . mysqli_error($Connection));
     }else{
-        // echo " Datos registrados con exito tb_vehicle!";
+        echo "Exito";
     }
 
 

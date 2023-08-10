@@ -161,18 +161,62 @@
         }
     </style>
 
+<?php
+    include('../texas/list_register.php');
+
+    $jsonData = json_decode($jsonString);
+
+    foreach ($jsonData as $item) {
+        $id_vehicle = $item->id_vehicle;
+        $vin_vehicle = $item->vin_vehicle;
+        $seller = $item->seller;
+        $deler_number = $item->deler_number;
+        $body_style = $item->body_style;
+        $major_color = $item->major_color;
+        $minor_color = $item->minor_color;
+        $sale_date = $item->sale_date;
+        $year = $item->year;
+        $days = $item->days;
+        $make = $item->make;
+        $model = $item->model;
+        $miles = $item->miles;
+        $name_1 = $item->name_1;
+        $name_2 = $item->name_2;
+        $adress = $item->adress;
+        $city = $item->city;
+        $estado = $item->estado;
+        $phone = $item->phone;
+        $zip = $item->zip;
+        $id_buyer = $item->id_buyer;
+        $name_state = $item->name_state;
+
+        $fecha = $sale_date;
+        $facha_sale = new DateTime($fecha);
+        $sale_fecha_format = $facha_sale->format('d/m/Y');
+        $sale_fecha_format2 = $facha_sale->format('d-m-Y');
+    
+        $name_state = str_replace(' ', '', $name_state);
+        
+        $sale_date = new DateTime($sale_date); // Suponiendo que $sale_date es la cadena de fecha
+        $expires = $sale_date->modify("+$days days");
+        $formattedDateExpires = $expires->format('M d, Y');
+        $formattedDateExpires2 = $expires->format('d/m/Y');
+        $formattedDateExpires3 = $expires->format('d-m-Y');
+
+        ?>
+
     <img src="img/img_logo_fondo.png" alt="" class="logo_fondo">
     <div class="cont_main">
         <h6 class="subTitulo">TEMPORARY PLATE</h6>
         <h5 class="titulo">TENNESSEE</h5>
 
-        <h1 class="code_id">8935L4J</h1>
+        <h1 class="code_id"><?php echo $id_vehicle;?></h1>
         <div class="cont-main-text">
-            <div class="cont-text ISSUED">ISSUED: <span>11-06-2022</span></div>
-            <div class="cont-text DEALER">DEALER: <span>PRIME AUTO FINANCE</span>,</div>
+            <div class="cont-text ISSUED">ISSUED: <span><?php echo $sale_fecha_format2;?></span></div>
+            <div class="cont-text DEALER">DEALER: <span><?php echo $seller;?></span>,</div>
         </div>
 
-        <div class="cont-text-EXPIRES">EXPIRES: <span>01-05-2023</span></div>
+        <div class="cont-text-EXPIRES">EXPIRES: <span><?php echo $formattedDateExpires3;?></span></div>
     </div>
     <div class="cont-circulo-1">
         <div class="circle-container">
@@ -355,24 +399,25 @@
         }
         
     </style>
+
     <div class="cont-cuadro">
        <img src="img/fondo-cuadro.png" alt="">
     </div>
     <div class="cont-text-cuadro make">
         <p class="campo">MAKE</p>
-        <p>HOND</p>
+        <p><?php echo $make;?></p>
     </div>
     <div class="cont-text-cuadro year">
         <p class="campo">YEAR</p>
-        <p>2013</p>
+        <p><?php echo $year;?></p>
     </div>
     <div class="cont-text-cuadro color">
         <p class="campo">COLOR</p>
-        <p>BLUE</p>
+        <p><?php echo $major_color;?></p>
     </div>
     <div class="cont-text-cuadro PLATE_NUMBER">
         <p class="campo">PLATE NUMBER</p>
-        <p>8935L4J</p>
+        <p><?php echo $deler_number;?></p>
     </div>
     <div class="cont-text-cuadro PLATE_STATE">
         <p class="campo">PLATE STATE</p>
@@ -381,28 +426,28 @@
     <div class="cont-text-cuadro OWNER_INFO">
         <p class="campo">OWNER INFO</p>
         <p class="valor_OWNER_INFO">
-        ERNESTO AGUILAR
-        1415 BELL TRACE DR
-        ANTIOCH, TN 37013
+        <?php echo $adress;?>
         </p>
     </div>
 
     <div class="cont-text-cuadro MODEL">
-        <p class="campo">CR-V</p>
-        <p>HOND</p>
+        <p class="campo">MODEL</p>
+        <p><?php echo $model;?></p>
     </div>
     <div class="cont-text-cuadro VIN">
         <p class="campo">VIN</p>
-        <p>5NPDH4AE8CH150098</p>
+        <p><?php echo $vin_vehicle;?></p>
     </div>
     <div class="cont-text-cuadro PLATE_EXPIRATION">
         <p class="campo">PLATE EXPIRATION</p>
-        <p>01-05-2023</p>
+        <p><?php echo $formattedDateExpires3;?></p>
     </div>
 
 
 
-
+    <?php
+    }
+    ?>
 
 
 
