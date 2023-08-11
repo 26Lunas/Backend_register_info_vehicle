@@ -1,7 +1,3 @@
-<?php
-    include('../../root_main.php');
-?>
-
 <html lang="es">
 
 <head>

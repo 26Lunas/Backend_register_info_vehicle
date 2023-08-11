@@ -245,22 +245,25 @@ foreach ($jsonData as $item) {
     $id_vehicle = $item->id_vehicle;
     $vin_vehicle = $item->vin_vehicle;
     $seller = $item->seller;
+    $deler_number = $item->deler_number;
     $body_style = $item->body_style;
     $major_color = $item->major_color;
     $minor_color = $item->minor_color;
     $sale_date = $item->sale_date;
-    $deler_number = $item->deler_number;
     $year = $item->year;
     $days = $item->days;
     $make = $item->make;
     $model = $item->model;
     $miles = $item->miles;
     $name_1 = $item->name_1;
+    $name_2 = $item->name_2;
+    $adress = $item->adress;
     $city = $item->city;
     $estado = $item->estado;
     $phone = $item->phone;
-    $adress = $item->adress;
+    $zip = $item->zip;
     $id_buyer = $item->id_buyer;
+    $name_state = $item->name_state;
 
 
     $fecha =  $sale_date;
@@ -274,6 +277,11 @@ foreach ($jsonData as $item) {
 
     // echo $fecha_transformada;
 
+    $sale_date = new DateTime($sale_date); // Suponiendo que $sale_date es la cadena de fecha
+        $expires = $sale_date->modify("+$days days");
+        $formattedDateExpires = $expires->format('M d, Y');
+        $formattedDateExpires2 = $expires->format('d/m/Y');
+
 
 
 ?>
@@ -281,14 +289,14 @@ foreach ($jsonData as $item) {
 
     <h1 class="title-v">BUYER'S TAG RECEIPT - DEALER'S COPY</h1>
     <div class="cont-text cont-number">Tag Number: <span><?php echo $id_vehicle; ?></span></div>
-    <div class="cont-text cont-expiration">Expiration Date: <span><?php echo  $fecha_transformada;?></span></div>
+    <div class="cont-text cont-expiration">Expiration Date: <span class="text-mayuscula"><?php echo  $formattedDateExpires;?></span></div>
 
     <p class="parrafo">Give buyer's receipt to buyer. PLACE THIS DEALER'S COPY IN SALES FILE.<br>
         It is part of the sales records required to be kept and subject to inspection by TxDMV. Verify this
         information before distributing copies:</p>
 
     <div class="cont-datos">
-        <div class="cont-text-info issuDate">Issue Date: <span><?php echo  $fecha_transformada;?></span></div>
+        <div class="cont-text-info issuDate">Issue Date: <span class="text-mayuscula"><?php echo  $fecha_transformada;?></span></div>
         <div class="cont-text-info vin">VIN: <span><?php echo  $vin_vehicle;?></span></div>
         <div class="cont-text-info year">Year: <span><?php echo  $year;?></span></div>
         <div class="cont-text-info make">Make: <span><?php echo  $make;?></span></div>
@@ -296,7 +304,7 @@ foreach ($jsonData as $item) {
     </div>
     <div class="cont-datos-2">
         <div class="cont-text-info-2 bodyStyle">Body Style: <span><?php echo  $body_style;?></span></div>
-        <div class="cont-text-info-2 model">Model: <span><?php echo  $model;?></span></div>
+        <div class="cont-text-info-2 model">Model: <span class="text-mayuscula"><?php echo  $model;?></span></div>
         <div class="cont-text-info-2 minorColor">Minor Color: <span><?php echo  $minor_color;?></span></div>
     </div>
     <div class="cont-datos-3">
@@ -306,7 +314,7 @@ foreach ($jsonData as $item) {
     <div class="cont-datos-4">
         <div class="cont-text-info-4 purchaser">Purchaser </div>
         <div class="cont-text-info-4 name1">Name 1:<span class="text-mayuscula"><?php echo $name_1;?></span></div>
-        <div class="cont-text-info-4 address">Address:<div class="text-mayuscula"><?php echo $adress;?></div>
+        <div class="cont-text-info-4 address">Address:<div class="text-mayuscula"><?php echo $adress;?> <?php echo $city;?>, <?php echo $estado;?> <?php echo $zip;?></div>
         </div>
     </div>
     <div class="title-fin-pdf">DEALER'S COPY</div>

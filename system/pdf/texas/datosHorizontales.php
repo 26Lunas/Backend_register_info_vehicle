@@ -85,9 +85,9 @@
 
     .cont-row-1 img {
         position: absolute;
-        top: 19mm;
-        right: 12mm;
-        width: 140px;
+        top: 15mm;
+        right: 15.5mm;
+        width: 160px;
 
     }
 
@@ -111,7 +111,7 @@
         top: 25mm;
         left: 60mm;
         /* width: 600px; */
-        font-size: 72pt;
+        font-size: 65pt;
         font-weight: 700;
         text-transform: uppercase ;
     }
@@ -256,12 +256,17 @@ foreach ($jsonData as $item) {
     if($fecha !== ''){
         $fecha_objeto = strtotime($fecha);
         $fecha_transformada = date("M d, Y", $fecha_objeto);
+        $fecha_transformada2 = date("m/d/Y", $fecha_objeto);
     }else{
         $fecha_transformada = '';
     }
     
 
     // echo $fecha_transformada;
+    $sale_date = new DateTime($sale_date); // Suponiendo que $sale_date es la cadena de fecha
+        $expires = $sale_date->modify("+$days days");
+        $formattedDateExpires = $expires->format('M d, Y');
+        $formattedDateExpires2 = $expires->format('d/m/Y');
 
 
 
@@ -277,7 +282,7 @@ foreach ($jsonData as $item) {
             <h6 class="estado">TEXAS BUYER</h6>
             <div class="cont-date-expires">
                 <p>EXPIRES</p>
-                <h3><?php echo  $fecha_transformada;?></h3>
+                <h3><?php echo  $formattedDateExpires;?></h3>
             </div>
             <img src="codigo_qr.png" alt="" class="QR">
             <h6 class="date-vehicle-make"><?php echo $year;?> <?php echo $make;?></h6>

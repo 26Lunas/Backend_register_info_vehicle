@@ -322,7 +322,7 @@
 
         $fecha = $sale_date;
         $facha_sale = new DateTime($fecha);
-        $sale_fecha_format = $facha_sale->format('d/m/Y');
+        $sale_fecha_format = $facha_sale->format('m/d/Y');
         // if ($fecha !== '') {
         //     $fecha_objeto = strtotime($fecha);
         //     $fecha_transformada = date("M d, Y", $fecha_objeto);
@@ -336,7 +336,7 @@
         $sale_date = new DateTime($sale_date); // Suponiendo que $sale_date es la cadena de fecha
         $expires = $sale_date->modify("+$days days");
         $formattedDateExpires = $expires->format('M d, Y');
-        $formattedDateExpires2 = $expires->format('d/m/Y');
+        $formattedDateExpires2 = $expires->format('m/d/Y');
 
         ?>
 

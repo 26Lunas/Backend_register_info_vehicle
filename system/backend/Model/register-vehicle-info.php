@@ -97,6 +97,42 @@ if($_POST['campoVehicleVin']){
         // Mostrar el código generado
         $codigoAleatorio = generarCodigo();
 
+    }else if($buyer_state ==="IL"){
+        function generarCodigoAleatorioIllonis() {
+            $codigo = '';
+            $caracteres = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            
+            // Generar 3 números al principio
+            for ($i = 0; $i < 3; $i++) {
+                $codigo .= $caracteres[rand(0, 9)]; // Solo dígitos numéricos
+            }
+            
+            $codigo .= '-';
+        
+            // Generar 2 letras en medio
+            for ($i = 0; $i < 2; $i++) {
+                $codigo .= $caracteres[rand(10, strlen($caracteres) - 1)]; // Solo letras
+            }
+            
+            $codigo .= '-';
+            
+            // Generar 3 números al final
+            for ($i = 0; $i < 3; $i++) {
+                $codigo .= $caracteres[rand(0, 9)]; // Solo dígitos numéricos
+            }
+            
+            return $codigo;
+        }
+        $codigoAleatorio = generarCodigoAleatorioIllonis();
+    }else if($buyer_state ==="GA"){
+        function generarCodigoGeorgia() {
+            $letraInicial = chr(rand(65, 90)); // Generar una letra mayúscula ASCII entre 65 y 90
+            $digitos = rand(1000000, 9999999); // Generar un número de 6 dígitos
+        
+            $codigo = $letraInicial . $digitos;
+            return $codigo;
+        }
+        $codigoAleatorio = generarCodigoGeorgia();
     }
     
     // Query table tb_vehicle

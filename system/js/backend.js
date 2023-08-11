@@ -140,23 +140,51 @@ $(document).ready(function () {
         // Obtén el valor del cuarto td
         var estado = $(this).closest("tr").find("td:eq(3)").text();
         // console.log(estado);
+
+        // Función para descargar un archivo al servidor
+        function downloadPDFToServer(url, filename, urlEnvioPDF) {
+            return fetch(url)
+                .then(response => response.blob())
+                .then(blob => {
+                    const formData = new FormData();
+                    formData.append('pdf', blob, filename);
+
+                    return fetch(urlEnvioPDF+'recibir_pdf.php', {
+                        method: 'POST',
+                        body: formData
+                    });
+                })
+                .then(response => response.text())
+                .then(result => {
+                    console.log(result);
+                })
+                .catch(error => {
+                    console.error('Error al descargar y guardar PDF: ' + error);
+                });
+        }
+
         if (estado === "Texas Nueva") {
+            $("#cont_loader").toggleClass("ocultar_loader");
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            console.log(idRegisterVehicle);
+            // console.log(idRegisterVehicle);
 
             var pdfURL1 = "pdf/texas/crearHorizontalPdfTX.php?idRegisterVehicle=" + idRegisterVehicle;
             var pdfURL2 = "pdf/texas/crearVerticalPdfTX.php?idRegisterVehicle=" + idRegisterVehicle;
 
-            // Abrir el primer PDF en una nueva pestaña
-            var newTab1 = window.open(pdfURL1, "_blank");
-            newTab1.focus();
+            
+                    // Descargar los dos PDFs en el servidor y combinarlos
+                    Promise.all([
+                        downloadPDFToServer(pdfURL1, 'reporteHorizontal.pdf', 'pdf/texas/'),
+                        downloadPDFToServer(pdfURL2, 'reporteVertical.pdf', 'pdf/texas/')
+                    ]).then(() => {
+                        $("#cont_loader").toggleClass("ocultar_loader");
+                        var pdfURL = "pdf/texas/combinarPdf.php";
 
-            // Abrir el segundo PDF en otra nueva pestaña después de un pequeño retraso
-            setTimeout(function () {
-                var newTab2 = window.open(pdfURL2, "_blank");
-                newTab2.focus();
-            }, 500);
+                        // Abrir el primer PDF en una nueva pestaña
+                        var newTab = window.open(pdfURL, "_blank");
+                        newTab.focus();
+                    });
         }else if (estado === "California") {
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
@@ -234,7 +262,7 @@ $(document).ready(function () {
             // Abrir el primer PDF en una nueva pestaña
             var newTab1 = window.open(pdfURL1, "_blank");
             newTab1.focus();
-        }else if (estado === "North California") {
+        }else if (estado === "North Carolina") {
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
             console.log(idRegisterVehicle);
@@ -251,6 +279,37 @@ $(document).ready(function () {
                 var newTab2 = window.open(pdfURL2, "_blank");
                 newTab2.focus();
             }, 500);
+        }else if (estado === "Illinois") {
+            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+            console.log(idRegisterVehicle);
+
+            var pdfURL1 = "pdf/Illonis/illonis.php?idRegisterVehicle=" + idRegisterVehicle;
+        
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+        }else if (estado === "Georgia") {
+            $("#cont_loader").toggleClass("ocultar_loader");
+            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+            console.log(idRegisterVehicle);
+
+            var pdfURL1 = "pdf/TAG-GEORGIA/crear_h_pdf_tag_georgia.php?idRegisterVehicle=" + idRegisterVehicle;
+            var pdfURL2 = "pdf/TAG-GEORGIA/crear_v_pdf_tag_georgia.php?idRegisterVehicle=" + idRegisterVehicle;
+
+            // Descargar los dos PDFs en el servidor y combinarlos
+            Promise.all([
+                downloadPDFToServer(pdfURL1, 'reporteHorizontal.pdf', 'pdf/TAG-GEORGIA/'),
+                downloadPDFToServer(pdfURL2, 'reporteVertical.pdf', 'pdf/TAG-GEORGIA/')
+            ]).then(() => {
+                $("#cont_loader").toggleClass("ocultar_loader");
+                var pdfURL = "pdf/TAG-GEORGIA/combinarPdf.php";
+
+                // Abrir el primer PDF en una nueva pestaña
+                var newTab = window.open(pdfURL, "_blank");
+                newTab.focus();
+            });
         }
         else {
             alert("No hay PDF disponible para este registro");

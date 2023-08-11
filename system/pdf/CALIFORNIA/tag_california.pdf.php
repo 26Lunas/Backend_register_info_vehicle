@@ -55,6 +55,7 @@ foreach ($jsonData as $item) {
     if($fecha !== ''){
         $fecha_objeto = strtotime($fecha);
         $fecha_transformada = date("M d, Y", $fecha_objeto);
+        $fecha_transformada_sale = date("m/d/Y", $fecha_objeto);
     }else{
         $fecha_transformada = '';
     }
@@ -256,7 +257,7 @@ $pdf->SetFont('Helvetica','',8);
 $pdf->Cell(48,3,$deler_number,0,0,"L");
 $pdf->Cell(44,3,strtoupper($seller),0,0,"L");
 $pdf->Cell(68,3, $id_vehicle,0,0,"L");
-$pdf->Cell(12,3,$sale_date,0,1,"L");
+$pdf->Cell(12,3,$fecha_transformada_sale,0,1,"L");
 
 $pdf->Line(7,167,203,167);
 $pdf->Line(98,159,98,167);
@@ -350,8 +351,7 @@ $pdf->SetFont('Helvetica','',6);
 $pdf->Cell(200,3,"REG51 (REV 9/2019) UH",0,1,"L");
 
 $filenamepdf="tag_california.pdf";
-$pdf->Output($filenamepdf,'F');
-$pdf->Output();
+$pdf->Output($filenamepdf,'I');
 
 echo "<script>
          window.location.href = 'tag_california.pdf';

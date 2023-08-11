@@ -1,12 +1,6 @@
 <?php
 
-// Cargamos la librería dompdf que hemos instalado en la carpeta dompdf
-require_once '../dompdf/autoload.inc.php';
-use Dompdf\Dompdf;
-
-
 require '../generarQR/vendor/autoload.php'; // Carga las clases de la librería
-
 use BaconQrCode\Renderer\Image\Png;
 use BaconQrCode\Writer;
 
@@ -31,10 +25,12 @@ $archivoQR = 'codigo_qr.png';
 $writer->writeFile($textoQR, $archivoQR);
 
 // Introducimos HTML de prueba
-// $html = file_get_contents("http://localhost/Software_registro_de_información/system/pdf/texas/datosHorizontales.php");
 ob_start(); // Iniciar el almacenamiento en búfer de salida
 include "datosHorizontales.php"; // Incluir el archivo que contiene el HTML a utilizar
 $html = ob_get_clean(); // Obtener el contenido almacenado en el búfer de salida
+
+require_once '../dompdf/autoload.inc.php';
+use Dompdf\Dompdf;
 
 // Instanciamos un objeto de la clase DOMPDF.
 $pdf = new DOMPDF();
@@ -42,40 +38,24 @@ $pdf = new DOMPDF();
 // Definimos el tamaño y orientación del papel que queremos.
 $pdf->set_paper("A4", "landscape");
 
-
 // Cargamos el contenido HTML.
 $pdf->load_html(utf8_decode($html));
 
 // Renderizamos el documento PDF.
 $pdf->render();
 
-// Enviamos el fichero PDF al navegador.
-$pdf->stream('reportePdf.pdf',  array('Attachment' => 0));
-
 // Guardamos el fichero PDF en el servidor.
-// $file = 'pruebaPDF-H.pdf';
-// file_put_contents($file, $pdf->output());
+$file = 'TEXAS-BUYER-H.pdf';
+file_put_contents($file, $pdf->output());
 
-function file_get_contents_curl($url) {
-	$crl = curl_init();
-	$timeout = 5;
-	curl_setopt($crl, CURLOPT_URL, $url);
-	curl_setopt($crl, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($crl, CURLOPT_CONNECTTIMEOUT, $timeout);
-	$ret = curl_exec($crl);
-	curl_close($crl);
-	return $ret;
-}
-// Establecemos las cabeceras para mostrar el PDF en el navegador.
+// Establecemos las cabeceras para la descarga del PDF.
 header('Content-Type: application/pdf');
-header('Content-Disposition: inline; filename="reportePdf.pdf"');
-header('Cache-Control: private, max-age=0, must-revalidate');
-header('Pragma: public');
+header('Content-Disposition: attachment; filename="reportePdf.pdf"');
+header('Content-Length: ' . filesize($file));
 
-echo $pdf->output();
-// Devuelve el contenido del PDF como respuesta al AJAX
-// $pdfOutput = $pdf->output();
-// echo base64_encode($pdfOutput);
+// Enviamos el fichero PDF al navegador para su descarga.
+readfile($file);
 
 // Eliminar el archivo generado
 unlink($archivoQR);
+unlink($file);
