@@ -2,7 +2,7 @@
 include('../connection.php');
 
 
-$query = "SELECT * FROM tb_state";
+$query = "SELECT * FROM tb_pdf";
 
 $result = mysqli_query($Connection, $query);
 if(!$result){ 
@@ -12,9 +12,9 @@ if(!$result){
 $json = array();
 while ($row = mysqli_fetch_array($result)) {
     $json[] = array(
-        'id_state' => $row['id_state'],
-        'name_state' => $row['name_state'],
-        'identificador_state' => $row['identificador_state']
+        'id_pdf' => $row['id_pdf'],
+        'name_state_pdf' => $row['name_state_pdf'],
+        'identificador_pdf' => $row['identificador_pdf']
     );
 }
 $jsonString = json_encode($json);

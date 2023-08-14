@@ -22,6 +22,7 @@ $(document).ready(function () {
   let estado = localStorage.getItem("estado");
   // console.log(estado);
   $("#campoBuyer-state").val(estado);
+  $("#campoBuyer-pdf").val(estado);
   localStorage.removeItem("estado");
 
   $(".btn-cancel").click(function () {
@@ -91,11 +92,35 @@ $(document).ready(function () {
           if (algunoVacio) {
             alert("Al menos uno de los valores está vacío.");
           } else {
-            let estado = $("#campoBuyer-state").val();
+            let pdf = $("#campoBuyer-pdf").val();
             var id_buyer = $("#campoBuyer-id").val();
             guardar_register_vehicle_info();
             // console.log(id_buyer);
-            if (estado === "TX") {
+            function downloadPDFToServer(url, filename, urlEnvioPDF) {
+              console.log("Descargando archivo:", url);
+
+              return fetch(url)
+                .then((response) => response.blob())
+                .then((blob) => {
+                  console.log("Archivo descargado:", url);
+
+                  const formData = new FormData();
+                  formData.append("pdf", blob, filename);
+
+                  return fetch(urlEnvioPDF + "recibir_pdf.php", {
+                    method: "POST",
+                    body: formData,
+                  });
+                })
+                .then((response) => response.text())
+                .then((result) => {
+                  console.log("PDF guardado en el servidor:", result);
+                })
+                .catch((error) => {
+                  console.error("Error al descargar y guardar PDF: " + error);
+                });
+            }
+            if (pdf === "TX") {
               console.log("Iniciando descarga de PDFs...");
 
               $("#cont_loader").toggleClass("ocultar_loader");
@@ -108,37 +133,12 @@ $(document).ready(function () {
               console.log("URL del PDF horizontal:", pdfURL1);
               console.log("URL del PDF vertical:", pdfURL2);
 
-              function downloadPDFToServer(url, filename) {
-                console.log("Descargando archivo:", url);
-
-                return fetch(url)
-                  .then((response) => response.blob())
-                  .then((blob) => {
-                    console.log("Archivo descargado:", url);
-
-                    const formData = new FormData();
-                    formData.append("pdf", blob, filename);
-
-                    return fetch("pdf/texas/recibir_pdf.php", {
-                      method: "POST",
-                      body: formData,
-                    });
-                  })
-                  .then((response) => response.text())
-                  .then((result) => {
-                    console.log("PDF guardado en el servidor:", result);
-                  })
-                  .catch((error) => {
-                    console.error("Error al descargar y guardar PDF: " + error);
-                  });
-              }
-
               setTimeout(() => {
                 Promise.all([
-                  downloadPDFToServer(pdfURL1, "reporteHorizontal.pdf"),
-                  downloadPDFToServer(pdfURL2, "reporteVertical.pdf"),
+                  downloadPDFToServer(pdfURL1, "reporteHorizontal.pdf", 'pdf/texas/'),
+                  downloadPDFToServer(pdfURL2, "reporteVertical.pdf", 'pdf/texas/'),
                 ]).then(() => {
-                  console.log("Descarga y guardado de PDFs completado.");
+                  // console.log("Descarga y guardado de PDFs completado.");
 
                   $("#cont_loader").toggleClass("ocultar_loader");
                   var pdfURL = "pdf/texas/combinarPdf.php";
@@ -148,7 +148,7 @@ $(document).ready(function () {
                   newTab.focus();
                 });
               }, 1000); // Retraso de 1 segundos
-            } else if (estado === "CA") {
+            } else if (pdf === "CA") {
               var pdfURL1 =
                 "pdf/CALIFORNIA/tag_california.pdf.php?idRegisterVehicle=" +
                 id_buyer;
@@ -156,7 +156,7 @@ $(document).ready(function () {
               // Abrir el primer PDF en una nueva pestaña
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
-            } else if (estado === "LA") {
+            } else if (pdf === "LA") {
               var pdfURL1 =
                 "pdf/TAG-LOUISIANA/crear_h_pdf_tag_louisiana.php?idRegisterVehicle=" +
                 id_buyer;
@@ -173,21 +173,21 @@ $(document).ready(function () {
                 var newTab2 = window.open(pdfURL2, "_blank");
                 newTab2.focus();
               }, 500);
-            } else if (estado === "NJ") {
+            } else if (pdf === "NJ") {
               var pdfURL1 =
                 "pdf/NJ_NY/crear_h_pdf_nj_ny.php?idRegisterVehicle=" + id_buyer;
 
               // Abrir el primer PDF en una nueva pestaña
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
-            } else if (estado === "NY") {
+            } else if (pdf === "NY") {
               var pdfURL1 =
                 "pdf/NJ_NY/crear_h_pdf_nj_ny.php?idRegisterVehicle=" + id_buyer;
 
               // Abrir el primer PDF en una nueva pestaña
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
-            } else if (estado === "NV") {
+            } else if (pdf === "NV") {
               var pdfURL1 =
                 "pdf/TAG-NEVADA-/crear_h_tag_nevada_pdf.php?idRegisterVehicle=" +
                 id_buyer;
@@ -195,7 +195,7 @@ $(document).ready(function () {
               // Abrir el primer PDF en una nueva pestaña
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
-            } else if (estado === "MD") {
+            } else if (pdf === "MD") {
               var pdfURL1 =
                 "pdf/TAG-MD/crear_h_pdf_tag_md.php?idRegisterVehicle=" +
                 id_buyer;
@@ -203,7 +203,7 @@ $(document).ready(function () {
               // Abrir el primer PDF en una nueva pestaña
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
-            } else if (estado === "TN") {
+            } else if (pdf === "TN") {
               var pdfURL1 =
                 "pdf/TAG-TENNESSEE-/crear_v_pdf_tag_tennessee.php?idRegisterVehicle=" +
                 id_buyer;
@@ -211,7 +211,7 @@ $(document).ready(function () {
               // Abrir el primer PDF en una nueva pestaña
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
-            } else if (estado === "NC") {
+            } else if (pdf === "NC") {
               var pdfURL1 =
                 "pdf/NC_NORTE_CALIFORNIA/crear_h_pdf_norte_california.php?idRegisterVehicle=" +
                 id_buyer;
@@ -228,26 +228,33 @@ $(document).ready(function () {
                 var newTab2 = window.open(pdfURL2, "_blank");
                 newTab2.focus();
               }, 500);
-            } else if (estado === "IL") {
+            } else if (pdf === "IL") {
               var pdfURL1 =
                 "pdf/Illonis/illonis.php?idRegisterVehicle=" + id_buyer;
 
               // Abrir el primer PDF en una nueva pestaña
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
-            } else if (estado === "GA") {
+            } else if (pdf === "GA") {
+              $("#cont_loader").toggleClass("ocultar_loader");
               var pdfURL1 = "pdf/TAG-GEORGIA/crear_h_pdf_tag_georgia.php?idRegisterVehicle=" + id_buyer;
               var pdfURL2 = "pdf/TAG-GEORGIA/crear_v_pdf_tag_georgia.php?idRegisterVehicle=" + id_buyer;
 
-              // Abrir el primer PDF en una nueva pestaña
-              var newTab1 = window.open(pdfURL1, "_blank");
-              newTab1.focus();
+              setTimeout(() => {
+                Promise.all([
+                  downloadPDFToServer(pdfURL1, "reporteHorizontal.pdf", 'pdf/TAG-GEORGIA/'),
+                  downloadPDFToServer(pdfURL2, "reporteVertical.pdf", 'pdf/TAG-GEORGIA/'),
+                ]).then(() => {
+                  // console.log("Descarga y guardado de PDFs completado.");
+                  $("#cont_loader").toggleClass("ocultar_loader");
+                  
+                  var pdfURL = "pdf/TAG-GEORGIA/combinarPdf.php";
 
-              // Abrir el segundo PDF en otra nueva pestaña después de un pequeño retraso
-              setTimeout(function () {
-                var newTab2 = window.open(pdfURL2, "_blank");
-                newTab2.focus();
-              }, 500);
+                  // Abrir el primer PDF en una nueva pestaña
+                  var newTab = window.open(pdfURL, "_blank");
+                  newTab.focus();
+                });
+              }, 1000); // Retraso de 1 segundos
             }
             else {
               alert("No hay PDF disponible para este registro");
@@ -279,6 +286,7 @@ $(document).ready(function () {
           let campoBuyerZip = $("#campoBuyer-zip").val();
           let campoBuyerEmail = $("#campoBuyer-email").val();
           let campoBuyerPhone = $("#campoBuyer-phone").val();
+          let campoBuyerpdf = $("#campoBuyer-pdf").val();
 
           const datos = {
             id_buyerVehicle: id_buyerVehicle,
@@ -304,6 +312,7 @@ $(document).ready(function () {
             campoBuyerZip: campoBuyerZip,
             campoBuyerEmail: campoBuyerEmail,
             campoBuyerPhone: campoBuyerPhone,
+            campoBuyerpdf: campoBuyerpdf
           };
 
           // console.log(campoVehicleVin);

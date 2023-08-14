@@ -42,7 +42,8 @@ while ($row = mysqli_fetch_array($result)) {
         'adress' => $row['adress'],
         'zip' => $row['zip'],
         'id_buyer' => $row['id_buyer'],
-        'name_state' => $row['name_state']
+        'name_state' => $row['name_state'],
+        'pdf' => $row['pdf']
 
     );
 }

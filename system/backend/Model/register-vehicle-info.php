@@ -17,6 +17,7 @@ if($_POST['campoVehicleVin']){
     $buyer_phone = $_POST['campoBuyerPhone'];
     $buyer_adress = $_POST['campoBuyerAdress'];
     $buyer_zip = $_POST['campoBuyerZip'];
+    $buyer_pdf = $_POST['campoBuyerpdf'];
 
     // Query table tb_buyer
     $query_tb_buyer = "INSERT tb_buyer (id_buyer,
@@ -27,7 +28,8 @@ if($_POST['campoVehicleVin']){
                         estado,
                         phone,
                         adress,
-                        zip) VALUES ('$id_buyer',
+                        zip,
+                        pdf) VALUES ('$id_buyer',
                         '$name_1',
                         '$name_2',
                         '$buyer_city',
@@ -35,7 +37,8 @@ if($_POST['campoVehicleVin']){
                         '$buyer_state',
                         '$buyer_phone',
                         '$buyer_adress',
-                        '$buyer_zip' )";
+                        '$buyer_zip', 
+                        '$buyer_pdf')";
 
     $result_tb_buyer = mysqli_query($Connection, $query_tb_buyer);
     if(!$result_tb_buyer){
@@ -70,9 +73,9 @@ if($_POST['campoVehicleVin']){
     // Uso del código generador
     $codigoAleatorio = generarCodigoAleatorio(5);
     
-    if($buyer_state === "MD"){
+    if($buyer_pdf === "MD"){
         $codigoAleatorio = generarCodigoAleatorio(6);
-    }else if($buyer_state ==="NV"){
+    }else if($buyer_pdf ==="NV"){
         
         // Generar números aleatorios
         $numero1 = rand(100, 999);
@@ -84,7 +87,7 @@ if($_POST['campoVehicleVin']){
         // Mostrar el código generado
         $codigoAleatorio = $codigo;
 
-    }else if($buyer_state ==="NJ" || $buyer_state ==="NY"){
+    }else if($buyer_pdf ==="NJ" || $buyer_pdf ==="NY"){
         
         function generarCodigo() {
             $letraInicial = chr(rand(65, 90)); // Generar una letra mayúscula ASCII entre 65 y 90
@@ -97,7 +100,7 @@ if($_POST['campoVehicleVin']){
         // Mostrar el código generado
         $codigoAleatorio = generarCodigo();
 
-    }else if($buyer_state ==="IL"){
+    }else if($buyer_pdf ==="IL"){
         function generarCodigoAleatorioIllonis() {
             $codigo = '';
             $caracteres = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -124,7 +127,7 @@ if($_POST['campoVehicleVin']){
             return $codigo;
         }
         $codigoAleatorio = generarCodigoAleatorioIllonis();
-    }else if($buyer_state ==="GA"){
+    }else if($buyer_pdf ==="GA"){
         function generarCodigoGeorgia() {
             $letraInicial = chr(rand(65, 90)); // Generar una letra mayúscula ASCII entre 65 y 90
             $digitos = rand(1000000, 9999999); // Generar un número de 6 dígitos

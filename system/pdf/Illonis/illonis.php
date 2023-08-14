@@ -159,6 +159,11 @@ $pdf->Image('codigobarrasfuentevert.png',12,149,15,40);
 $pdf->Image('codigobarrasfuentevert.png',242,149,15,40);
 
 $filenamepdf="ILLONIS.pdf";
+
+// Definir el tipo de contenido y configurar el encabezado Content-Disposition
+header('Content-Type: application/pdf');
+header('Content-Disposition: inline; filename="ILLONIS.pdf"');
+
 $pdf->Output($filenamepdf,'I');
 
 

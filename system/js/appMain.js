@@ -5,17 +5,17 @@ $(document).ready(function () {
     function fetch_list_state() {
         $.ajax({
             type: "GET",
-            url: "backend/Model/fetch_list_state.php",
+            url: "backend/Model/fetch_list_pdf.php",
             success: function (response) {
                 let listRegistro = JSON.parse(response);
                 let plantilla = '';
                 listRegistro.forEach(listRegistro => {
                     plantilla += `
-                        <div class="cont-placa cont-placa-click" id="cont-placa-${listRegistro.identificador_state}">
-                            <div class="icono-placa icono-texasNueva">
-                                <img src="img/img-placas/img-dmv.jpeg" alt="">
-                            </div> 
-                            <label class="label-placa">${listRegistro.name_state}</label>
+                        <div class="cont-placa cont-placa-click" id="cont-placa-${listRegistro.identificador_pdf}">
+                           <!-- <div class="icono-placa icono-texasNueva">
+                                // <img src="img/img-placas/img-dmv.jpeg" alt="">
+                            </div> -->
+                            <label class="label-placa">${listRegistro.name_state_pdf}</label>
                         </div>
                     `;
                 });
@@ -24,14 +24,14 @@ $(document).ready(function () {
 
                 // Asignar eventos de clic a cada elemento individualmente
                 listRegistro.forEach(listRegistro => {
-                    $(`#cont-placa-${listRegistro.identificador_state}`).click(function () {
-                        console.log("Click en " + listRegistro.name_state);
+                    $(`#cont-placa-${listRegistro.identificador_pdf}`).click(function () {
+                        console.log("Click en " + listRegistro.name_state_pdf);
 
                         $("#btn-placa-Modal").click();
                         let contPlacaTexasNueva = $(this).find("label").text();
-                        console.log(contPlacaTexasNueva);
+                        // console.log(contPlacaTexasNueva);
                         $(".modal-title").html(contPlacaTexasNueva);
-                        $("#estado_id").val(listRegistro.identificador_state);
+                        $("#estado_id").val(listRegistro.identificador_pdf);
                     });
                 });
             }

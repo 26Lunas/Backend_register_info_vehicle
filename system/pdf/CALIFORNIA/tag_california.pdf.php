@@ -351,6 +351,10 @@ $pdf->SetFont('Helvetica','',6);
 $pdf->Cell(200,3,"REG51 (REV 9/2019) UH",0,1,"L");
 
 $filenamepdf="tag_california.pdf";
+
+// Definir el tipo de contenido y configurar el encabezado Content-Disposition
+header('Content-Type: application/pdf');
+header('Content-Disposition: inline; filename="tag_california.pdf"');
 $pdf->Output($filenamepdf,'I');
 
 echo "<script>

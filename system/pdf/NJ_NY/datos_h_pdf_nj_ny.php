@@ -155,6 +155,7 @@
         $zip = $item->zip;
         $id_buyer = $item->id_buyer;
         $name_state = $item->name_state;
+        $pdf = $item->pdf;
 
         $fecha = $sale_date;
         $facha_sale = new DateTime($fecha);
@@ -167,12 +168,18 @@
         $formattedDateExpires = $expires->format('M d, Y');
         $formattedDateExpires2 = $expires->format('d/m/Y');
 
+        $title_pdf = "NewYork";
+        if ($title_pdf === "NJ") {
+            $title_pdf = "NewJersey";
+        }
+
+
         ?>
 
         <div class="cont_main">
             <div class="cont-text-top">
                 <img src="img/img_nj/logo_nj.jpg" alt="">
-                <h1><?php echo $name_state;?></h1>
+                <h1><?php echo $title_pdf;?></h1>
                 <h2><?php echo $days;?> Day Resident Temporary Plate</h2>
             </div>
             <h2 class="code-id"><?php echo $id_vehicle;?></h2>

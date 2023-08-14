@@ -34,7 +34,8 @@ while ($row = mysqli_fetch_array($result)) {
         'estado' => $row['estado'],
         'phone' => $row['phone'],
         'id_buyer' => $row['id_buyer'],
-        'name_state' => $row['name_state']
+        'name_state' => $row['name_state'],
+        'pdf' => $row['pdf']
 
     );
 }

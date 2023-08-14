@@ -31,6 +31,7 @@ $(document).ready(function () {
                         <td class="text-capitalize">${listRegistro.name_1}</td>
                         <td>${phone}</td>
                         <td class="text-capitalize">${listRegistro.name_state}</td>
+                        <td>${listRegistro.pdf}</td>
                         <td><i class="fa-solid fa-eye view-register"></i> | <i class="fa-solid fa-print print"></i> | <i class="fa-solid fa-pen-to-square edit-register"></i> | <i class="fa-solid fa-trash-can delete-register"></i></td>
                     </tr>
 
