@@ -1,7 +1,3 @@
-<?php
-    include('../../root_main.php');
-?>
-
 <html lang="es">
 
 <head>
@@ -129,6 +125,56 @@
         }
     </style>
 
+<?php
+    include('../texas/list_register.php');
+
+    $jsonData = json_decode($jsonString);
+
+    foreach ($jsonData as $item) {
+        $id_vehicle = $item->id_vehicle;
+        $vin_vehicle = $item->vin_vehicle;
+        $seller = $item->seller;
+        $deler_number = $item->deler_number;
+        $body_style = $item->body_style;
+        $major_color = $item->major_color;
+        $minor_color = $item->minor_color;
+        $sale_date = $item->sale_date;
+        $year = $item->year;
+        $days = $item->days;
+        $make = $item->make;
+        $model = $item->model;
+        $miles = $item->miles;
+        $name_1 = $item->name_1;
+        $name_2 = $item->name_2;
+        $adress = $item->adress;
+        $city = $item->city;
+        $estado = $item->estado;
+        $phone = $item->phone;
+        $zip = $item->zip;
+        $id_buyer = $item->id_buyer;
+        $name_state = $item->name_state;
+        $pdf = $item->pdf;
+
+        $fecha = $sale_date;
+        $facha_sale = new DateTime($fecha);
+        $sale_fecha_format = $facha_sale->format('m/d/Y');
+    
+        $name_state = str_replace(' ', '', $name_state);
+        
+        $sale_date = new DateTime($sale_date); // Suponiendo que $sale_date es la cadena de fecha
+        $expires = $sale_date->modify("+$days days");
+        $formattedDateExpires = $expires->format('M d, Y');
+        $formattedDateExpires2 = $expires->format('d/m/Y');
+        $formattedDateExpiresMes = $expires->format('m');
+        $formattedDateExpiresDia = $expires->format('d');
+        $formattedDateExpiresAño = $expires->format('y');
+
+        
+        $id = implode(' ', str_split($id_vehicle));
+
+
+        ?>
+
     <div class="cont_main">
         <img src="img/img_marco_nc.png" alt="" class="marco">
 
@@ -136,21 +182,21 @@
             <div class="cont-row-1">
                 <h2>Vehicle and Owner Information</h2>
                 <div class="columna-1">
-                    <p>Year: <span>2007</span></p>
-                    <p>Vin: <span>1N6BA06A77N215777</span></p>
-                    <p>Address: <span>711 CHAMPION ST HENDERSON, NC 27536</span></p>
+                    <p>Year: <span><?php echo $year;?></span></p>
+                    <p>Vin: <span><?php echo $vin_vehicle;?></span></p>
+                    <p>Address: <span style="text-transform: uppercase;"><?php echo $adress;?> <?php echo $city;?>, <?php echo $estado;?> <?php echo $zip;?></span></p>
                 </div>
                 <div class="columna-2">
-                    <p>Make: <span>NISS</span></p>
+                    <p>Make: <span><?php echo $make;?></span></p>
                     <p>Odometer:</p>
                 </div>
                 <div class="columna-3">
-                    <p>Model: <span>TITAN</span></p>
+                    <p>Model: <span style="text-transform: uppercase;"><?php echo $model;?></span></p>
                     <p>State to be titled:</p>
                 </div>
                 <div class="columna-4">
-                    <p>Color: <span>RED</span></p>
-                    <p>Owner: <span>JOSUE RONALDO PERAZA PAZ</span></p>
+                    <p>Color: <span><?php echo $major_color;?></span></p>
+                    <p>Owner: <span style="text-transform: uppercase;"><?php echo $name_1;?> <?php echo $name_2;?></span></p>
                 </div>
                 <div class="columna-5">
                     <p>State Licensed: <span></span></p>
@@ -159,7 +205,7 @@
             <div class="cont-row-2">
                 <h2>Dealer and Insurance Information</h2>
                 <div class="columna-1">
-                    <p>Daeler Name: <span>POWERPLAY MOTORS LLC </span></p>
+                    <p>Daeler Name: <span>POWERPLAY MOTORS LLC</span></p>
                     <p>I certify under penalty of law that the vehicle noted on the face hereof is covered by at least
                         the minimun amounts of insurance required by Pennsylvania Motor Vehicle Laws and that I have no
                         outstanding violations with the Motor Vehicle Administration. I furthe certify under penalty of
@@ -176,11 +222,16 @@
                     <p>Owner:<span></span></p>
                 </div>
                 <div class="columna-2">
-                    <p>Dealer ship:<span>02/20/2023</span></p>
+                    <p>Dealer ship:<span><?php echo $sale_fecha_format;?></span></p>
                 </div>
             </div>
 
         </div>
     </div>
+    <?php
+    }
+    ?>
+
+</body>
 
 </html>

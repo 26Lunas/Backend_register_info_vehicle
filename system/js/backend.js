@@ -139,8 +139,8 @@ $(document).ready(function () {
     $("#body-listRegisterVehicle").on("click", ".print", function () {
 
         // Obtén el valor del cuarto td
-        var estado = $(this).closest("tr").find("td:eq(3)").text();
-        // console.log(estado);
+        var pdf = $(this).closest("tr").find("td:eq(4)").text();
+        // console.log(pdf);
 
         // Función para descargar un archivo al servidor
         function downloadPDFToServer(url, filename, urlEnvioPDF) {
@@ -164,7 +164,7 @@ $(document).ready(function () {
                 });
         }
 
-        if (estado === "Texas Nueva") {
+        if (pdf === "TX") {
             $("#cont_loader").toggleClass("ocultar_loader");
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
@@ -186,7 +186,7 @@ $(document).ready(function () {
                         var newTab = window.open(pdfURL, "_blank");
                         newTab.focus();
                     });
-        }else if (estado === "California") {
+        }else if (pdf === "CA") {
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
             console.log(idRegisterVehicle);
@@ -196,7 +196,7 @@ $(document).ready(function () {
             // Abrir el primer PDF en una nueva pestaña
             var newTab1 = window.open(pdfURL1, "_blank");
             newTab1.focus();
-        }else if (estado === "Luisiana") {
+        }else if (pdf === "LA") {
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
             console.log(idRegisterVehicle);
@@ -213,7 +213,7 @@ $(document).ready(function () {
                 var newTab2 = window.open(pdfURL2, "_blank");
                 newTab2.focus();
             }, 500);
-        }else if (estado === "New Jersey") {
+        }else if (pdf === "NJ") {
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
             console.log(idRegisterVehicle);
@@ -223,7 +223,7 @@ $(document).ready(function () {
             // Abrir el primer PDF en una nueva pestaña
             var newTab1 = window.open(pdfURL1, "_blank");
             newTab1.focus();
-        }else if (estado === "New York") {
+        }else if (pdf === "NY") {
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
             console.log(idRegisterVehicle);
@@ -233,7 +233,7 @@ $(document).ready(function () {
             // Abrir el primer PDF en una nueva pestaña
             var newTab1 = window.open(pdfURL1, "_blank");
             newTab1.focus();
-        }else if (estado === "Nevada") {
+        }else if (pdf === "NV") {
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
             console.log(idRegisterVehicle);
@@ -243,7 +243,7 @@ $(document).ready(function () {
             // Abrir el primer PDF en una nueva pestaña
             var newTab1 = window.open(pdfURL1, "_blank");
             newTab1.focus();
-        }else if (estado === "Maryland") {
+        }else if (pdf === "MD") {
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
             console.log(idRegisterVehicle);
@@ -253,7 +253,7 @@ $(document).ready(function () {
             // Abrir el primer PDF en una nueva pestaña
             var newTab1 = window.open(pdfURL1, "_blank");
             newTab1.focus();
-        }else if (estado === "Tennessee") {
+        }else if (pdf === "TN") {
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
             console.log(idRegisterVehicle);
@@ -263,24 +263,28 @@ $(document).ready(function () {
             // Abrir el primer PDF en una nueva pestaña
             var newTab1 = window.open(pdfURL1, "_blank");
             newTab1.focus();
-        }else if (estado === "North Carolina") {
+        }else if (pdf === "NC") {
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            console.log(idRegisterVehicle);
+            $("#cont_loader").toggleClass("ocultar_loader");
+            // console.log(idRegisterVehicle);
 
             var pdfURL1 = "pdf/NC_NORTE_CALIFORNIA/crear_h_pdf_norte_california.php?idRegisterVehicle=" + idRegisterVehicle;
             var pdfURL2 = "pdf/NC_NORTE_CALIFORNIA/crear_v2_pdf_norte_california.php?idRegisterVehicle=" + idRegisterVehicle;
 
-            // Abrir el primer PDF en una nueva pestaña
-            var newTab1 = window.open(pdfURL1, "_blank");
-            newTab1.focus();
+             // Descargar los dos PDFs en el servidor y combinarlos
+             Promise.all([
+                downloadPDFToServer(pdfURL1, 'reporteHorizontal.pdf', 'pdf/NC_NORTE_CALIFORNIA/'),
+                downloadPDFToServer(pdfURL2, 'reporteVertical.pdf', 'pdf/NC_NORTE_CALIFORNIA/')
+            ]).then(() => {
+                $("#cont_loader").toggleClass("ocultar_loader");
+                var pdfURL = "pdf/NC_NORTE_CALIFORNIA/combinarPdf.php";
 
-            // Abrir el segundo PDF en otra nueva pestaña después de un pequeño retraso
-            setTimeout(function () {
-                var newTab2 = window.open(pdfURL2, "_blank");
-                newTab2.focus();
-            }, 500);
-        }else if (estado === "Illinois") {
+                // Abrir el primer PDF en una nueva pestaña
+                var newTab = window.open(pdfURL, "_blank");
+                newTab.focus();
+            });
+        }else if (pdf === "IL") {
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
             console.log(idRegisterVehicle);
@@ -290,7 +294,7 @@ $(document).ready(function () {
             // Abrir el primer PDF en una nueva pestaña
             var newTab1 = window.open(pdfURL1, "_blank");
             newTab1.focus();
-        }else if (estado === "Georgia") {
+        }else if (pdf === "GA") {
             $("#cont_loader").toggleClass("ocultar_loader");
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");

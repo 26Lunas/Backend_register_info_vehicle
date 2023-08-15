@@ -219,15 +219,18 @@ $(document).ready(function () {
                 "pdf/NC_NORTE_CALIFORNIA/crear_v2_pdf_norte_california.php?idRegisterVehicle=" +
                 id_buyer;
 
-              // Abrir el primer PDF en una nueva pestaña
-              var newTab1 = window.open(pdfURL1, "_blank");
-              newTab1.focus();
+              // Descargar los dos PDFs en el servidor y combinarlos
+             Promise.all([
+              downloadPDFToServer(pdfURL1, 'reporteHorizontal.pdf', 'pdf/NC_NORTE_CALIFORNIA/'),
+              downloadPDFToServer(pdfURL2, 'reporteVertical.pdf', 'pdf/NC_NORTE_CALIFORNIA/')
+          ]).then(() => {
+              $("#cont_loader").toggleClass("ocultar_loader");
+              var pdfURL = "pdf/NC_NORTE_CALIFORNIA/combinarPdf.php";
 
-              // Abrir el segundo PDF en otra nueva pestaña después de un pequeño retraso
-              setTimeout(function () {
-                var newTab2 = window.open(pdfURL2, "_blank");
-                newTab2.focus();
-              }, 500);
+              // Abrir el primer PDF en una nueva pestaña
+              var newTab = window.open(pdfURL, "_blank");
+              newTab.focus();
+          });
             } else if (pdf === "IL") {
               var pdfURL1 =
                 "pdf/Illonis/illonis.php?idRegisterVehicle=" + id_buyer;

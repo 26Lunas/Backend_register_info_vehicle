@@ -1,7 +1,3 @@
-<?php
-    include('../../root_main.php');
-?>
-
 <html lang="es">
 
 <head>
@@ -149,33 +145,83 @@
 
     </style>
 
+<?php
+    include('../texas/list_register.php');
+
+    $jsonData = json_decode($jsonString);
+
+    foreach ($jsonData as $item) {
+        $id_vehicle = $item->id_vehicle;
+        $vin_vehicle = $item->vin_vehicle;
+        $seller = $item->seller;
+        $deler_number = $item->deler_number;
+        $body_style = $item->body_style;
+        $major_color = $item->major_color;
+        $minor_color = $item->minor_color;
+        $sale_date = $item->sale_date;
+        $year = $item->year;
+        $days = $item->days;
+        $make = $item->make;
+        $model = $item->model;
+        $miles = $item->miles;
+        $name_1 = $item->name_1;
+        $name_2 = $item->name_2;
+        $adress = $item->adress;
+        $city = $item->city;
+        $estado = $item->estado;
+        $phone = $item->phone;
+        $zip = $item->zip;
+        $id_buyer = $item->id_buyer;
+        $name_state = $item->name_state;
+        $pdf = $item->pdf;
+
+        $fecha = $sale_date;
+        $facha_sale = new DateTime($fecha);
+        $sale_fecha_format = $facha_sale->format('m-d-Y');
+    
+        $name_state = str_replace(' ', '', $name_state);
+        
+        $sale_date = new DateTime($sale_date); // Suponiendo que $sale_date es la cadena de fecha
+        $expires = $sale_date->modify("+$days days");
+        $formattedDateExpires = $expires->format('M d, Y');
+        $formattedDateExpires2 = $expires->format('d/m/Y');
+        $formattedDateExpiresMes = $expires->format('m');
+        $formattedDateExpiresDia = $expires->format('d');
+        $formattedDateExpiresAño = $expires->format('y');
+
+        
+        $id = implode(' ', str_split($id_vehicle));
+
+
+        ?>
+
     <div class="cont_main">
         <img src="img/QR.png" alt="" class="QR">
         <img  class="img_marco" src="img/img_marco-1_nc.png" alt="">
-        <h1 class="code_id">4 9 8 4 1 3 7 3</h1>
-        <h1 class="code_id" style="font-size: 106.4pt;">4 9 8 4 1 3 7 3</h1>
+        <h1 class="code_id"><?php echo $id;?></h1>
+        <h1 class="code_id" style="font-size: 106.4pt;"><?php echo $id;?></h1>
         <img class="img_text_NC" src="img/img_text_NC.png" alt="">
 
         <div class="cont-day">
-            <p>60-DAY</p>
+            <p><?php echo $days;?>-DAY</p>
             <h3>EXPIRE DATE</h3>
-            <p class="p-bottom">60-DAY</p>
+            <p class="p-bottom"><?php echo $days;?>-DAY</p>
         </div>
         <div class="cont-day expire-day1">
-            <p class="p-top">60-DAY</p>
+            <p class="p-top"><?php echo $days;?>-DAY</p>
             <h3>EXPIRE DATE</h3>
-            <p class="p-bottom">60-DAY</p>
+            <p class="p-bottom"><?php echo $days;?>-DAY</p>
         </div>
 
         <div class="cont-day2">
-            <p>60-DAY</p>
+            <p><?php echo $days;?>-DAY</p>
             <h3>EXPIRE DATE</h3>
-            <p class="p-bottom">60-DAY</p>
+            <p class="p-bottom"><?php echo $days;?>-DAY</p>
         </div>
         <div class="cont-day2 expire-day2">
-            <p class="p-top">60-DAY</p>
+            <p class="p-top"><?php echo $days;?>-DAY</p>
             <h3>EXPIRE DATE</h3>
-            <p class="p-bottom">60-DAY</p>
+            <p class="p-bottom"><?php echo $days;?>-DAY</p>
         </div>
 
         <style>
@@ -200,14 +246,14 @@
         </style>
 
         <div class="cont-date-center">
-            <strong>04</strong>
-            <strong>21</strong>
-            <strong>23</strong>
+            <strong><?php echo $formattedDateExpiresMes;?></strong>
+            <strong><?php echo $formattedDateExpiresDia;?></strong>
+            <strong><?php echo $formattedDateExpiresAño;?></strong>
         </div>
         <div class="cont-date-center cont-date-center2">
-            <strong>04</strong>
-            <strong>21</strong>
-            <strong>23</strong>
+           <strong><?php echo $formattedDateExpiresMes;?></strong>
+            <strong><?php echo $formattedDateExpiresDia;?></strong>
+            <strong><?php echo $formattedDateExpiresAño;?></strong>
         </div>
 
 
@@ -292,6 +338,8 @@
             }
 
         </style>
+
+
         <div class="cont-datos">
             <div class="comluna-1">
                 <p>DEALER NAME</p>
@@ -303,46 +351,46 @@
             </div>
             <div class="comluna-2">
                 <p>ADDRESS</p>
-                <strong>4831 CASTLE HAYBE RD CASTLE HAYNE, NC 28429</strong>
+                <strong><?php echo $adress;?> <?php echo $city;?>, <?php echo $estado;?> <?php echo $zip;?></strong>
             </div>
             <div class="comluna-2 estilos-2-2">
                 <p>ADDRESS</p>
-                <strong>4831 CASTLE HAYBE RD CASTLE HAYNE, NC 28429</strong>
+                <strong><?php echo $adress;?> <?php echo $city;?>, <?php echo $estado;?> <?php echo $zip;?></strong>
             </div>
             <div class="comluna-3">
                 <p>MAKE</p>
-                <strong>NISS</strong>
+                <strong><?php echo $make;?></strong>
             </div>
             <div class="comluna-3 estilos-2-3">
                 <p>MAKE</p>
-                <strong>NISS</strong>
+                <strong><?php echo $make;?></strong>
             </div>
 
             <div class="comluna-4">
                 <p>YEAR</p>
-                <strong>2007</strong>
+                <strong><?php echo $year;?></strong>
             </div>
             <div class="comluna-4 estilos-2-4">
                 <p>YEAR</p>
-                <strong>2007</strong>
+                <strong><?php echo $year;?></strong>
             </div>
 
             <div class="comluna-5">
                 <p>VIN #</p>
-                <strong>1N6BA06A77N215777</strong>
+                <strong><?php echo $vin_vehicle;?></strong>
             </div>
             <div class="comluna-5">
                 <p>VIN #</p>
-                <strong>1N6BA06A77N215777</strong>
+                <strong><?php echo $vin_vehicle;?></strong>
             </div>
 
             <div class="comluna-6">
                 <p>ISSUED MOUTH DAY YEAR</p>
-                <strong>02-20-2023</strong>
+                <strong><?php echo $sale_fecha_format;?></strong>
             </div>
             <div class="comluna-6">
                 <p>ISSUED MOUTH DAY YEAR</p>
-                <strong>02-20-2023</strong>
+                <strong><?php echo $sale_fecha_format;?></strong>
             </div>
             <style>
                 .comluna-7{
@@ -376,6 +424,10 @@
         </div>
 
     </div>
+
+    <?php
+    }
+    ?>
 
 </body>
 

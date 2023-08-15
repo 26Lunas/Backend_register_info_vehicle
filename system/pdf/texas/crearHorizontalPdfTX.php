@@ -44,18 +44,17 @@ $pdf->load_html(utf8_decode($html));
 // Renderizamos el documento PDF.
 $pdf->render();
 
-// Guardamos el fichero PDF en el servidor.
-$file = 'TEXAS-BUYER-H.pdf';
-file_put_contents($file, $pdf->output());
+// Enviamos el fichero PDF al navegador.
+$pdf->stream('TEXAS-BUYER-H.pdf',  array('Attachment' => 0));
 
 // Establecemos las cabeceras para la descarga del PDF.
-header('Content-Type: application/pdf');
-header('Content-Disposition: attachment; filename="reportePdf.pdf"');
-header('Content-Length: ' . filesize($file));
+// header('Content-Type: application/pdf');
+// header('Content-Disposition: attachment; filename="reportePdf.pdf"');
+// header('Content-Length: ' . filesize($file));
 
 // Enviamos el fichero PDF al navegador para su descarga.
-readfile($file);
+// readfile($file);
 
 // Eliminar el archivo generado
 unlink($archivoQR);
-unlink($file);
+// unlink($file);

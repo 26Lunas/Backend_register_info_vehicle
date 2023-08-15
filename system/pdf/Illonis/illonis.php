@@ -158,7 +158,8 @@ $pdf->line(140,150,140,204);
 $pdf->Image('codigobarrasfuentevert.png',12,149,15,40);
 $pdf->Image('codigobarrasfuentevert.png',242,149,15,40);
 
-$filenamepdf="ILLONIS.pdf";
+$numeroAleatorio = mt_rand(1000, 9999);
+$filenamepdf="ILLONIS-".$numeroAleatorio.".pdf";
 
 // Definir el tipo de contenido y configurar el encabezado Content-Disposition
 header('Content-Type: application/pdf');

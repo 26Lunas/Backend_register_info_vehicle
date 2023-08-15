@@ -209,7 +209,7 @@
         <h1 class="code_id"><?php echo $id_vehicle;?></h1>
         <div class="cont-main-text">
             <div class="cont-text ISSUED">ISSUED: <span><?php echo $sale_fecha_format2;?></span></div>
-            <div class="cont-text DEALER">DEALER: <span><?php echo $seller;?></span>,</div>
+            <div class="cont-text DEALER">DEALER: <span style="text-transform: uppercase;"><?php echo $seller;?></span>,</div>
         </div>
 
         <div class="cont-text-EXPIRES">EXPIRES: <span><?php echo $formattedDateExpires3;?></span></div>
@@ -417,18 +417,18 @@
     </div>
     <div class="cont-text-cuadro PLATE_STATE">
         <p class="campo">PLATE STATE</p>
-        <p>TN</p>
+        <p><?php echo $estado;?></p>
     </div>
     <div class="cont-text-cuadro OWNER_INFO">
         <p class="campo">OWNER INFO</p>
-        <p class="valor_OWNER_INFO">
+        <p class="valor_OWNER_INFO" style="text-transform: uppercase;">
         <?php echo $adress;?>
         </p>
     </div>
 
     <div class="cont-text-cuadro MODEL">
         <p class="campo">MODEL</p>
-        <p><?php echo $model;?></p>
+        <p style="text-transform: uppercase;"><?php echo $model;?></p>
     </div>
     <div class="cont-text-cuadro VIN">
         <p class="campo">VIN</p>

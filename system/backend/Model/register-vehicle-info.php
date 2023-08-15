@@ -136,6 +136,8 @@ if($_POST['campoVehicleVin']){
             return $codigo;
         }
         $codigoAleatorio = generarCodigoGeorgia();
+    }else if($buyer_pdf ==="NC"){
+        $codigoAleatorio = mt_rand(10000000, 99999999);
     }
     
     // Query table tb_vehicle

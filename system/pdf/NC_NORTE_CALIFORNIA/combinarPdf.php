@@ -7,7 +7,7 @@ require('../fpdf/fpdf.php');
 require('../fpdi/src/autoload.php');
  
 $pdf = new Fpdi();
-$pdf->AddPage('L');
+$pdf->AddPage('L', array(327, 172)); 
 $pdf->setSourceFile("reporteHorizontal.pdf");
 $template = $pdf->importPage(1);
 $pdf->useImportedPage($template, 0, 0);
@@ -19,7 +19,7 @@ $pdf->useImportedPage($template, 0, 0);
 $numeroAleatorio = mt_rand(1000, 9999);
 
 // Cambiar el nombre del archivo al descargar
-$nombreArchivoDescarga = "TEXAS-BUYER-".$numeroAleatorio.".pdf";
+$nombreArchivoDescarga = "NC-NORTH-CAROLINA-".$numeroAleatorio.".pdf";
 // Definir el tipo de contenido y configurar el encabezado Content-Disposition
 header('Content-Type: application/pdf');
 header("Content-Disposition: inline; filename='$nombreArchivoDescarga'");
