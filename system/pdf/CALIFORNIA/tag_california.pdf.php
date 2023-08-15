@@ -61,7 +61,7 @@ foreach ($jsonData as $item) {
     }
     // echo $fecha_transformada;
     $sale_date = $fecha_objeto = strtotime($sale_date); // Suponiendo que $sale_date es la cadena de fecha
-    $expires = date("m/d/Y", strtotime($fecha . " +$days days"));
+    $expires = date("d/m/Y", strtotime($fecha . " +$days days"));
     
 
 require('MultiCellBlt.php');

@@ -120,14 +120,14 @@ foreach ($jsonData as $item) {
     $phone = $item->phone;
     $id_buyer = $item->id_buyer;
 
-    $fecha =  $sale_date;
-    if($fecha !== ''){
-        $fecha_objeto = strtotime($fecha);
-        $fecha_transformada = date("M d, Y", $fecha_objeto);
-    }else{
-        $fecha_transformada = '';
-    }
-    
+    $fecha = $sale_date;
+        $facha_sale = new DateTime($fecha);
+        $sale_fecha_format = $facha_sale->format('d/m/Y');
+        
+        $sale_date = new DateTime($sale_date); // Suponiendo que $sale_date es la cadena de fecha
+        $expires = $sale_date->modify("+$days days");
+        $formattedDateExpires = $expires->format('M d, Y');
+        $formattedDateExpires2 = $expires->format('d/m/Y');
 
     // echo $fecha_transformada;
 
@@ -146,7 +146,7 @@ foreach ($jsonData as $item) {
         <!-- <h1 style="font-size: 50.4pt;">LOUISIANA</h1>
         <h1 style="font-size: 50.5pt;">LOUISIANA</h1> -->
 
-        <h2>Exp: 06/24/2022</h2>
+        <h2>Exp: <?php echo $formattedDateExpires2;?></h2>
         <div class="code_id"><?php echo $id_vehicle;?></div>
     </div>
     <?php

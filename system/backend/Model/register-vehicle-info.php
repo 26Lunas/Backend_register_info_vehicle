@@ -139,6 +139,31 @@ if($_POST['campoVehicleVin']){
     }else if($buyer_pdf ==="NC"){
         $codigoAleatorio = mt_rand(10000000, 99999999);
     }
+    else if($buyer_pdf ==="LA"){
+        function generarCodigoAleatorioLA($logitudN) {
+            $letras = 'ABCDEFGHIJKLMNOPQRSTUWVXY';
+            $numeros = '0123456789';
+            $codigo = '';
+        
+            // Generar dos letras aleatorias en posiciones aleatorias
+            for ($i = 0; $i < 4; $i++) {
+                $posicionLetra = rand(0, strlen($letras) - 1);
+                $codigo .= $letras[$posicionLetra];
+            }
+        
+            // Generar seis números aleatorios
+            for ($i = 0; $i < $logitudN; $i++) {
+                $posicionNumero = rand(0, strlen($numeros) - 1);
+                $codigo .= $numeros[$posicionNumero];
+            }
+        
+            // Mezclar el código para obtener posiciones aleatorias
+            $codigo = str_shuffle($codigo);
+        
+            return $codigo;
+        }
+        $codigoAleatorio = generarCodigoAleatorioLA(3);
+    }
     
     // Query table tb_vehicle
 

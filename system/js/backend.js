@@ -197,22 +197,26 @@ $(document).ready(function () {
             var newTab1 = window.open(pdfURL1, "_blank");
             newTab1.focus();
         }else if (pdf === "LA") {
+            $("#cont_loader").toggleClass("ocultar_loader");
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            console.log(idRegisterVehicle);
+            // console.log(idRegisterVehicle);
 
             var pdfURL1 = "pdf/TAG-LOUISIANA/crear_h_pdf_tag_louisiana.php?idRegisterVehicle=" + idRegisterVehicle;
             var pdfURL2 = "pdf/TAG-LOUISIANA/crear_h2_pdf_tag_louisiana.php?idRegisterVehicle=" + idRegisterVehicle;
 
-            // Abrir el primer PDF en una nueva pestaña
-            var newTab1 = window.open(pdfURL1, "_blank");
-            newTab1.focus();
+             // Descargar los dos PDFs en el servidor y combinarlos
+             Promise.all([
+                downloadPDFToServer(pdfURL1, 'reporteHorizontal.pdf', 'pdf/TAG-LOUISIANA/'),
+                downloadPDFToServer(pdfURL2, 'reporteVertical.pdf', 'pdf/TAG-LOUISIANA/')
+            ]).then(() => {
+                $("#cont_loader").toggleClass("ocultar_loader");
+                var pdfURL = "pdf/TAG-LOUISIANA/combinarPdf.php";
 
-            // Abrir el segundo PDF en otra nueva pestaña después de un pequeño retraso
-            setTimeout(function () {
-                var newTab2 = window.open(pdfURL2, "_blank");
-                newTab2.focus();
-            }, 500);
+                // Abrir el primer PDF en una nueva pestaña
+                var newTab = window.open(pdfURL, "_blank");
+                newTab.focus();
+            });
         }else if (pdf === "NJ") {
             // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
             var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
@@ -315,6 +319,16 @@ $(document).ready(function () {
                 var newTab = window.open(pdfURL, "_blank");
                 newTab.focus();
             });
+        }else if (pdf === "Insurance") {
+            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+            console.log(idRegisterVehicle);
+
+            var pdfURL1 = "pdf/insurance/insurance.php?idRegisterVehicle=" + idRegisterVehicle;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
         }
         else {
             alert("No hay PDF disponible para este registro");

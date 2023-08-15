@@ -79,7 +79,7 @@ $(document).ready(function () {
           let camposRequeridos = $(".required");
           // console.log(camposRequeridos);
           camposRequeridos.each(function () {
-            if ($(this).val() === "") {
+            if ($(this).val() === "" || $(this).val() === "") {
               algunoVacio = true;
               $(this).addClass("valor-vacio");
               return false; // Detener la iteración si se encuentra un valor vacío
@@ -157,6 +157,7 @@ $(document).ready(function () {
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
             } else if (pdf === "LA") {
+              $("#cont_loader").toggleClass("ocultar_loader");
               var pdfURL1 =
                 "pdf/TAG-LOUISIANA/crear_h_pdf_tag_louisiana.php?idRegisterVehicle=" +
                 id_buyer;
@@ -164,15 +165,18 @@ $(document).ready(function () {
                 "pdf/TAG-LOUISIANA/crear_h2_pdf_tag_louisiana.php?idRegisterVehicle=" +
                 id_buyer;
 
-              // Abrir el primer PDF en una nueva pestaña
-              var newTab1 = window.open(pdfURL1, "_blank");
-              newTab1.focus();
+              // Descargar los dos PDFs en el servidor y combinarlos
+             Promise.all([
+              downloadPDFToServer(pdfURL1, 'reporteHorizontal.pdf', 'pdf/TAG-LOUISIANA/'),
+              downloadPDFToServer(pdfURL2, 'reporteVertical.pdf', 'pdf/TAG-LOUISIANA/')
+          ]).then(() => {
+              $("#cont_loader").toggleClass("ocultar_loader");
+              var pdfURL = "pdf/TAG-LOUISIANA/combinarPdf.php";
 
-              // Abrir el segundo PDF en otra nueva pestaña después de un pequeño retraso
-              setTimeout(function () {
-                var newTab2 = window.open(pdfURL2, "_blank");
-                newTab2.focus();
-              }, 500);
+              // Abrir el primer PDF en una nueva pestaña
+              var newTab = window.open(pdfURL, "_blank");
+              newTab.focus();
+          });
             } else if (pdf === "NJ") {
               var pdfURL1 =
                 "pdf/NJ_NY/crear_h_pdf_nj_ny.php?idRegisterVehicle=" + id_buyer;
@@ -258,6 +262,14 @@ $(document).ready(function () {
                   newTab.focus();
                 });
               }, 1000); // Retraso de 1 segundos
+            }else if (pdf === "Insurance") {
+              var pdfURL1 =
+              "pdf/insurance/insurance.php?idRegisterVehicle=" +
+                id_buyer;
+
+              // Abrir el primer PDF en una nueva pestaña
+              var newTab1 = window.open(pdfURL1, "_blank");
+              newTab1.focus();
             }
             else {
               alert("No hay PDF disponible para este registro");
@@ -328,6 +340,7 @@ $(document).ready(function () {
               //   console.log(result);
               if (result === "Exito") {
                 $("#form-register")[0].reset();
+                console.log(result);
               } else {
                 alert(
                   "Hubo un error en los datos, porfavor vuelva a intentarlo."

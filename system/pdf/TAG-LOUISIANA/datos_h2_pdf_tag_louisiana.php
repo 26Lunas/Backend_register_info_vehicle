@@ -112,13 +112,13 @@ foreach ($jsonData as $item) {
     $zip = $item->zip;
     $id_buyer = $item->id_buyer;
 
-    $fecha =  $sale_date;
-    if($fecha !== ''){
-        $fecha_objeto = strtotime($fecha);
-        $fecha_transformada = date("M d, Y", $fecha_objeto);
-    }else{
-        $fecha_transformada = '';
-    }
+    $fecha = $sale_date;
+        $facha_sale = new DateTime($fecha);
+        $sale_fecha_format = $facha_sale->format('d/m/Y');        
+        $sale_date = new DateTime($sale_date); // Suponiendo que $sale_date es la cadena de fecha
+        $expires = $sale_date->modify("+$days days");
+        $formattedDateExpires = $expires->format('M d, Y');
+        $formattedDateExpires2 = $expires->format('d/m/Y');
     
 
     // echo $fecha_transformada;
@@ -130,7 +130,7 @@ foreach ($jsonData as $item) {
     <div class="cont_main">
         <div class="cont-img-date">
             <img src="img/img_logo_1.jpg" alt="">
-            <div>Exp: 06/24/2022</div>
+            <div>Exp: <?php echo $formattedDateExpires2;?></div>
         </div>
         <div class="cont-text-title">
             <h1>SOLD BY: ADRIANA VILLANUEVA</h1>
@@ -269,17 +269,17 @@ foreach ($jsonData as $item) {
                 <div class="columna-1">
                     <p class="year">Year: <span><?php echo $year;?></span></p>
                     <p class="vin">Vin: <span><?php echo $vin_vehicle;?></span></p>
-                    <p class="owner">Owner: <span><?php echo $name_1;?></span></p>
+                    <p class="owner">Owner: <span style="text-transform: uppercase;"><?php echo $name_1." ".$name_2 ;?></span></p>
                     <p class="vehicle">Vehicle and OwnerInformation</p>
-                    <p class="adress">Address: <span><?php echo $adress;?></span></p>
+                    <p class="adress">Address: <span style="text-transform: uppercase;"><?php echo $adress;?></span></p>
                 </div>
                 <div class="columna-2">
                     <p class="make">Make: <span><?php echo $make;?></span></p>
                     <p class="odmeter">Odometer: <span></span></p>
                 </div>
                 <div class="columna-3">
-                    <p class="model">Model: <span><?php echo $model;?></span></p>
-                    <p class="state">State to be titled : <span><?php echo $city;?></span></p>
+                    <p class="model">Model: <span style="text-transform: uppercase;"><?php echo $model;?></span></p>
+                    <p class="state">State to be titled : <span style="text-transform: uppercase;"><?php echo $city;?></span></p>
                 </div>
                 <div class="columna-4">
                     <p class="drive">Driver ID: <span></span></p>
