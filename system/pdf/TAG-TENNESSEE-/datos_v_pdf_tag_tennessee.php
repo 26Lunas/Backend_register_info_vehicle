@@ -197,7 +197,7 @@
         $expires = $sale_date->modify("+$days days");
         $formattedDateExpires = $expires->format('M d, Y');
         $formattedDateExpires2 = $expires->format('d/m/Y');
-        $formattedDateExpires3 = $expires->format('d-m-Y');
+        $formattedDateExpires3 = $expires->format('m-d-Y');
 
         ?>
 

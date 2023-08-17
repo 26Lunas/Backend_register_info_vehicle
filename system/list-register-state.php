@@ -7,11 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+
+
+    <meta name="author" content="Yamir Serret">
 
     <title>List-Register</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="img/icono-estrella.ico">
+
+     <!-- Favicon -->
+     <link rel="icon" type="image/x-icon" href="img/icono-estrella.ico">
+
     <!-- CSS style -->
     <link rel="stylesheet" href="css/style-system.css">
 
@@ -38,7 +42,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <!-- <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div> -->
@@ -51,7 +55,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -61,24 +65,24 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="list-register-placas.html">
+                <a class="nav-link" href="list-register-placas.php">
                     <i class="fa-solid fa-address-card"></i>
                     <span>Registros</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="list_register_inspect.php">
                     <i class="fa-solid fa-address-card"></i>
                     <span>Registros Inspects</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="list-register-state.html">
+                <a class="nav-link" href="">
                     <i class="fa-solid fa-flag-usa"></i>
                     <span>lista de estados</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="list-register-users.html">
+                <a class="nav-link" href="list-register-users.php">
                     <i class="fa-solid fa-users"></i>
                     <span>Usuarios</span></a>
             </li>
@@ -157,16 +161,19 @@
                 <div class="container-main">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Inspecciones</h1>
-                    <!-- <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo modi animi impedit
-                        delectus accusamus iste eveniet ducimus nam? Iure debitis iste placeat perspiciatis sed nam quo
-                        dolorum eius enim aperiam.</p> -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Registro de Vehiculos y Compradores</h1>
+                        <a href="#" class="btn btn-sm btn-primary shadow-sm">
+                            <i class="fa-solid fa-plus"></i> Agregar Estado</a>
+                    </div>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Lista de Inspecciones</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Tabla de Estados</h6>
+
                         </div>
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable_register_vehicle" width="100%"
@@ -174,13 +181,12 @@
                                     <thead>
                                         <tr>
                                             <th>Code</th>
-                                            <th>Vin</th>
-                                            <th>Fecha Compra</th>
-                                            <th>License</th>
+                                            <th>Name</th>
+                                            <th>State identifier</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="body-listRegisterInspect">
+                                    <tbody id="body-listRegisterState">
 
                                     </tbody>
                                 </table>
@@ -221,15 +227,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Seleccione "Logout" a continuación si está listo para finalizar su sesión actual.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="backend/Login/salir.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -238,7 +244,7 @@
 
     <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/34c89acf97.js" crossorigin="anonymous"></script>
- 
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -258,6 +264,8 @@
 
     <!-- JS -->
     <script src="js/backend.js"></script>
+    <script src="js/appMain.js"></script>
+    <script src="js/window.resize.js"></script>
 
 
 

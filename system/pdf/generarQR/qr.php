@@ -111,10 +111,18 @@
             <td align="right"><b>Verification Code:</b></td>
             <td align="left" id="verificationCode">20233069UK</td>
           </tr>
+
+          <?php
+
+
+date_default_timezone_set('America/New_York'); // Establece la zona horaria a Nueva York
+$hora_actual = date("h:i A");
+
+          ?>
   
           <tr>
             <td align="right"><b>Create Timestamp:</b></td>
-            <td align="left" id="timestamp">07/04/2023 17:1:43</td>
+            <td align="left" id="timestamp"><?php echo $sale_fecha_format;?> <?php echo $hora_actual;?></td>
           </tr>
   
           <tr>
