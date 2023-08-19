@@ -6,19 +6,31 @@ session_start();
 $usuario = $_POST['user'];
 $clave = $_POST['password'];
 
-$query = "SELECT COUNT(*) as contar, Rol_ID From tb_usuarios WHERE Nombre_User = '$usuario' and Contraseña = '$clave'";
+$query = "SELECT Contraseña, Rol_ID FROM tb_usuarios WHERE Nombre_User = '$usuario'";
 $result = mysqli_query($Connection, $query);
 
-$array = mysqli_fetch_array($result);
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+    $storedHash = $row['Contraseña'];
 
-if ($array['contar'] > 0) {
-    // $_SESSION['user'] = $usuario;
-    $_SESSION['rol'] = $array['Rol_ID']; // Almacenar el rol en la sesión
+    if(password_verify($clave, $storedHash)){
+        $_SESSION['user'] = $usuario;
+        $_SESSION['rol'] = $row['Rol_ID'];
 
-    echo $_SESSION['user'];
-    echo $_SESSION['rol'];
-    
+        $estado_session = isset($_SESSION['user']) ? 'exitosa' : '';
+
+        $json = array(
+            'usuario' => $_SESSION['user'],
+            'rol' => $_SESSION['rol'],
+            'estado_session' => $estado_session
+        );
+
+        $jsonString = json_encode($json);
+        echo $jsonString;
+    } else {
+        echo "Datos incorrectos.";
+    }
 } else {
-    echo "Datos incorrectos.";
+    echo "Error en la consulta.";
 }
-?>
+

@@ -3,6 +3,7 @@
 
 session_start();
 $usuario = $_SESSION['user'];
+$rol = $_SESSION['rol'];
 if (!isset($usuario)) {
     header("location: ../index.html");
 }
@@ -20,7 +21,7 @@ if (!isset($usuario)) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard</title>
+    <title>texasdmv</title>
 
       <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="img/icono-estrella.ico">
@@ -55,6 +56,7 @@ if (!isset($usuario)) {
                 <div class="sidebar-brand-text mx-3 cont-text-logo"> <img src="img/img-placas/img-icono-estrella.png"
                         class="logo" alt="">DMV</div>
             </a>
+            <div class="rol_usuario text-center" hidden id="rol_usuario"><?php echo $rol;?></div>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -63,31 +65,31 @@ if (!isset($usuario)) {
             <li class="nav-item active">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>texasdmv</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            <li class="nav-item option_admin" id="list_registros">
                 <a class="nav-link" href="list-register-placas.php">
                     <i class="fa-solid fa-address-card"></i>
                     <span>Registros</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item option_admin" id="list_registros_inspect">
                 <a class="nav-link" href="list_register_inspect.php">
                     <i class="fa-solid fa-address-card"></i>
                     <span>Registros Inspects</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item option_admin" id="list_state">
                 <a class="nav-link" href="list-register-state.php">
                     <i class="fa-solid fa-flag-usa"></i>
                     <span>lista de estados</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item option_admin" id="list_usuarios">
                 <a class="nav-link" href="list-register-users.php">
                     <i class="fa-solid fa-users"></i>
                     <span>Usuarios</span></a>

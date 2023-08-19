@@ -70,9 +70,9 @@ $(document).ready(function () {
 
         let modelText = $(".modal-title").html();
         if (modelText !== "Inspect") {
-            window.location.href = "form-register.html";
+            window.location.href = "form-register.php";
         } else {
-            window.location.href = "form-register-inspect.html";
+            window.location.href = "form-register-inspect.php";
         }
         let estado_id = $("#estado_id").val();
         localStorage.setItem("estado", estado_id);
@@ -143,7 +143,7 @@ $(document).ready(function () {
             // Obtén el valor del atributo idState del elemento padre (tr)
             var idState = $(this).closest("tr").attr("idState");
 
-            console.log(idState);
+            // console.log(idState);
 
             // Realizar la solicitud AJAX
             $.ajax({

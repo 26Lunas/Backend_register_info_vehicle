@@ -26,7 +26,7 @@ $(document).ready(function () {
   localStorage.removeItem("estado");
 
   $(".btn-cancel").click(function () {
-    window.location.href = "index.html";
+    window.location.href = "index.php";
   });
 
   $(".inputDigits").on("input", function () {
@@ -43,7 +43,7 @@ $(document).ready(function () {
 
   if (valueCampoVin === "") {
     alert("The vin field is required [ERROR (0x0000vin)]");
-    window.location.href = "index.html";
+    window.location.href = "index.php";
   }
 
   if (valueCampoVin !== "") {

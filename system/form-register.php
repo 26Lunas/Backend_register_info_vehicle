@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+$usuario = $_SESSION['user'];
+$rol = $_SESSION['rol'];
+if (!isset($usuario)) {
+    header("location: ../");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +48,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <!-- <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div> -->
@@ -45,31 +56,33 @@
                         class="logo" alt="">DMV</div>
             </a>
 
+            <div class="rol_usuario text-center" hidden id="rol_usuario"><?php echo $rol;?></div>
+
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>texasdmv</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="list-register-placas.html">
+            <li class="nav-item option_admin">
+                <a class="nav-link" href="list-register-placas.php">
                     <i class="fa-solid fa-address-card"></i>
                     <span>Registros</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="list-register-state.html">
+            <li class="nav-item option_admin">
+                <a class="nav-link" href="list-register-state.php">
                     <i class="fa-solid fa-flag-usa"></i>
                     <span>lista de estados</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item option_admin">
                 <a class="nav-link" href="">
                     <i class="fa-solid fa-users"></i>
                     <span>Usuarios</span></a>
@@ -113,7 +126,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $usuario;?></span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -447,15 +460,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Seleccione "Logout" a continuación si está listo para finalizar su sesión actual.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="backend/Login/salir.php">Logout</a>
                 </div>
             </div>
         </div>
