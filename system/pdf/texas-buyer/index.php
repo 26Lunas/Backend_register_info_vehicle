@@ -294,8 +294,6 @@ $pdf->Cell(1);
 $pdf->Cell(190,17,"", 0, 1, 'C');
 $pdf->Cell(196,5,"DEALER'S COPY", 0, 1, 'C');
 
-header('Content-Type: application/pdf');
-header('Content-Disposition: inline; filename="texas-buyer.pdf"');
 $pdf->Output();
 
 $filenamepdf="texas-buyer.pdf";
