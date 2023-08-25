@@ -18,6 +18,7 @@ $(document).ready(function () {
             success: function (result) {
               console.log(result);
               if(result !== 'Datos incorrectos.'){
+                
                 let listUsuario = JSON.parse(result);
 
                 listUsuario.forEach(element => {
@@ -29,9 +30,18 @@ $(document).ready(function () {
                 //  console.log(usuario);
   
                  if(estado_session === 'exitosa'){
+                  $('.chulito').toggleClass('ocultar-mensaje');
+                setTimeout(() => {
+                  $('.chulito').toggleClass('ocultar-mensaje');
+                }, 1000);
                   window.location.href = "system/index.php";
-              }   
+                }   
                 });
+              }else{
+                $('.cont-menjase').toggleClass('ocultar-mensaje');
+                setTimeout(() => {
+                  $('.cont-menjase').toggleClass('ocultar-mensaje');
+                }, 2000);
               }
               
               

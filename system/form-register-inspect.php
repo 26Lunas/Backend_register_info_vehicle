@@ -3,6 +3,8 @@
 session_start();
 $usuario = $_SESSION['user'];
 $rol = $_SESSION['rol'];
+$id_usuario = $_SESSION['id'];
+
 if (!isset($usuario)) {
     header("location: ../");
 }
@@ -57,6 +59,7 @@ if (!isset($usuario)) {
             </a>
 
             <div class="rol_usuario text-center" hidden id="rol_usuario"><?php echo $rol;?></div>
+            <div class="id_usuario text-center" hidden id="id_usuario"><?php echo $id_usuario;?></div>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -79,6 +82,12 @@ if (!isset($usuario)) {
             </li>
             
             <li class="nav-item option_admin">
+                <a class="nav-link" href="list_register_inspect.php">
+                    <i class="fa-solid fa-address-card"></i>
+                    <span>Registros Inspects</span></a>
+            </li>
+            
+            <li class="nav-item option_admin">
                 <a class="nav-link" href="list-register-state.php">
                     <i class="fa-solid fa-flag-usa"></i>
                     <span>lista de estados</span></a>
@@ -91,7 +100,7 @@ if (!isset($usuario)) {
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="historial-actividades.php">
                     <i class="fa-solid fa-clock-rotate-left"></i>
                     <span>Activity History</span></a>
             </li>

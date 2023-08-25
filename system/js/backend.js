@@ -1,31 +1,29 @@
 $(document).ready(function () {
-    // console.log("Jquery esta funcionando...");
-    // Backend - list registers placas
+  // console.log("Jquery esta funcionando...");
+  // Backend - list registers placas
 
-    fetch_list_register_placas();
-    fetch_list_register_users();
-    fetch_list_register_inspect();
+  fetch_list_register_placas();
+  fetch_list_register_users();
+  fetch_list_register_inspect();
 
-    function fetch_list_register_placas() {
-        $.ajax({
-            type: "GET",
-            url: "backend/Model/list-register-vehicle.php",
-            success: function (response) {
-                // console.log(response);
+  function fetch_list_register_placas() {
+    $.ajax({
+      type: "GET",
+      url: "backend/Model/list-register-vehicle.php",
+      success: function (response) {
+        // console.log(response);
 
-                let listRegistro = JSON.parse(response);
+        let listRegistro = JSON.parse(response);
 
-                let plantilla = '';
-                listRegistro.forEach(listRegistro => {
+        let plantilla = "";
+        listRegistro.forEach((listRegistro) => {
+          let phone = "<strong>No aplica</strong>";
+          // console.log(listRegistro.id_buyer);
+          if (listRegistro.phone !== "0") {
+            phone = listRegistro.phone;
+          }
 
-                    let phone = "<strong>No aplica</strong>";
-                    // console.log(listRegistro.id_buyer);
-                    if (listRegistro.phone !== "0") {
-                        phone = listRegistro.phone;
-                    }
-
-                    plantilla +=
-                        `
+          plantilla += `
                     <tr idRegisterVehicle="${listRegistro.id_buyer}">
                         <td>${listRegistro.id_vehicle}</td>
                         <td class="text-capitalize">${listRegistro.name_1}</td>
@@ -35,61 +33,61 @@ $(document).ready(function () {
                         <td><i class="fa-solid fa-eye view-register"></i> | <i class="fa-solid fa-print print"></i> | <i class="fa-solid fa-pen-to-square edit-register"></i> | <i class="fa-solid fa-trash-can delete-register"></i></td>
                     </tr>
 
-                    `
-                });
-
-                $('#body-listRegisterVehicle').html(plantilla);
-            }
+                    `;
         });
-    };
 
-    
-    function fetch_list_register_users() {
-        $.ajax({
-            type: "GET",
-            url: "backend/Model/fetch_list_users.php",
-            success: function (response) {
-                // console.log(response);
+        $("#body-listRegisterVehicle").html(plantilla);
+      },
+    });
+  }
 
-                let listRegistro = JSON.parse(response);
+  function fetch_list_register_users() {
+    $.ajax({
+      type: "GET",
+      url: "backend/Model/fetch_list_users.php",
+      success: function (response) {
+        // console.log(response);
+        let listRegistro = JSON.parse(response);
 
-                let plantilla = '';
-                listRegistro.forEach(listRegistro => {
+        let plantilla = "";
 
-                    // console.log(listRegistro.ID_Usuario);
-                    plantilla +=
-                        `
-                    <tr idRegisterVehicle="${listRegistro.ID_Usuario}">
+        listRegistro.forEach((listRegistro) => {
+          // Verificar si el ID es igual a cero
+          let deleteIcon =
+            '<i class="fa-solid fa-trash-can delete-register"></i>';
+
+          if (listRegistro.ID_Usuario === "0") {
+            deleteIcon = "";
+          }
+
+          plantilla += `
+                    <tr idRegisterUser="${listRegistro.ID_Usuario}">
                         <td>${listRegistro.ID_Usuario}</td>
                         <td>${listRegistro.Nombre_User}</td>
                         <td>${listRegistro.Correo_Electronico}</td>
                         <td>${listRegistro.Rol_ID}</td>
-                        <td><i class="fa-solid fa-eye view-register"></i> | <i class="fa-solid fa-print print"></i> | <i class="fa-solid fa-pen-to-square edit-register"></i> | <i class="fa-solid fa-trash-can delete-register"></i></td>
+                        <td><i class="fa-solid fa-pen-to-square edit-register"></i> | ${deleteIcon}</td>
                     </tr>
-
-                    `
-                });
-
-                $('#body-listRegisterUser').html(plantilla);
-            }
+                    `;
         });
-    };
 
-    function fetch_list_register_inspect() {
-        $.ajax({
-            type: "GET",
-            url: "backend/Model/list_register_make_inspect.php",
-            success: function (response) {
-                // console.log(response);
+        $("#body-listRegisterUser").html(plantilla);
+      },
+    });
+  }
 
-                let listRegistro = JSON.parse(response);
+  function fetch_list_register_inspect() {
+    $.ajax({
+      type: "GET",
+      url: "backend/Model/list_register_make_inspect.php",
+      success: function (response) {
+        // console.log(response);
 
-                let plantilla = '';
-                listRegistro.forEach(listRegistro => {
+        let listRegistro = JSON.parse(response);
 
-
-                    plantilla +=
-                        `
+        let plantilla = "";
+        listRegistro.forEach((listRegistro) => {
+          plantilla += `
                     <tr idRegisterInspect="${listRegistro.id_make_inspect}">
                         <td>${listRegistro.id_make_inspect}</td>
                         <td class="text-capitalize">${listRegistro.vin}</td>
@@ -98,298 +96,655 @@ $(document).ready(function () {
                         <td><i class="fa-solid fa-eye view-register"></i> | <i class="fa-solid fa-print print"></i> | <i class="fa-solid fa-pen-to-square edit-register"></i> | <i class="fa-solid fa-trash-can delete-register"></i></td>
                     </tr>
 
-                    `
-                });
-
-                $('#body-listRegisterInspect').html(plantilla);
-            }
+                    `;
         });
-    };
 
-
-    $("#body-listRegisterVehicle").on("click", ".delete-register", function () {
-        if (confirm("¿Deseas eliminar este registro?")) {
-            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
-            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-
-            console.log(idRegisterVehicle);
-
-            // Realizar la solicitud AJAX
-            $.ajax({
-                url: "backend/Model/eliminar_registro_vehicleBuyer.php",
-                type: "POST",
-                data: {
-                    idRegisterVehicle: idRegisterVehicle
-                },
-                success: function (response) {
-                    console.log("Registro eliminado", response);
-                    fetch_list_register_placas();
-                },
-                error: function (xhr, status, error) {
-                    console.error("Error al eliminar el registro:", error);
-                    fetch_list_register_placas();
-                }
-            });
-        }
-
-
-
+        $("#body-listRegisterInspect").html(plantilla);
+      },
     });
+  }
 
-    $("#body-listRegisterVehicle").on("click", ".print", function () {
+  $("#body-listRegisterVehicle").on("click", ".delete-register", function () {
+    if (confirm("¿Deseas eliminar este registro?")) {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
 
-        // Obtén el valor del cuarto td
-        var pdf = $(this).closest("tr").find("td:eq(4)").text();
-        // console.log(pdf);
+      console.log(idRegisterVehicle);
 
-        // Función para descargar un archivo al servidor
-        function downloadPDFToServer(url, filename, urlEnvioPDF) {
-            return fetch(url)
-                .then(response => response.blob())
-                .then(blob => {
-                    const formData = new FormData();
-                    formData.append('pdf', blob, filename);
+      // Realizar la solicitud AJAX
+      $.ajax({
+        url: "backend/Model/eliminar_registro_vehicleBuyer.php",
+        type: "POST",
+        data: {
+          idRegisterVehicle: idRegisterVehicle,
+        },
+        success: function (response) {
+          console.log("Registro eliminado", response);
+          fetch_list_register_placas();
+        },
+        error: function (xhr, status, error) {
+          console.error("Error al eliminar el registro:", error);
+          fetch_list_register_placas();
+        },
+      });
+    }
+  });
 
-                    return fetch(urlEnvioPDF+'recibir_pdf.php', {
-                        method: 'POST',
-                        body: formData
-                    });
-                })
-                .then(response => response.text())
-                .then(result => {
-                    console.log(result);
-                })
-                .catch(error => {
-                    console.error('Error al descargar y guardar PDF: ' + error);
-                });
-        }
+  $("#body-listRegisterVehicle").on("click", ".print", function () {
+    // Obtén el valor del cuarto td
+    var pdf = $(this).closest("tr").find("td:eq(4)").text();
+    // console.log(pdf);
 
-        if (pdf === "TX") {
-            $("#cont_loader").toggleClass("ocultar_loader");
-            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
-            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            // console.log(idRegisterVehicle);
+    // Función para descargar un archivo al servidor
+    function downloadPDFToServer(url, filename, urlEnvioPDF) {
+      return fetch(url)
+        .then((response) => response.blob())
+        .then((blob) => {
+          const formData = new FormData();
+          formData.append("pdf", blob, filename);
 
-            var pdfURL1 = "pdf/texas/crearHorizontalPdfTX.php?idRegisterVehicle=" + idRegisterVehicle;
-            var pdfURL2 = "pdf/texas/crearVerticalPdfTX.php?idRegisterVehicle=" + idRegisterVehicle;
+          return fetch(urlEnvioPDF + "recibir_pdf.php", {
+            method: "POST",
+            body: formData,
+          });
+        })
+        .then((response) => response.text())
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => {
+          console.error("Error al descargar y guardar PDF: " + error);
+        });
+    }
 
-            
-                    // Descargar los dos PDFs en el servidor y combinarlos
-                    Promise.all([
-                        downloadPDFToServer(pdfURL1, 'reporteHorizontal.pdf', 'pdf/texas/'),
-                        downloadPDFToServer(pdfURL2, 'reporteVertical.pdf', 'pdf/texas/')
-                    ]).then(() => {
-                        $("#cont_loader").toggleClass("ocultar_loader");
-                        var pdfURL = "pdf/texas/combinarPdf.php";
+    if (pdf === "TX") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      // console.log(idRegisterVehicle);
 
-                        // Abrir el primer PDF en una nueva pestaña
-                        var newTab = window.open(pdfURL, "_blank");
-                        newTab.focus();
-                    });
-        }else if (pdf === "CA") {
-            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
-            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            console.log(idRegisterVehicle);
+      var pdfURL1 =
+        "pdf/texas-buyer/index.php?idRegisterVehicle=" + idRegisterVehicle;
 
-            var pdfURL1 = "pdf/CALIFORNIA/tag_california.pdf.php?idRegisterVehicle=" + idRegisterVehicle;
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    } else if (pdf === "CA") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      console.log(idRegisterVehicle);
 
-            // Abrir el primer PDF en una nueva pestaña
-            var newTab1 = window.open(pdfURL1, "_blank");
-            newTab1.focus();
-        }else if (pdf === "LA") {
-            $("#cont_loader").toggleClass("ocultar_loader");
-            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
-            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            // console.log(idRegisterVehicle);
+      var pdfURL1 =
+        "pdf/CALIFORNIA/tag_california.pdf.php?idRegisterVehicle=" +
+        idRegisterVehicle;
 
-            var pdfURL1 = "pdf/TAG-LOUISIANA/crear_h_pdf_tag_louisiana.php?idRegisterVehicle=" + idRegisterVehicle;
-            var pdfURL2 = "pdf/TAG-LOUISIANA/crear_h2_pdf_tag_louisiana.php?idRegisterVehicle=" + idRegisterVehicle;
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    } else if (pdf === "LA") {
+      $("#cont_loader").toggleClass("ocultar_loader");
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      // console.log(idRegisterVehicle);
 
-             // Descargar los dos PDFs en el servidor y combinarlos
-             Promise.all([
-                downloadPDFToServer(pdfURL1, 'reporteHorizontal.pdf', 'pdf/TAG-LOUISIANA/'),
-                downloadPDFToServer(pdfURL2, 'reporteVertical.pdf', 'pdf/TAG-LOUISIANA/')
-            ]).then(() => {
-                $("#cont_loader").toggleClass("ocultar_loader");
-                var pdfURL = "pdf/TAG-LOUISIANA/combinarPdf.php";
+      var pdfURL1 =
+        "pdf/TAG-LOUISIANA/crear_h_pdf_tag_louisiana.php?idRegisterVehicle=" +
+        idRegisterVehicle;
+      var pdfURL2 =
+        "pdf/TAG-LOUISIANA/crear_h2_pdf_tag_louisiana.php?idRegisterVehicle=" +
+        idRegisterVehicle;
 
-                // Abrir el primer PDF en una nueva pestaña
-                var newTab = window.open(pdfURL, "_blank");
-                newTab.focus();
-            });
-        }else if (pdf === "NJ") {
-            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
-            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            console.log(idRegisterVehicle);
+      // Descargar los dos PDFs en el servidor y combinarlos
+      Promise.all([
+        downloadPDFToServer(
+          pdfURL1,
+          "reporteHorizontal.pdf",
+          "pdf/TAG-LOUISIANA/"
+        ),
+        downloadPDFToServer(
+          pdfURL2,
+          "reporteVertical.pdf",
+          "pdf/TAG-LOUISIANA/"
+        ),
+      ]).then(() => {
+        $("#cont_loader").toggleClass("ocultar_loader");
+        var pdfURL = "pdf/TAG-LOUISIANA/combinarPdf.php";
 
-            var pdfURL1 = "pdf/NJ_NY/crear_h_pdf_nj_ny.php?idRegisterVehicle=" + idRegisterVehicle;
-        
-            // Abrir el primer PDF en una nueva pestaña
-            var newTab1 = window.open(pdfURL1, "_blank");
-            newTab1.focus();
-        }else if (pdf === "NY") {
-            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
-            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            console.log(idRegisterVehicle);
+        // Abrir el primer PDF en una nueva pestaña
+        var newTab = window.open(pdfURL, "_blank");
+        newTab.focus();
+      });
+    } else if (pdf === "NJ") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      console.log(idRegisterVehicle);
 
-            var pdfURL1 = "pdf/NJ_NY/crear_h_pdf_nj_ny.php?idRegisterVehicle=" + idRegisterVehicle;
-        
-            // Abrir el primer PDF en una nueva pestaña
-            var newTab1 = window.open(pdfURL1, "_blank");
-            newTab1.focus();
-        }else if (pdf === "NV") {
-            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
-            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            console.log(idRegisterVehicle);
+      var pdfURL1 =
+        "pdf/NJ_NY/crear_h_pdf_nj_ny.php?idRegisterVehicle=" +
+        idRegisterVehicle;
 
-            var pdfURL1 = "pdf/TAG-NEVADA-/crear_h_tag_nevada_pdf.php?idRegisterVehicle=" + idRegisterVehicle;
-        
-            // Abrir el primer PDF en una nueva pestaña
-            var newTab1 = window.open(pdfURL1, "_blank");
-            newTab1.focus();
-        }else if (pdf === "MD") {
-            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
-            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            console.log(idRegisterVehicle);
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    } else if (pdf === "NY") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      console.log(idRegisterVehicle);
 
-            var pdfURL1 = "pdf/TAG-MD/crear_h_pdf_tag_md.php?idRegisterVehicle=" + idRegisterVehicle;
-        
-            // Abrir el primer PDF en una nueva pestaña
-            var newTab1 = window.open(pdfURL1, "_blank");
-            newTab1.focus();
-        }else if (pdf === "TN") {
-            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
-            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            console.log(idRegisterVehicle);
+      var pdfURL1 =
+        "pdf/NJ_NY/crear_h_pdf_nj_ny.php?idRegisterVehicle=" +
+        idRegisterVehicle;
 
-            var pdfURL1 = "pdf/TAG-TENNESSEE-/crear_v_pdf_tag_tennessee.php?idRegisterVehicle=" + idRegisterVehicle;
-        
-            // Abrir el primer PDF en una nueva pestaña
-            var newTab1 = window.open(pdfURL1, "_blank");
-            newTab1.focus();
-        }else if (pdf === "NC") {
-            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
-            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            $("#cont_loader").toggleClass("ocultar_loader");
-            // console.log(idRegisterVehicle);
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    } else if (pdf === "NV") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      console.log(idRegisterVehicle);
 
-            var pdfURL1 = "pdf/NC_NORTE_CALIFORNIA/crear_h_pdf_norte_california.php?idRegisterVehicle=" + idRegisterVehicle;
-            var pdfURL2 = "pdf/NC_NORTE_CALIFORNIA/crear_v2_pdf_norte_california.php?idRegisterVehicle=" + idRegisterVehicle;
+      var pdfURL1 =
+        "pdf/TAG-NEVADA-/crear_h_tag_nevada_pdf.php?idRegisterVehicle=" +
+        idRegisterVehicle;
 
-             // Descargar los dos PDFs en el servidor y combinarlos
-             Promise.all([
-                downloadPDFToServer(pdfURL1, 'reporteHorizontal.pdf', 'pdf/NC_NORTE_CALIFORNIA/'),
-                downloadPDFToServer(pdfURL2, 'reporteVertical.pdf', 'pdf/NC_NORTE_CALIFORNIA/')
-            ]).then(() => {
-                $("#cont_loader").toggleClass("ocultar_loader");
-                var pdfURL = "pdf/NC_NORTE_CALIFORNIA/combinarPdf.php";
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    } else if (pdf === "MD") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      console.log(idRegisterVehicle);
 
-                // Abrir el primer PDF en una nueva pestaña
-                var newTab = window.open(pdfURL, "_blank");
-                newTab.focus();
-            });
-        }else if (pdf === "IL") {
-            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
-            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            console.log(idRegisterVehicle);
+      var pdfURL1 =
+        "pdf/TAG-MD/crear_h_pdf_tag_md.php?idRegisterVehicle=" +
+        idRegisterVehicle;
 
-            var pdfURL1 = "pdf/Illonis/illonis.php?idRegisterVehicle=" + idRegisterVehicle;
-        
-            // Abrir el primer PDF en una nueva pestaña
-            var newTab1 = window.open(pdfURL1, "_blank");
-            newTab1.focus();
-        }else if (pdf === "GA") {
-            $("#cont_loader").toggleClass("ocultar_loader");
-            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
-            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            console.log(idRegisterVehicle);
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    } else if (pdf === "TN") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      console.log(idRegisterVehicle);
 
-            var pdfURL1 = "pdf/TAG-GEORGIA/crear_h_pdf_tag_georgia.php?idRegisterVehicle=" + idRegisterVehicle;
-            var pdfURL2 = "pdf/TAG-GEORGIA/crear_v_pdf_tag_georgia.php?idRegisterVehicle=" + idRegisterVehicle;
+      var pdfURL1 =
+        "pdf/TAG-TENNESSEE-/crear_v_pdf_tag_tennessee.php?idRegisterVehicle=" +
+        idRegisterVehicle;
 
-            // Descargar los dos PDFs en el servidor y combinarlos
-            Promise.all([
-                downloadPDFToServer(pdfURL1, 'reporteHorizontal.pdf', 'pdf/TAG-GEORGIA/'),
-                downloadPDFToServer(pdfURL2, 'reporteVertical.pdf', 'pdf/TAG-GEORGIA/')
-            ]).then(() => {
-                $("#cont_loader").toggleClass("ocultar_loader");
-                var pdfURL = "pdf/TAG-GEORGIA/combinarPdf.php";
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    } else if (pdf === "NC") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      $("#cont_loader").toggleClass("ocultar_loader");
+      // console.log(idRegisterVehicle);
 
-                // Abrir el primer PDF en una nueva pestaña
-                var newTab = window.open(pdfURL, "_blank");
-                newTab.focus();
-            });
-        }else if (pdf === "Insurance") {
-            // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
-            var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-            console.log(idRegisterVehicle);
+      var pdfURL1 =
+        "pdf/NC_NORTE_CALIFORNIA/crear_h_pdf_norte_california.php?idRegisterVehicle=" +
+        idRegisterVehicle;
+      var pdfURL2 =
+        "pdf/NC_NORTE_CALIFORNIA/crear_v2_pdf_norte_california.php?idRegisterVehicle=" +
+        idRegisterVehicle;
 
-            var pdfURL1 = "pdf/insurance/insurance.php?idRegisterVehicle=" + idRegisterVehicle;
+      // Descargar los dos PDFs en el servidor y combinarlos
+      Promise.all([
+        downloadPDFToServer(
+          pdfURL1,
+          "reporteHorizontal.pdf",
+          "pdf/NC_NORTE_CALIFORNIA/"
+        ),
+        downloadPDFToServer(
+          pdfURL2,
+          "reporteVertical.pdf",
+          "pdf/NC_NORTE_CALIFORNIA/"
+        ),
+      ]).then(() => {
+        $("#cont_loader").toggleClass("ocultar_loader");
+        var pdfURL = "pdf/NC_NORTE_CALIFORNIA/combinarPdf.php";
 
-            // Abrir el primer PDF en una nueva pestaña
-            var newTab1 = window.open(pdfURL1, "_blank");
-            newTab1.focus();
-        }
-        else {
-            alert("No hay PDF disponible para este registro");
-        }
+        // Abrir el primer PDF en una nueva pestaña
+        var newTab = window.open(pdfURL, "_blank");
+        newTab.focus();
+      });
+    } else if (pdf === "IL") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      console.log(idRegisterVehicle);
 
+      var pdfURL1 =
+        "pdf/Illonis/illonis.php?idRegisterVehicle=" + idRegisterVehicle;
 
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    } else if (pdf === "GA") {
+      $("#cont_loader").toggleClass("ocultar_loader");
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      console.log(idRegisterVehicle);
+
+      var pdfURL1 =
+        "pdf/TAG-GEORGIA/crear_h_pdf_tag_georgia.php?idRegisterVehicle=" +
+        idRegisterVehicle;
+      var pdfURL2 =
+        "pdf/TAG-GEORGIA/crear_v_pdf_tag_georgia.php?idRegisterVehicle=" +
+        idRegisterVehicle;
+
+      // Descargar los dos PDFs en el servidor y combinarlos
+      Promise.all([
+        downloadPDFToServer(
+          pdfURL1,
+          "reporteHorizontal.pdf",
+          "pdf/TAG-GEORGIA/"
+        ),
+        downloadPDFToServer(pdfURL2, "reporteVertical.pdf", "pdf/TAG-GEORGIA/"),
+      ]).then(() => {
+        $("#cont_loader").toggleClass("ocultar_loader");
+        var pdfURL = "pdf/TAG-GEORGIA/combinarPdf.php";
+
+        // Abrir el primer PDF en una nueva pestaña
+        var newTab = window.open(pdfURL, "_blank");
+        newTab.focus();
+      });
+    } else if (pdf === "Insurance") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      console.log(idRegisterVehicle);
+
+      var pdfURL1 =
+        "pdf/insurance/insurance.php?idRegisterVehicle=" + idRegisterVehicle;
+
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    } else if (pdf === "OH") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      // console.log(idRegisterVehicle);
+
+      var pdfURL1 = "pdf/ohio/index.php?idRegisterVehicle=" + idRegisterVehicle;
+
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    } else {
+      alert("No hay PDF disponible para este registro");
+    }
+  });
+
+  $("#body-listRegisterInspect").on("click", ".print", function () {
+    // Obtén el valor del atributo idRegisterInspect del elemento padre (tr)
+    var idRegisterInspect = $(this).closest("tr").attr("idRegisterInspect");
+    // console.log(idRegisterInspect);
+
+    var pdfURL1 =
+      "pdf/INSPECT/Inspect.php?idRegisterInspect=" + idRegisterInspect;
+
+    // Abrir el primer PDF en una nueva pestaña
+    var newTab1 = window.open(pdfURL1, "_blank");
+    newTab1.focus();
+  });
+
+  $("#body-listRegisterInspect").on("click", ".delete-register", function () {
+    if (confirm("¿Deseas eliminar este registro?")) {
+      // Obtén el valor del atributo idRegisterInspect del elemento padre (tr)
+      var idRegisterInspect = $(this).closest("tr").attr("idRegisterInspect");
+
+      console.log(idRegisterInspect);
+
+      // Realizar la solicitud AJAX
+      $.ajax({
+        url: "backend/Model/eliminar_registro_inspect.php",
+        type: "POST",
+        data: {
+          idRegisterInspect: idRegisterInspect,
+        },
+        success: function (response) {
+          console.log("Registro eliminado", response);
+          fetch_list_register_inspect();
+        },
+        error: function (xhr, status, error) {
+          console.error("Error al eliminar el registro:", error);
+          fetch_list_register_inspect();
+        },
+      });
+    }
+  });
+
+  // $("#body-listRegisterVehicle").on("click", ".view-register", function () {
+
+  // });c
+
+  $(".toggle-password").click(function () {
+    var passwordInput = $("#password");
+    var eyeIcon = $("#eye");
+
+    if (passwordInput.attr("type") === "password") {
+      passwordInput.attr("type", "text");
+      eyeIcon.removeClass("fa-eye");
+      eyeIcon.addClass("fa-eye-slash");
+    } else {
+      passwordInput.attr("type", "password");
+      eyeIcon.removeClass("fa-eye-slash");
+      eyeIcon.addClass("fa-eye");
+    }
+  });
+
+  $(".btn-crear-usuario").on("click", function () {
+    let camposRequeridos = $(".required");
+    // console.log(camposRequeridos);
+    camposRequeridos.each(function () {
+      if ($(this).val() === "") {
+        algunoVacio = true;
+        $(this).addClass("valor-vacio");
+        $(this).focus();
+        return false; // Detener la iteración si se encuentra un valor vacío
+      }
+      if ($(this).val() !== "") {
+        $(this).removeClass("valor-vacio");
+        algunoVacio = false;
+      }
     });
+    if (!algunoVacio) {
+      let nombre_user = $("#name_user").val();
+      let correo_electronico = $("#Email").val();
+      let contraseña = $("#password").val();
+      let rol = $("#rol").val();
+      $.ajax({
+        url: "backend/Login/crear_user.php",
+        type: "POST",
+        data: {
+          nombre_user: nombre_user,
+          correo_electronico: correo_electronico,
+          contraseña: contraseña,
+          rol: rol,
+        },
+        success: function (response) {
+          console.log("Usuario registrado", response);
+          fetch_list_register_users();
+          $("#formulario_user")[0].reset();
+          $(".cont-form-agregar-usuario").toggleClass(
+            "ocultar-form-crear-user"
+          );
+          $(".cont-user-register-succes").toggleClass(
+            "ocultar-form-crear-user"
+          );
+          setTimeout(() => {
+            $(".cont-user-register-succes").toggleClass(
+              "ocultar-form-crear-user"
+            );
+          }, 2000);
+        },
+        error: function (xhr, status, error) {
+          console.error("Error al hacer el registro:", error);
+        },
+      });
+    }
+  });
 
-    $("#body-listRegisterInspect").on("click", ".print", function () {
-       
-            // Obtén el valor del atributo idRegisterInspect del elemento padre (tr)
-            var idRegisterInspect = $(this).closest("tr").attr("idRegisterInspect");
-            // console.log(idRegisterInspect);
+  $("#btn-crear-user").on("click", function () {
+    $(".cont-form-agregar-usuario").toggleClass("ocultar-form-crear-user");
+  });
 
-            var pdfURL1 = "pdf/INSPECT/Inspect.php?idRegisterInspect=" + idRegisterInspect;
+  $(".btn-crear-cancelar").on("click", function () {
+    $(".cont-form-agregar-usuario").toggleClass("ocultar-form-crear-user");
+  });
+
+  $("#body-listRegisterUser").on("click", ".delete-register", function () {
+    if (confirm("¿Deseas eliminar este registro?")) {
+      // Obtén el valor del atributo idRegisterUser del elemento padre (tr)
+      var idRegisterUser = $(this).closest("tr").attr("idRegisterUser");
+
+      console.log(idRegisterUser);
+
+      // Realizar la solicitud AJAX
+      $.ajax({
+        url: "backend/Login/eliminar_user.php",
+        type: "POST",
+        data: {
+          idRegisterUser: idRegisterUser,
+        },
+        success: function (response) {
+          console.log("Registro eliminado", response);
+          fetch_list_register_users();
+        },
+        error: function (xhr, status, error) {
+          console.error("Error al eliminar el registro:", error);
+          fetch_list_register_users();
+        },
+      });
+    }
+  });
+
+
+  //Editar Usuarios
+
+ 
+
+  $(".btn-editar-usuario").on("click", function () {
+    let camposRequeridos = $(".required");
+    // console.log(camposRequeridos);
+    camposRequeridos.each(function () {
+      if ($(this).val() === "") {
+        algunoVacio = true;
+        $(this).addClass("valor-vacio");
+        $(this).focus();
+        return false; // Detener la iteración si se encuentra un valor vacío
+      }
+      if ($(this).val() !== "") {
+        $(this).removeClass("valor-vacio");
+        algunoVacio = false;
+      }
+    });
+    if (!algunoVacio) {
+      let nombre_user = $("#name_user").val();
+      let correo_electronico = $("#Email").val();
+      let contraseña = $("#password").val();
+      let rol = $("#rol").val();
+      $.ajax({
+        url: "backend/Login/editar_usuario.php",
+        type: "POST",
+        data: {
+          nombre_user: nombre_user,
+          correo_electronico: correo_electronico,
+          contraseña: contraseña,
+          rol: rol,
+        },
+        success: function (response) {
+          console.log("Usuario registrado", response);
+          fetch_list_register_users();
+          $(".cont-form-editar-usuario").toggleClass("ocultar-form-crear-user");
+        },
+        error: function (xhr, status, error) {
+          console.error("Error al hacer el registro:", error);
+        },
+      });
+    }
+  });
+
+  $("#body-listRegisterUser").on("click", ".edit-register", function () {
+    $("#cont-form-editar-usuario").toggleClass("ocultar");
+      // Obtén el valor del atributo idRegisterUser del elemento padre (tr)
+      var idRegisterUser = $(this).closest("tr").attr("idRegisterUser");
+
+      console.log(idRegisterUser);
+
+      // Realizar la solicitud AJAX
+      $.ajax({
+        url: "backend/Login/view_usuario.php",
+        type: "POST",
+        data: {
+          idRegisterUser: idRegisterUser,
+        },
+        success: function (response) {
+          let listRegistro = JSON.parse(response);
+
+        let plantilla = "";
+        listRegistro.forEach((Registro) => {
+
+          let selection = `<div class="cont-campo campo-rol">
+          <label for="rol" class="form-label">ROL<span class="requerido">*</span></label>
+          <select name="rol" id="rol_editar" class="form-control required">
+              <option value="">--</option>
+              <option value="CLIENTE">CLIENTE</option>
+          </select>
+      </div>`
+      if(Registro.Rol_ID === "ADMINISTRADOR"){
+        selection = `<div class="cont-campo campo-rol">
+          <label for="rol" class="form-label">ROL<span class="requerido">*</span></label>
+          <select name="rol" id="rol_editar" class="form-control required">
+              <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+          </select>
+      </div>`
+      }
+
+
+
+          plantilla += `
+          <div class="cont-campo">
+          <label for="name_user" class="form-label">NOMBRE DE USUARIO<span class="requerido">*</span></label>
+          <input type="text" class="form-control required" id="name_user" value="${Registro.Nombre_User}">
+      </div>
+      <div class="cont-campo">
+          <label for="Email" class="form-label">CORREO ELECTRONICO</label>
+          <input type="email" class="form-control" id="Email" value="${Registro.Correo_Electronico}">
+      </div>
+      <div class="cont-campo">
+          <label for="password" class="form-label">CONTRASEÑA<span class="requerido">*</span></label>
+          <input type="password" class="form-control required" id="password">
+          <span class="toggle-password">
+              <i id="eye" class="fas fa-eye"></i>
+          </span>
+      </div>
+      ${selection}
+      
+      <input type="text" class="form-control" hidden id="rol_oculto" value="${Registro.Rol_ID}">
+      <div class="campo-btn">
+          <button type="button" class="btn btn-editar-cancelar">CANCELAR</button>
+          <button type="button" class="btn btn-editar-usuario">GUARDAR</button>
+      </div>
+
+                    `;
+
         
-            // Abrir el primer PDF en una nueva pestaña
-            var newTab1 = window.open(pdfURL1, "_blank");
-            newTab1.focus();
+        });
+
+        
+
+        $("#formulario_user_editar").html(plantilla);
+        let rol_editar= $('#rol_oculto').val();
+        $('#rol_editar').val(rol_editar);
+        },
+        error: function (xhr, status, error) {
+          console.error("Error al eliminar el registro:", error);
+        },
+      });
+
+      
+  });
+
+  
+
+  $(".cont-form-editar-usuario").on("click", '.btn-editar-cancelar',function () {
+    $(".cont-form-editar-usuario").toggleClass("ocultar");
+  });
+  
+
+
+
+  // Historial de actividad
+
+  let id_usuario = $("#id_usuario").text();
+//   console.log(id_usuario)
+
+  if (id_usuario === "0") {
+    users_activity_admin();
+  }else {
+    let nombre_user = $("#nombre_user").text();
+    // console.log(nombre_user)
+    // console.log(id_usuario)
     
+    let plantilla = `  
+                        <option value="${id_usuario}">${nombre_user}</option>
+                    `;
+    $("#idUser").html(plantilla);
+  }
+
+  function users_activity_admin() {
+    $.ajax({
+      type: "GET",
+      url: "backend/Model/fetch_list_users.php",
+      success: function (response) {
+        // console.log(response);
+        let listRegistro = JSON.parse(response);
+
+        let plantilla = "";
+
+        listRegistro.forEach((listRegistro) => {
+
+          plantilla += `
+                        <option value="${listRegistro.ID_Usuario}">${listRegistro.Nombre_User}</option>
+                    `;
+        });
+
+        $("#idUser").html(plantilla);
+      },
     });
+  }
 
-    $("#body-listRegisterInspect").on("click", ".delete-register", function () {
-        if (confirm("¿Deseas eliminar este registro?")) {
-            // Obtén el valor del atributo idRegisterInspect del elemento padre (tr)
-            var idRegisterInspect = $(this).closest("tr").attr("idRegisterInspect");
+  $('#btnBuscar').on('click', function () {
+    // console.log("click en btn buscar");
+    let usuarioSelect = $("#idUser").val();
+    let fecha_inicio = $("#fechaInicio").val();
+    let fecha_fin = $("#fechaFin").val();
 
-            console.log(idRegisterInspect);
+    console.log(fecha_inicio)
+    console.log(fecha_fin)
+    console.log(usuarioSelect)
+    if(fecha_inicio === ""){
+        fecha_inicio = "vacio"
+    }
+    if(fecha_fin === ""){
+        fecha_fin = "vacio"
+    }
 
-            // Realizar la solicitud AJAX
-            $.ajax({
-                url: "backend/Model/eliminar_registro_inspect.php",
-                type: "POST",
-                data: {
-                    idRegisterInspect: idRegisterInspect
-                },
-                success: function (response) {
-                    console.log("Registro eliminado", response);
-                    fetch_list_register_inspect()
-                },
-                error: function (xhr, status, error) {
-                    console.error("Error al eliminar el registro:", error);
-                    fetch_list_register_inspect()
-                }
+    $.ajax({
+        url: "backend/Model/list_historial_usuario.php",
+        type: "POST",
+        data: {
+            usuarioSelect: usuarioSelect,
+            fecha_inicio: fecha_inicio,
+            fecha_fin: fecha_fin
+        },
+        success: function (response) {
+            let listRegistro = JSON.parse(response);
+            console.log(response)
+            let plantilla = "";
+            let nombre_user = $("#idUser option:selected").text();
+            listRegistro.forEach((Registro) => {
+    
+              plantilla += `
+              <tr>
+                  <td>${nombre_user}</td>
+                  <td>${Registro.TotalRegistros}</td>
+              </tr>
+                        `;
             });
-        }
-
-
-
-    });
-
-
     
-    // $("#body-listRegisterVehicle").on("click", ".view-register", function () {
+            $("#body_table_UA").html(plantilla);
+        },
+        error: function (xhr, status, error) {
+          console.error("Error al hacer el registro:", error);
+        },
+      });
+  });
 
-    // });
-    
-
-    
+  // Fin Historial
 
 
 
+
+
+  
 
 });

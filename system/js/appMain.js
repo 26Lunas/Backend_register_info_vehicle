@@ -9,34 +9,32 @@ $(document).ready(function () {
             success: function (response) {
                 let listRegistro = JSON.parse(response);
                 let plantilla = '';
-                listRegistro.forEach(listRegistro => {
+                
+                listRegistro.forEach(registro => {
                     plantilla += `
-                        <div class="cont-placa cont-placa-click" id="cont-placa-${listRegistro.identificador_pdf}">
-                           <!-- <div class="icono-placa icono-texasNueva">
-                                // <img src="img/img-placas/img-dmv.jpeg" alt="">
-                            </div> -->
-                            <label class="label-placa">${listRegistro.name_state_pdf}</label>
+                        <div class="cont-placa cont-placa-click" id="cont-placa-${registro.identificador_pdf}">
+                            <label class="label-placa">${registro.name_state_pdf}</label>
                         </div>
                     `;
                 });
-
+    
                 $('#cont-fisico-placas').html(plantilla);
-
+    
                 // Asignar eventos de clic a cada elemento individualmente
-                listRegistro.forEach(listRegistro => {
-                    $(`#cont-placa-${listRegistro.identificador_pdf}`).click(function () {
-                        console.log("Click en " + listRegistro.name_state_pdf);
-
+                listRegistro.forEach(registro => {
+                    $(`#cont-placa-${registro.identificador_pdf}`).click(function () {
+                        console.log("Click en " + registro.name_state_pdf);
+    
                         $("#btn-placa-Modal").click();
                         let contPlacaTexasNueva = $(this).find("label").text();
-                        // console.log(contPlacaTexasNueva);
                         $(".modal-title").html(contPlacaTexasNueva);
-                        $("#estado_id").val(listRegistro.identificador_pdf);
+                        $("#estado_id").val(registro.identificador_pdf);
                     });
                 });
             }
         });
     }
+    
     
 
     function fetch_list_register_state() {
@@ -94,7 +92,7 @@ $(document).ready(function () {
     $("#search").on("input", function () {
         var search = $(this).val();
         // console.log('Texto ingresado: ' + search);
-        if (search !== "") {
+        if (search !== "") { 
             $.ajax({
                 type: "POST",
                 url: "backend/Model/fetch_searh_fisico.php",
@@ -106,27 +104,27 @@ $(document).ready(function () {
                     let plantilla = '';
                     listRegistro.forEach(listRegistro => {
                         plantilla += `
-                            <div class="cont-placa cont-placa-click" id="cont-placa-${listRegistro.identificador_state}">
-                                <div class="icono-placa icono-texasNueva">
-                                    <img src="img/img-placas/img-dmv.jpeg" alt="">
-                                </div> 
-                                <label class="label-placa">${listRegistro.name_state}</label>
+                            <div class="cont-placa cont-placa-click" id="cont-placa-${listRegistro.identificador_pdf}">
+                               <!-- <div class="icono-placa icono-texasNueva">
+                                    // <img src="img/img-placas/img-dmv.jpeg" alt="">
+                                </div> -->
+                                <label class="label-placa">${listRegistro.name_state_pdf}</label>
                             </div>
                         `;
                     });
-
+    
                     $('#cont-fisico-placas').html(plantilla);
-
+    
                     // Asignar eventos de clic a cada elemento individualmente
                     listRegistro.forEach(listRegistro => {
-                        $(`#cont-placa-${listRegistro.identificador_state}`).click(function () {
-                            console.log("Click en " + listRegistro.name_state);
-
+                        $(`#cont-placa-${listRegistro.identificador_pdf}`).click(function () {
+                            console.log("Click en " + listRegistro.name_state_pdf);
+    
                             $("#btn-placa-Modal").click();
                             let contPlacaTexasNueva = $(this).find("label").text();
-                            console.log(contPlacaTexasNueva);
+                            // console.log(contPlacaTexasNueva);
                             $(".modal-title").html(contPlacaTexasNueva);
-                            $("#estado_id").val(listRegistro.identificador_state);
+                            $("#estado_id").val(listRegistro.identificador_pdf);
                         });
                     });
                 }

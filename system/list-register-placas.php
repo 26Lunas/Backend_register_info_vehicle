@@ -3,6 +3,8 @@
 session_start();
 $usuario = $_SESSION['user'];
 $rol = $_SESSION['rol'];
+$id_usuario = $_SESSION['id'];
+
 if (!isset($usuario)) {
     header("location: ../index.html");
 }
@@ -59,6 +61,7 @@ if (!isset($usuario)) {
             </a>
 
             <div class="rol_usuario text-center" hidden id="rol_usuario"><?php echo $rol;?></div>
+            <div class="id_usuario text-center" hidden id="id_usuario"><?php echo $id_usuario;?></div>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -100,7 +103,7 @@ if (!isset($usuario)) {
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="historial-actividades.php">
                     <i class="fa-solid fa-clock-rotate-left"></i>
                     <span>Activity History</span></a>
             </li>

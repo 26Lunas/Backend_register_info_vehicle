@@ -3,6 +3,8 @@
 session_start();
 $usuario = $_SESSION['user'];
 $rol = $_SESSION['rol'];
+$id_usuario = $_SESSION['id'];
+
 if (!isset($usuario)) {
     header("location: ../");
 }
@@ -21,8 +23,8 @@ if (!isset($usuario)) {
     <meta name="author" content="">
 
     <title>List-Register</title>
-     <!-- Favicon -->
-     <link rel="icon" type="image/x-icon" href="img/icono-estrella.ico">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="img/icono-estrella.ico">
 
     <!-- CSS style -->
     <link rel="stylesheet" href="css/style-system.css">
@@ -58,7 +60,10 @@ if (!isset($usuario)) {
                         class="logo" alt="">DMV</div>
             </a>
 
-            <div class="rol_usuario text-center" hidden id="rol_usuario"><?php echo $rol;?></div>
+            <div class="rol_usuario text-center" hidden id="rol_usuario">
+                <?php echo $rol; ?>
+            </div>
+            <div class="id_usuario text-center" hidden id="id_usuario"><?php echo $id_usuario;?></div>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -100,7 +105,7 @@ if (!isset($usuario)) {
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="historial-actividades.php">
                     <i class="fa-solid fa-clock-rotate-left"></i>
                     <span>Activity History</span></a>
             </li>
@@ -136,7 +141,9 @@ if (!isset($usuario)) {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $usuario;?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                    <?php echo $usuario; ?>
+                                </span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -173,8 +180,8 @@ if (!isset($usuario)) {
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Listado de usuarios existentes</h1>
-                        <a href="#" class="btn btn-sm btn-primary shadow-sm">
-                            <i class="fa-solid fa-plus"></i> Crear Usuario</a>
+                        <div class="btn btn-sm btn-primary shadow-sm" id="btn-crear-user">
+                            <i class="fa-solid fa-plus"></i> Crear Usuario</div>
                     </div>
 
                     <!-- DataTales Example -->
@@ -243,13 +250,63 @@ if (!isset($usuario)) {
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Seleccione "Logout" a continuación si está listo para finalizar su sesión actual.</div>
+                <div class="modal-body">Seleccione "Logout" a continuación si está listo para finalizar su sesión
+                    actual.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="backend/Login/salir.php">Logout</a>
                 </div>
             </div>
         </div>
+    </div>
+
+
+    <div class="cont-form-agregar-usuario ocultar-form-crear-user">
+        <form class="cont-formulario" id="formulario_user">
+            <div class="cont-campo">
+                <label for="name_user" class="form-label">NOMBRE DE USUARIO<span class="requerido">*</span></label>
+                <input type="text" class="form-control required" id="name_user">
+            </div>
+            <div class="cont-campo">
+                <label for="Email" class="form-label">CORREO ELECTRONICO</label>
+                <input type="email" class="form-control" id="Email">
+            </div>
+            <div class="cont-campo">
+                <label for="password" class="form-label">CONTRASEÑA<span class="requerido">*</span></label>
+                <input type="password" class="form-control required" id="password">
+                <span class="toggle-password">
+                    <i id="eye" class="fas fa-eye"></i>
+                </span>
+            </div>
+            <div class="cont-campo campo-rol">
+                <label for="rol" class="form-label">ROL<span class="requerido">*</span></label>
+                <select name="rol" id="rol" class="form-control required">
+                    <option value="">--</option>
+                    <option value="CLIENTE">CLIENTE</option>
+                </select>
+            </div>
+
+            <div class="campo-btn">
+                <button type="button" class="btn btn-crear-cancelar">CANCELAR</button>
+                <button type="button" class="btn btn-crear-usuario">CREAR</button>
+            </div>
+
+
+        </form>
+    </div>
+
+    
+
+    <div class="cont-user-register-succes ocultar-form-crear-user">
+        <h2>USUARIO REGISTRADO CON EXITO</h2>
+    </div>
+
+
+    <!-- Editar usuarios -->
+    <div class="cont-form-editar-usuario ocultar" id="cont-form-editar-usuario">
+        <form class="cont-formulario" id="formulario_user_editar">
+
+        </form>
     </div>
 
 

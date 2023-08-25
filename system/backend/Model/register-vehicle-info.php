@@ -138,6 +138,17 @@ if($_POST['campoVehicleVin']){
         $codigoAleatorio = generarCodigoGeorgia();
     }else if($buyer_pdf ==="NC"){
         $codigoAleatorio = mt_rand(10000000, 99999999);
+    }else if($buyer_pdf ==="OH"){
+        function generarCodigo() {
+            $letraInicial = chr(rand(65, 90)); // Generar una letra mayúscula ASCII entre 65 y 90
+            $digitos = rand(100000, 999999); // Generar un número de 6 dígitos
+        
+            $codigo = $letraInicial . $digitos;
+            return $codigo;
+        }
+
+        // Mostrar el código generado
+        $codigoAleatorio = generarCodigo();
     }
     else if($buyer_pdf ==="LA"){
         function generarCodigoAleatorioLA($logitudN) {

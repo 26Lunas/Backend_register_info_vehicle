@@ -5,7 +5,7 @@ if($_POST['search']){
 
     $search = $_POST['search'];
 
-    $query = "SELECT * FROM tb_state WHERE name_state LIKE '%$search%' OR identificador_state LIKE '%$search%'";
+    $query = "SELECT * FROM tb_pdf WHERE name_state_pdf LIKE '%$search%' OR identificador_pdf LIKE '%$search%'";
 
     $result = mysqli_query($Connection, $query);
     if(!$result){
@@ -15,8 +15,9 @@ if($_POST['search']){
     $json = array();
     while ($row = mysqli_fetch_array($result)) {
         $json[] = array(
-            'name_state' => $row['name_state'],
-            'identificador_state' => $row['identificador_state']
+            'id_pdf' => $row['id_pdf'],
+            'name_state_pdf' => $row['name_state_pdf'],
+            'identificador_pdf' => $row['identificador_pdf']
         );
     }
     $jsonString = json_encode($json);
