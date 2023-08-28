@@ -416,12 +416,18 @@ $pdf->Cell(1);
 $pdf->SetFont('calibrib','',10);
 $pdf->Cell(192,5,"If you lose your card, contact your Falcon agent.", 0, 1, 'C');
 
-$pdf->Output();
-$filenamepdf="Insurance.pdf";
-$pdf->Output($filenamepdf,'F');
+$numeroAleatorio = mt_rand(10, 99);
+// $pdf->Output();
+$filenamepdf="TAG-Insurance-$numeroAleatorio.pdf";
+// Definir el tipo de contenido y configurar el encabezado Content-Disposition
+header('Content-Type: application/pdf');
+header("Content-Disposition: inline; filename=$filenamepdf");
+
+
+$pdf->Output($filenamepdf,'I');
 
 echo "<script>
-         window.location.href = 'Insurance.pdf';
+         window.location.href = $filenamepdf;
      </script>";
 
 

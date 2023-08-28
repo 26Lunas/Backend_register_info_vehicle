@@ -195,7 +195,7 @@ if (!isset($usuario)) {
                                     </div>
                                     <div class="col-sm-4">
                                         <label>Days <span class="requerido">*</span>:</label>
-                                        <select name="" id="campoVehicle-days" class="form-control required">
+                                        <select id="campoVehicle-days" class="form-control required">
                                             <option value="">--</option>
                                             <option value="90">90</option>
                                             <option value="60">60</option>

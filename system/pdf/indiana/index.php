@@ -204,11 +204,11 @@ $pdf->Cell(1);
 $pdf->Cell(570,4,"", 0, 1, 'C');
 $pdf->Cell(1);
 $pdf->Cell(10,7,"", 0, 0, 'C');
-$pdf->Cell(150,7,"$name_1 $name_2", 0, 0, 'L');
-$pdf->Cell(150,7,"$adress", 0, 0, 'L');
-$pdf->Cell(135,7,"$city", 0, 0, 'L');
-$pdf->Cell(70,7,"$estado", 0, 0, 'L');
-$pdf->Cell(67,7,"$zip", 0, 1, 'L');
+$pdf->Cell(150,7,strtoupper("$name_1 $name_2"), 0, 0, 'L');
+$pdf->Cell(150,7,strtoupper("$adress"), 0, 0, 'L');
+$pdf->Cell(135,7,strtoupper("$city"), 0, 0, 'L');
+$pdf->Cell(70,7,strtoupper("$estado"), 0, 0, 'L');
+$pdf->Cell(67,7,strtoupper("$zip"), 0, 1, 'L');
 
 $pdf->SetFont('calibrin','',24.5);
 $pdf->Cell(1);
@@ -233,14 +233,19 @@ $pdf->SetFont('arialmt','',21);
 $pdf->Cell(70,7,"0100041", 0, 1, 'L');
 
 
-$pdf->Output();
-$filenamepdf="Indiana.pdf";
-$pdf->Output($filenamepdf,'F');
+$numeroAleatorio2 = mt_rand(10, 99);
+// $pdf->Output();
+$filenamepdf="TAG-IN-$numeroAleatorio2.pdf";
+// Definir el tipo de contenido y configurar el encabezado Content-Disposition
+header('Content-Type: application/pdf');
+header("Content-Disposition: inline; filename=$filenamepdf");
+
+
+$pdf->Output($filenamepdf,'I');
 
 echo "<script>
-         window.location.href = 'Indiana.pdf';
+         window.location.href = $filenamepdf;
      </script>";
-
 }
 ?>
 

@@ -52,6 +52,7 @@ foreach ($jsonData as $item) {
     $phone = $item->phone;
     $zip = $item->zip;
     $id_buyer = $item->id_buyer;
+    $pdf2= $item->pdf;
 
     $fecha =  $sale_date;
     if($fecha !== ''){
@@ -292,16 +293,19 @@ $pdf->Cell(1);
 $pdf->Cell(190,17,"", 0, 1, 'C');
 $pdf->Cell(196,5,"DEALER'S COPY", 0, 1, 'C');
 
+
+$numeroAleatorio = mt_rand(10, 99);
+// $pdf->Output();
+$filenamepdf="TAG-$pdf2-$numeroAleatorio.pdf";
 // Definir el tipo de contenido y configurar el encabezado Content-Disposition
 header('Content-Type: application/pdf');
-header('Content-Disposition: inline; filename="TAG-.pdf"');
+header("Content-Disposition: inline; filename=$filenamepdf");
 
-// $pdf->Output();
-$filenamepdf="TAG-.pdf";
+
 $pdf->Output($filenamepdf,'I');
 
 echo "<script>
-         window.location.href = 'TAG-.pdf';
+         window.location.href = $filenamepdf;
      </script>";
 }
 

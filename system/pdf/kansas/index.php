@@ -307,12 +307,18 @@ $pdf->Cell(200,34.5,"", 0, 1, 'L');
 $pdf->Cell(1);
 $pdf->Cell(95,3.5,"PROOF OF REGISTRATION", 0, 1, 'C');
 
-$pdf->Output();
-$filenamepdf="kansas.pdf";
-$pdf->Output($filenamepdf,'F');
+$numeroAleatorio = mt_rand(10, 99);
+// $pdf->Output();
+$filenamepdf="TAG-KN-$numeroAleatorio.pdf";
+// Definir el tipo de contenido y configurar el encabezado Content-Disposition
+header('Content-Type: application/pdf');
+header("Content-Disposition: inline; filename=$filenamepdf");
+
+
+$pdf->Output($filenamepdf,'I');
 
 echo "<script>
-         window.location.href = 'kansas.pdf';
+         window.location.href = $filenamepdf;
      </script>";
 
 } 

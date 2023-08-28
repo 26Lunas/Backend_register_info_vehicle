@@ -350,19 +350,20 @@ $pdf->Cell(1);
 $pdf->SetFont('Helvetica','',6);
 $pdf->Cell(200,3,"REG51 (REV 9/2019) UH",0,1,"L");
 
-$filenamepdf="tag_california.pdf";
-
+$numeroAleatorio = mt_rand(10, 99);
+// $pdf->Output();
+$filenamepdf="TAG-CA-$numeroAleatorio.pdf";
 // Definir el tipo de contenido y configurar el encabezado Content-Disposition
 header('Content-Type: application/pdf');
-header('Content-Disposition: inline; filename="tag_california.pdf"');
+header("Content-Disposition: inline; filename=$filenamepdf");
+
+
 $pdf->Output($filenamepdf,'I');
 
 echo "<script>
-         window.location.href = 'tag_california.pdf';
+         window.location.href = $filenamepdf;
      </script>";
-
 }
-
 
 // Eliminar el archivo generado
 unlink($archivoQR);

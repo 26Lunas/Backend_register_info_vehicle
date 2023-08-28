@@ -1,8 +1,9 @@
 $(document).ready(function () {
   // console.log("Jquery esta funcionando...");
 
-  // Generemos el id del comprador
+ 
 
+  // Generemos el id del comprador
   let min = 100000; // El número más pequeño de 6 dígitos
   let max = 999999; // El número más grande de 6 dígitos
 
@@ -37,6 +38,20 @@ $(document).ready(function () {
       $(this).val(inputValue.slice(0, maxLength));
     }
   });
+
+  let pdfEstado = $('#campoBuyer-pdf').val()
+  if (pdfEstado === "Insurance") {
+    let plantilla2 = `
+    <option value="">--</option>
+      <option value="90">90</option>
+      <option value="60">60</option>
+      <option value="30">30</option>
+      <option value="180">6 MESES</option>
+      <option value="240">8 MESES</option>
+      <option value="365">1 AÑO</option>
+    `
+    $('#campoVehicle-days').html(plantilla2);
+  }
 
   let valueCampoVin = $("#campoVehicle-vin").val();
   // console.log(valueCampoVin);
@@ -230,9 +245,11 @@ $(document).ready(function () {
                 $("#cont_loader").toggleClass("ocultar_loader");
                 var pdfURL = "pdf/NC_NORTE_CALIFORNIA/combinarPdf.php";
 
-                // Abrir el primer PDF en una nueva pestaña
+                setTimeout(() => {
+                  // Abrir el primer PDF en una nueva pestaña
                 var newTab = window.open(pdfURL, "_blank");
                 newTab.focus();
+                }, 100);
               });
             } else if (pdf === "IL") {
               var pdfURL1 =

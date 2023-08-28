@@ -29,20 +29,10 @@ $pdf->load_html($html);
 // Renderizamos el documento PDF.
 $pdf->render();
 
+$numeroAleatorio = mt_rand(10, 99);
+// $pdf->Output();
+$filenamepdf="TAG-MD-$numeroAleatorio.pdf";
+
+
 // Enviamos el fichero PDF al navegador.
-$pdf->stream('TAG-MD.pdf',  array('Attachment' => 0));
-
-// Guardamos el fichero PDF en el servidor.
-// $file = 'pruebaPDF-2.pdf';
-// file_put_contents($file, $pdf->output());
-
-function file_get_contents_curl($url) {
-	$crl = curl_init();
-	$timeout = 5;
-	curl_setopt($crl, CURLOPT_URL, $url);
-	curl_setopt($crl, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($crl, CURLOPT_CONNECTTIMEOUT, $timeout);
-	$ret = curl_exec($crl);
-	curl_close($crl);
-	return $ret;
-}
+$pdf->stream($filenamepdf,  array('Attachment' => 0));

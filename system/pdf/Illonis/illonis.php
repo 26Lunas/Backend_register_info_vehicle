@@ -158,22 +158,23 @@ $pdf->line(140,150,140,204);
 $pdf->Image('codigobarrasfuentevert.png',12,149,15,40);
 $pdf->Image('codigobarrasfuentevert.png',242,149,15,40);
 
-$numeroAleatorio = mt_rand(1000, 9999);
-$filenamepdf="ILLONIS-".$numeroAleatorio.".pdf";
-
+$numeroAleatorio = mt_rand(10, 99);
+// $pdf->Output();
+$filenamepdf="TAG-IN-$numeroAleatorio.pdf";
 // Definir el tipo de contenido y configurar el encabezado Content-Disposition
 header('Content-Type: application/pdf');
-header('Content-Disposition: inline; filename="ILLONIS.pdf"');
+header("Content-Disposition: inline; filename=$filenamepdf");
+
 
 $pdf->Output($filenamepdf,'I');
 
+echo "<script>
+         window.location.href = $filenamepdf;
+     </script>";
+
 
 unlink($filenamepdf);
-// echo "<script>
-//          window.location.href = 'ILLONIS.pdf';
-//      </script>";
 
-
- }
+}
 
 ?>

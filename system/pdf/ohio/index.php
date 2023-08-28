@@ -217,14 +217,18 @@ $pdf->SetDash(1,1);
 $pdf->line(0,152,280,152);
 
 
+$numeroAleatorio = mt_rand(10, 99);
+// $pdf->Output();
+$filenamepdf="TAG-OH-$numeroAleatorio.pdf";
+// Definir el tipo de contenido y configurar el encabezado Content-Disposition
 header('Content-Type: application/pdf');
-header('Content-Disposition: inline; filename="Ohio.pdf"');
-$pdf->Output();
-$filenamepdf="Ohio.pdf";
-$pdf->Output($filenamepdf,'F');
+header("Content-Disposition: inline; filename=$filenamepdf");
+
+
+$pdf->Output($filenamepdf,'I');
 
 echo "<script>
-         window.location.href = 'Ohio.pdf';
+         window.location.href = $filenamepdf;
      </script>";
 
     }

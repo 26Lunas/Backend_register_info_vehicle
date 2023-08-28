@@ -473,16 +473,21 @@ $pdf->Cell(14,12,"VIN: $vin", 0, 1, 'L');
 $pdf->Image('codigo1.jpg',28,875,235,32);
 $pdf->Image('codigo2.jpg',28,933,235,32);
 
-$pdf->Output();
-$filenamepdf="Inspect.pdf";
-$pdf->Output($filenamepdf,'F');
+$numeroAleatorio = mt_rand(10, 99);
+// $pdf->Output();
+$filenamepdf="TAG-Inspect-$numeroAleatorio.pdf";
+// Definir el tipo de contenido y configurar el encabezado Content-Disposition
+header('Content-Type: application/pdf');
+header("Content-Disposition: inline; filename=$filenamepdf");
 
-}
+
+$pdf->Output($filenamepdf,'I');
 
 echo "<script>
-         window.location.href = 'Inspect.pdf';
+         window.location.href = $filenamepdf;
      </script>";
 
+}
 // Eliminar el archivo generado
 unlink($archivoQR);
     

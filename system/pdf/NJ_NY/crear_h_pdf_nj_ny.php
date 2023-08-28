@@ -55,16 +55,14 @@ $pdf->load_html($html);
 // Renderizamos el documento PDF.
 $pdf->render();
 
+$numeroAleatorio = mt_rand(10, 99);
+
+// $pdf->Output();
+$filenamepdf="TAG-NJ/NY-$numeroAleatorio.pdf";
+
+
 // Enviamos el fichero PDF al navegador.
-$pdf->stream('NJ 11-2022.pdf',  array('Attachment' => 0));
-
-// Guardamos el fichero PDF en el servidor.
-// $file = 'pruebaPDF-2.pdf';
-// file_put_contents($file, $pdf->output());
-
-// Mostrar la imagen QR en el navegador
-// header('Content-Type: image/png');
-// readfile($archivoQR);
+$pdf->stream($filenamepdf,  array('Attachment' => 0));
 
 // Eliminar el archivo generado
 unlink($archivoQR);

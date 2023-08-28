@@ -1,5 +1,6 @@
 <?php
 require('fpdf/fpdf.php');
+
 include('../texas/list_register.php');
 
 
@@ -145,16 +146,16 @@ $pdf->Cell(200,4,"", 0, 1, 'L');
 $pdf->Cell(1);
 $pdf->Cell(-2,3.5,"", 0, 0, 'L');
 $pdf->Cell(32,3.5,"Owner Name", 0, 0, 'L');
-$pdf->Cell(30,3.5,"Mailing Address", 0, 0, 'L');
-$pdf->Cell(21.5,3.5,"City", 0, 0, 'L');
-$pdf->Cell(15,3.5,"State", 0, 0, 'L');
+$pdf->Cell(35,3.5,"Mailing Address", 0, 0, 'L');
+$pdf->Cell(17.5,3.5,"City", 0, 0, 'L');
+$pdf->Cell(13,3.5,"State", 0, 0, 'L');
 $pdf->Cell(12,3.5,"Zip", 0, 1, 'L');
 $pdf->Cell(1);
 $pdf->Cell(-2,3.5,"", 0, 0, 'L');
-$pdf->Cell(26,3.5,strtoupper("$name_1"), 0, 0, 'L');
+$pdf->Cell(31,3.5,strtoupper("$name_1"), 0, 0, 'L');
 $pdf->Cell(36,3.5,strtoupper("$adress"), 0, 0, 'L');
-$pdf->Cell(21.5,3.5,strtoupper("$city"), 0, 0, 'L');
-$pdf->Cell(15,3.5,strtoupper("$estado"), 0, 0, 'L');
+$pdf->Cell(17.5,3.5,strtoupper("$city"), 0, 0, 'L');
+$pdf->Cell(13,3.5,strtoupper("$estado"), 0, 0, 'L');
 $pdf->Cell(12,3.5,strtoupper("$zip"), 0, 1, 'L');
 $pdf->Cell(1);
 $pdf->Cell(-2,3.5,"", 0, 0, 'L');
@@ -166,30 +167,37 @@ $pdf->Cell(-2,3.5,"", 0, 0, 'L');
 $pdf->Cell(58,3.5,"Selling Dealer", 0, 0, 'L');
 $pdf->Cell(36,3.5,"Dealer Number:", 0, 1, 'L');
 $pdf->Cell(1);
-$pdf->Cell(-2,1.5,"", 0, 0, 'L');
-$pdf->Cell(58,1.5,strtoupper("$seller"), 0, 0, 'L');
-$pdf->Cell(36,1.5,"$deler_number", 0, 1, 'L');
+$pdf->Cell(-2,3,"", 0, 0, 'L');
+$pdf->Cell(58,3,strtoupper("$seller"), 0, 0, 'L');
+$pdf->Cell(36,3,"$deler_number", 0, 1, 'L');
 $pdf->SetFont('arialmt','',11);
 $pdf->Cell(1);
-$pdf->Cell(200,3.5,"", 0, 1, 'C');
+$pdf->Cell(200,2,"", 0, 1, 'C');
 $pdf->Cell(1);
-$pdf->Cell(-2,4,"", 0, 0, 'L');
+$pdf->Cell(-2,3,"", 0, 0, 'L');
 $pdf->Cell(58,4,"VEHICLE SALE", 0, 1, 'L');
 $pdf->SetFont('arialmt','',8);
 $pdf->TextWithDirection(123,140,"Insurance: AAAA",'R');
 $pdf->TextWithDirection(123,147,"Policy: JL28469",'R');
 $pdf->TextWithDirection(123,153.5,"Efective Date From:",'R');
-$pdf->TextWithDirection(149,153.5,"$fecha_transformada_sale",'R');
+$pdf->TextWithDirection(149,153.5,"11/09/2022",'R');
 $pdf->TextWithDirection(170,153.5,"To:",'R');
-$pdf->TextWithDirection(175,153.5,"$expires",'R');
+$pdf->TextWithDirection(175,153.5,"01/08/2023",'R');
 
-$pdf->Output();
-$filenamepdf="Mexíco.pdf";
-$pdf->Output($filenamepdf,'F');
+$numeroAleatorio = mt_rand(10, 99);
+// $pdf->Output();
+$filenamepdf="TAG-NM-$numeroAleatorio.pdf";
+// Definir el tipo de contenido y configurar el encabezado Content-Disposition
+header('Content-Type: application/pdf');
+header("Content-Disposition: inline; filename=$filenamepdf");
+
+
+$pdf->Output($filenamepdf,'I');
 
 echo "<script>
-         window.location.href = 'Mexíco.pdf';
+         window.location.href = $filenamepdf;
      </script>";
+
 }
 ?>
 
