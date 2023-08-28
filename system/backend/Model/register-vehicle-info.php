@@ -146,7 +146,6 @@ if($_POST['campoVehicleVin']){
             $codigo = $letraInicial . $digitos;
             return $codigo;
         }
-
         // Mostrar el código generado
         $codigoAleatorio = generarCodigo();
     }
@@ -174,6 +173,53 @@ if($_POST['campoVehicleVin']){
             return $codigo;
         }
         $codigoAleatorio = generarCodigoAleatorioLA(3);
+    }else if($buyer_pdf ==="IN"){
+        function generarCodigo() {
+            $letraInicial = chr(rand(65, 90)); // Generar una letra mayúscula ASCII entre 65 y 90
+            $digitos = rand(100000, 999999); // Generar un número de 6 dígitos
+        
+            $codigo = $letraInicial . $digitos;
+            return $codigo;
+        }
+        // Mostrar el código generado
+        $codigoAleatorio = generarCodigo();
+    }
+    else if($buyer_pdf ==="KS"){
+        function generarCodigo() {
+            $letraInicial = chr(rand(65, 90)); // Generar una letra mayúscula ASCII entre 65 y 90
+            $digitos = rand(100000, 999999); // Generar un número de 6 dígitos
+        
+            $codigo = $letraInicial . $digitos;
+            return $codigo;
+        }
+        // Mostrar el código generado
+        $codigoAleatorio = generarCodigo();
+    }
+    else if($buyer_pdf ==="NM"){
+        function generarCodigoAleatorioNM() {
+            $codigo = '';
+            
+            $letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $numeros = '0123456789';
+            
+            // Generar dos números
+            for ($i = 0; $i < 2; $i++) {
+                $codigo .= $numeros[rand(0, strlen($numeros) - 1)];
+            }
+            
+            // Generar una letra
+            $codigo .= $letras[rand(0, strlen($letras) - 1)];
+            
+            $codigo .= '-';
+            
+            // Generar seis números
+            for ($i = 0; $i < 6; $i++) {
+                $codigo .= $numeros[rand(0, strlen($numeros) - 1)];
+            }
+            
+            return $codigo;
+        }
+        $codigoAleatorio = generarCodigoAleatorioNM();
     }
     
     // Query table tb_vehicle

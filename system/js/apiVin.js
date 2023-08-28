@@ -124,9 +124,13 @@ $(document).ready(function () {
               var pdfURL1 =
                 "pdf/texas-buyer/index.php?idRegisterVehicle=" + id_buyer;
 
-              // Abrir el primer PDF en una nueva pestaña
+                setTimeout(() => {
+                  // Abrir el primer PDF en una nueva pestaña
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
+                }, 500);
+
+              
             } else if (pdf === "CA") {
               var pdfURL1 =
                 "pdf/CALIFORNIA/tag_california.pdf.php?idRegisterVehicle=" +
@@ -282,7 +286,25 @@ $(document).ready(function () {
               // Abrir el primer PDF en una nueva pestaña
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
-            } else {
+            } else if (pdf === "KS") {
+              var pdfURL1 = "pdf/kansas/index.php?idRegisterVehicle=" + id_buyer;
+
+              // Abrir el primer PDF en una nueva pestaña
+              var newTab1 = window.open(pdfURL1, "_blank");
+              newTab1.focus();
+            } else if (pdf === "IN") {
+              var pdfURL1 = "pdf/indiana/index.php?idRegisterVehicle=" + id_buyer;
+
+              // Abrir el primer PDF en una nueva pestaña
+              var newTab1 = window.open(pdfURL1, "_blank");
+              newTab1.focus();
+            }else if (pdf === "NM") {
+              var pdfURL1 = "pdf/mexico/index.php?idRegisterVehicle=" + id_buyer;
+
+              // Abrir el primer PDF en una nueva pestaña
+              var newTab1 = window.open(pdfURL1, "_blank");
+              newTab1.focus();
+            }else {
               alert("No hay PDF disponible para este registro");
             }
           }

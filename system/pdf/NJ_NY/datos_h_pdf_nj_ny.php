@@ -159,7 +159,7 @@
 
         $fecha = $sale_date;
         $facha_sale = new DateTime($fecha);
-        $sale_fecha_format = $facha_sale->format('d/m/Y');
+        $sale_fecha_format = $facha_sale->format('m/d/Y');
     
         $name_state = str_replace(' ', '', $name_state);
         
@@ -169,7 +169,7 @@
         $formattedDateExpires2 = $expires->format('d/m/Y');
 
         $title_pdf = "NewYork";
-        if ($title_pdf === "NJ") {
+        if ($pdf === "NJ") {
             $title_pdf = "NewJersey";
         }
 
@@ -184,7 +184,7 @@
             </div>
             <h2 class="code-id"><?php echo $id_vehicle;?></h2>
             <div class="cont-text-valor-issued">
-                <p>07614U Issued: <span>02/25/2023</span></p>
+                <p>07614U Issued: <span><?php echo $sale_fecha_format?></span></p>
                 <p>VIN: <span class="vin"><?php echo $vin_vehicle;?></span></p>
                 <p class="text-mayuscula"><span class="year"><?php echo $year;?></span>
                     ,<span class="make"><?php echo $make;?></span>

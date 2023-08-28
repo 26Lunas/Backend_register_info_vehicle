@@ -2,7 +2,7 @@
 require('fpdf/fpdf.php');
 include('../texas/list_register.php');
 
-
+ 
 
 $jsonData = json_decode($jsonString);
 
@@ -115,10 +115,10 @@ $pdf->Cell(16,12,"", 0, 1, 'L');
 $pdf->Cell(1);
 $pdf->Cell(27,-2,"", 0, 0, 'L');
 $pdf->Cell(39,-2,"DEALER ".strtoupper($seller).", ", 0, 0, 'L');
-$pdf->Cell(26,-2,"    DLR # 8142", 0, 0, 'L');
+$pdf->Cell(26,-2,"          DLR # 8142", 0, 0, 'L');
 $pdf->Cell(41,-2,$fecha_transformada_sale, 0, 0, 'L');
 $pdf->Cell(39,-2,"DEALER ".strtoupper($seller).", ", 0, 0, 'L');
-$pdf->Cell(25,-2,"    DLR # 8142", 0, 0, 'L');
+$pdf->Cell(25,-2,"          DLR # 8142", 0, 0, 'L');
 $pdf->Cell(30,-2,$fecha_transformada_sale, 0, 1, 'L');
 $pdf->Cell(1);
 $pdf->Cell(27,12,"", 0, 0, 'L');

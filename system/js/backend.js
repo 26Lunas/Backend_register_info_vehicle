@@ -164,10 +164,14 @@ $(document).ready(function () {
 
       var pdfURL1 =
         "pdf/texas-buyer/index.php?idRegisterVehicle=" + idRegisterVehicle;
-
-      // Abrir el primer PDF en una nueva pestaña
+      
+      setTimeout(() => {
+        // Abrir el primer PDF en una nueva pestaña
       var newTab1 = window.open(pdfURL1, "_blank");
       newTab1.focus();
+      }, 500);
+
+      
     } else if (pdf === "CA") {
       // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
       var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
@@ -367,6 +371,36 @@ $(document).ready(function () {
       // Abrir el primer PDF en una nueva pestaña
       var newTab1 = window.open(pdfURL1, "_blank");
       newTab1.focus();
+    }else if (pdf === "KS") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      // console.log(idRegisterVehicle);
+
+      var pdfURL1 = "pdf/kansas/index.php?idRegisterVehicle=" + idRegisterVehicle;
+
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    }else if (pdf === "IN") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      // console.log(idRegisterVehicle);
+
+      var pdfURL1 = "pdf/indiana/index.php?idRegisterVehicle=" + idRegisterVehicle;
+
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    }else if (pdf === "NM") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      // console.log(idRegisterVehicle);
+
+      var pdfURL1 = "pdf/mexico/index.php?idRegisterVehicle=" + idRegisterVehicle;
+
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
     } else {
       alert("No hay PDF disponible para este registro");
     }
@@ -413,22 +447,9 @@ $(document).ready(function () {
 
   // $("#body-listRegisterVehicle").on("click", ".view-register", function () {
 
-  // });c
+  // });
 
-  $(".toggle-password").click(function () {
-    var passwordInput = $("#password");
-    var eyeIcon = $("#eye");
-
-    if (passwordInput.attr("type") === "password") {
-      passwordInput.attr("type", "text");
-      eyeIcon.removeClass("fa-eye");
-      eyeIcon.addClass("fa-eye-slash");
-    } else {
-      passwordInput.attr("type", "password");
-      eyeIcon.removeClass("fa-eye-slash");
-      eyeIcon.addClass("fa-eye");
-    }
-  });
+  
 
   $(".btn-crear-usuario").on("click", function () {
     let camposRequeridos = $(".required");
@@ -520,9 +541,10 @@ $(document).ready(function () {
   //Editar Usuarios
 
  
+ $(".cont-form-editar-usuario").on("click", '.btn-editar-user',function () {
 
-  $(".btn-editar-usuario").on("click", function () {
-    let camposRequeridos = $(".required");
+  if(confirm("Estas seguro que deseas cambiar estos datos?")){
+    let camposRequeridos = $(".required_user_edit");
     // console.log(camposRequeridos);
     camposRequeridos.each(function () {
       if ($(this).val() === "") {
@@ -537,37 +559,48 @@ $(document).ready(function () {
       }
     });
     if (!algunoVacio) {
-      let nombre_user = $("#name_user").val();
-      let correo_electronico = $("#Email").val();
-      let contraseña = $("#password").val();
-      let rol = $("#rol").val();
+      let id_usuario = $("#id_user_edit").val();
+      let nombre_user = $("#name_user_edit").val();
+      let correo_electronico = $("#Email_edit").val();
+      let contraseña = $("#password_edit").val();
+      let rol = $("#rol_edit").val();
+      // console.log(id_usuario)
+      // console.log(nombre_user)
+      // console.log(correo_electronico)
+      // console.log(contraseña)
+      // console.log(rol)
+
       $.ajax({
         url: "backend/Login/editar_usuario.php",
         type: "POST",
         data: {
+          id_usuario: id_usuario,
           nombre_user: nombre_user,
           correo_electronico: correo_electronico,
           contraseña: contraseña,
           rol: rol,
         },
         success: function (response) {
-          console.log("Usuario registrado", response);
+          console.log("Usuario editado", response);
           fetch_list_register_users();
-          $(".cont-form-editar-usuario").toggleClass("ocultar-form-crear-user");
+          $(".cont-form-editar-usuario").toggleClass("ocultar");
         },
         error: function (xhr, status, error) {
           console.error("Error al hacer el registro:", error);
         },
       });
     }
+  }
   });
+
+
 
   $("#body-listRegisterUser").on("click", ".edit-register", function () {
     $("#cont-form-editar-usuario").toggleClass("ocultar");
       // Obtén el valor del atributo idRegisterUser del elemento padre (tr)
       var idRegisterUser = $(this).closest("tr").attr("idRegisterUser");
 
-      console.log(idRegisterUser);
+      // console.log(idRegisterUser);
 
       // Realizar la solicitud AJAX
       $.ajax({
@@ -584,15 +617,16 @@ $(document).ready(function () {
 
           let selection = `<div class="cont-campo campo-rol">
           <label for="rol" class="form-label">ROL<span class="requerido">*</span></label>
-          <select name="rol" id="rol_editar" class="form-control required">
+          <select name="rol" id="rol_edit" class="form-control required_user_edit">
               <option value="">--</option>
               <option value="CLIENTE">CLIENTE</option>
           </select>
       </div>`
+
       if(Registro.Rol_ID === "ADMINISTRADOR"){
         selection = `<div class="cont-campo campo-rol">
           <label for="rol" class="form-label">ROL<span class="requerido">*</span></label>
-          <select name="rol" id="rol_editar" class="form-control required">
+          <select name="rol" id="rol_edit" class="form-control required_user_edit">
               <option value="ADMINISTRADOR">ADMINISTRADOR</option>
           </select>
       </div>`
@@ -601,19 +635,25 @@ $(document).ready(function () {
 
 
           plantilla += `
+          <div class="cont-campo" hidden>
+          <label for="id_user_edit" class="form-label">ID<span class="requerido">*</span></label>
+          <input type="text" class="form-control required_user_edit" id="id_user_edit" value="${Registro.ID_Usuario}">
+      </div>  
           <div class="cont-campo">
           <label for="name_user" class="form-label">NOMBRE DE USUARIO<span class="requerido">*</span></label>
-          <input type="text" class="form-control required" id="name_user" value="${Registro.Nombre_User}">
+          <input type="text" class="form-control required_user_edit" id="name_user_edit" value="${Registro.Nombre_User}">
       </div>
+      
       <div class="cont-campo">
           <label for="Email" class="form-label">CORREO ELECTRONICO</label>
-          <input type="email" class="form-control" id="Email" value="${Registro.Correo_Electronico}">
+          <input type="email" class="form-control" id="Email_edit" value="${Registro.Correo_Electronico}">
       </div>
       <div class="cont-campo">
           <label for="password" class="form-label">CONTRASEÑA<span class="requerido">*</span></label>
-          <input type="password" class="form-control required" id="password">
+          <input type="password" class="form-control required_user_edit" id="password_edit">
+
           <span class="toggle-password">
-              <i id="eye" class="fas fa-eye"></i>
+              <i id="eye_edit" class="fas fa-eye"></i>
           </span>
       </div>
       ${selection}
@@ -621,7 +661,7 @@ $(document).ready(function () {
       <input type="text" class="form-control" hidden id="rol_oculto" value="${Registro.Rol_ID}">
       <div class="campo-btn">
           <button type="button" class="btn btn-editar-cancelar">CANCELAR</button>
-          <button type="button" class="btn btn-editar-usuario">GUARDAR</button>
+          <button type="button" class="btn btn-editar-user">GUARDAR</button>
       </div>
 
                     `;
@@ -633,7 +673,7 @@ $(document).ready(function () {
 
         $("#formulario_user_editar").html(plantilla);
         let rol_editar= $('#rol_oculto').val();
-        $('#rol_editar').val(rol_editar);
+        $('#rol_edit').val(rol_editar);
         },
         error: function (xhr, status, error) {
           console.error("Error al eliminar el registro:", error);
@@ -648,8 +688,37 @@ $(document).ready(function () {
   $(".cont-form-editar-usuario").on("click", '.btn-editar-cancelar',function () {
     $(".cont-form-editar-usuario").toggleClass("ocultar");
   });
+
+  $(".cont-form-editar-usuario").on("click", '.toggle-password',function () {
+    var passwordInput = $("#password_edit");
+    var eyeIcon = $("#eye_edit");
+
+    if (passwordInput.attr("type") === "password") {
+      passwordInput.attr("type", "text");
+      eyeIcon.removeClass("fa-eye");
+      eyeIcon.addClass("fa-eye-slash");
+    } else {
+      passwordInput.attr("type", "password");
+      eyeIcon.removeClass("fa-eye-slash");
+      eyeIcon.addClass("fa-eye");
+    }
+  });
   
 
+$(".toggle-password").click(function () {
+    var passwordInput = $("#password");
+    var eyeIcon = $("#eye");
+
+    if (passwordInput.attr("type") === "password") {
+      passwordInput.attr("type", "text");
+      eyeIcon.removeClass("fa-eye");
+      eyeIcon.addClass("fa-eye-slash");
+    } else {
+      passwordInput.attr("type", "password");
+      eyeIcon.removeClass("fa-eye-slash");
+      eyeIcon.addClass("fa-eye");
+    }
+  });
 
 
   // Historial de actividad

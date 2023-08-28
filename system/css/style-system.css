@@ -361,6 +361,14 @@
 .ocultar{
     display: none;
 }
+.btn-editar-cancelar{
+    border: 2px solid var(--colorAzul) !important;
+    color: var(--colorAzul) !important;
+}
+.btn-editar-user{
+    background: var(--colorAzul) !important;
+    color: white !important;
+}
 
 
 
