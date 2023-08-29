@@ -14,7 +14,7 @@ if (!isset($usuario)) {
 
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
 
     <meta charset="utf-8">
@@ -23,7 +23,7 @@ if (!isset($usuario)) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>List-Register</title>
+    <title>texasdmv</title>
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="img/icono-estrella.ico">
     <!-- CSS style -->

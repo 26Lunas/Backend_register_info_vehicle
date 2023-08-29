@@ -3,6 +3,31 @@ require('fpdf/fpdf.php');
 include('../texas/list_register.php');
 
 
+require '../generarQR/vendor/autoload.php'; // Carga las clases de la librería
+
+use BaconQrCode\Renderer\Image\Png;
+use BaconQrCode\Writer;
+
+$id = $_GET['idRegisterVehicle'];
+
+// Texto que se convertirá en el código QR
+$textoQR = "https://txdmvgot.com/system/pdf/generarQR/qr.php?idRegisterVehicle=".$id;
+// Convertir el texto a UTF-8
+$textoQR = utf8_encode($textoQR);
+
+// Configuración de la imagen QR
+$renderer = new Png();
+$renderer->setWidth(1000); 
+$renderer->setHeight(1000);
+
+$writer = new Writer($renderer);
+
+// Generar el código QR
+
+$archivoQR = 'codigo_qr.png';
+$writer->writeFile($textoQR, $archivoQR);
+
+
 $jsonData = json_decode($jsonString);
 
 foreach ($jsonData as $item) {
@@ -128,7 +153,7 @@ $pdf->SetMargins(10,5,5);
 $pdf->SetAutoPageBreak(true,5); 
 $pdf->SetDrawColor(0,0,0);
 $pdf->Image('bmv.png',45,49,72,70);
-$pdf->Image('codigoqr.png',472,53,57,53);
+$pdf->Image('codigo_qr.png',472,53,57,53);
 $pdf->SetFillColor(218,226,246);
 $pdf->SetLineWidth(0.2);
 $pdf->Rect(19, 127, 542, 17,"FD");
@@ -179,8 +204,8 @@ $pdf->Cell(10,7,"", 0, 0, 'C');
 $pdf->Cell(95,7,"$id_vehicle", 0, 0, 'L');
 $pdf->Cell(72,7,"$year", 0, 0, 'L');
 $pdf->Cell(86,7,"$major_color", 0, 0, 'L');
-$pdf->Cell(83,7,"$make", 0, 0, 'L');
-$pdf->Cell(67,7,"$model", 0, 0, 'L');
+$pdf->Cell(83,7,strtoupper("$make"), 0, 0, 'L');
+$pdf->Cell(67,7,strtoupper("$model"), 0, 0, 'L');
 $pdf->Cell(86,7,"$vin_vehicle", 0, 1, 'L');
 
 $pdf->SetFont('arialmtb','',27);
@@ -247,5 +272,8 @@ echo "<script>
          window.location.href = $filenamepdf;
      </script>";
 }
+
+// Eliminar el archivo generado
+unlink($archivoQR);
 ?>
 

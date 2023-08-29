@@ -1,5 +1,5 @@
 <?php
-require('fpdf/fpdf.php');
+require('fpdf/fpdf.php'); 
 
 include('../texas/list_register.php');
 

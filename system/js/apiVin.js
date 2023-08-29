@@ -321,6 +321,12 @@ $(document).ready(function () {
               // Abrir el primer PDF en una nueva pestaña
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
+            }else if (pdf === "CO") {
+              var pdfURL1 = "pdf/colorado/index.php?idRegisterVehicle=" + id_buyer;
+
+              // Abrir el primer PDF en una nueva pestaña
+              var newTab1 = window.open(pdfURL1, "_blank");
+              newTab1.focus();
             }else {
               alert("No hay PDF disponible para este registro");
             }

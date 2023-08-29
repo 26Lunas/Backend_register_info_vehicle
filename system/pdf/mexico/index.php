@@ -180,9 +180,9 @@ $pdf->SetFont('arialmt','',8);
 $pdf->TextWithDirection(123,140,"Insurance: AAAA",'R');
 $pdf->TextWithDirection(123,147,"Policy: JL28469",'R');
 $pdf->TextWithDirection(123,153.5,"Efective Date From:",'R');
-$pdf->TextWithDirection(149,153.5,"11/09/2022",'R');
+$pdf->TextWithDirection(149,153.5,"$fecha_transformada_sale",'R');
 $pdf->TextWithDirection(170,153.5,"To:",'R');
-$pdf->TextWithDirection(175,153.5,"01/08/2023",'R');
+$pdf->TextWithDirection(175,153.5,"$expires",'R');
 
 $numeroAleatorio = mt_rand(10, 99);
 // $pdf->Output();
