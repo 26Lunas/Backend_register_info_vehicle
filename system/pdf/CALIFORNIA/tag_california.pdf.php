@@ -1,7 +1,7 @@
 <?php
 include('../texas/list_register.php');
 
-
+ 
 require '../generarQR/vendor/autoload.php'; // Carga las clases de la librería
 
 use BaconQrCode\Renderer\Image\Png;
