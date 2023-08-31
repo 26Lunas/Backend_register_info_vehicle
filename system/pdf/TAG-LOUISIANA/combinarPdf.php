@@ -16,7 +16,6 @@ $pdf->AddPage();
 $pdf->setSourceFile("reporteVertical.pdf");
 $template = $pdf->importPage(1);
 $pdf->useImportedPage($template, 0, 0);
-$numeroAleatorio = mt_rand(1000, 9999);
 
 $numeroAleatorio = mt_rand(10, 99);
 // $pdf->Output();

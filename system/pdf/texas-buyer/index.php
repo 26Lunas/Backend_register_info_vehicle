@@ -294,18 +294,15 @@ $pdf->Cell(190,17,"", 0, 1, 'C');
 $pdf->Cell(196,5,"DEALER'S COPY", 0, 1, 'C');
 
 
-$numeroAleatorio = mt_rand(10, 99);
-    // $pdf->Output();
-    $filenamepdf = "TAG-TX-$numeroAleatorio.pdf";
-    // Definir el tipo de contenido y configurar el encabezado Content-Disposition
-    // header('Content-Type: application/pdf');
-    // header("Content-Disposition: inline; filename=$filenamepdf");
+$filenamepdf="TAG-TX-$numeroAleatorio.pdf";
+// Definir el tipo de contenido y configurar el encabezado Content-Disposition
+header('Content-Type: application/pdf');
+header("Content-Disposition: inline; filename=$filenamepdf");
 
 
-    $pdf->Output($filenamepdf, 'I');
+$pdf->Output($filenamepdf,'I');
 
-
-    echo "<script>
+echo "<script>
          window.location.href = $filenamepdf;
      </script>";
 }

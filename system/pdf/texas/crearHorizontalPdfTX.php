@@ -1,4 +1,5 @@
 <?php
+require_once '../dompdf/autoload.inc.php';
 
 require '../generarQR/vendor/autoload.php'; // Carga las clases de la librería
 use BaconQrCode\Renderer\Image\Png;
@@ -29,7 +30,7 @@ ob_start(); // Iniciar el almacenamiento en búfer de salida
 include "datosHorizontales.php"; // Incluir el archivo que contiene el HTML a utilizar
 $html = ob_get_clean(); // Obtener el contenido almacenado en el búfer de salida
 
-require_once '../dompdf/autoload.inc.php';
+
 use Dompdf\Dompdf;
 
 // Instanciamos un objeto de la clase DOMPDF.

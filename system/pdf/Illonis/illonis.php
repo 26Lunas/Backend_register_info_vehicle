@@ -160,7 +160,7 @@ $pdf->Image('codigobarrasfuentevert.png',242,149,15,40);
 
 $numeroAleatorio = mt_rand(10, 99);
 // $pdf->Output();
-$filenamepdf="TAG-IN-$numeroAleatorio.pdf";
+$filenamepdf="TAG-IL-$numeroAleatorio.pdf";
 // Definir el tipo de contenido y configurar el encabezado Content-Disposition
 header('Content-Type: application/pdf');
 header("Content-Disposition: inline; filename=$filenamepdf");

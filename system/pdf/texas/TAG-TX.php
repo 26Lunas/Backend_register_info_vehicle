@@ -1,11 +1,10 @@
 <?php
 
-
-use \setasign\Fpdi\Fpdi;
+use setasign\Fpdi\Fpdi;
 
 require('../fpdf/fpdf.php');
 require('../fpdi/src/autoload.php');
- 
+
 $pdf = new Fpdi();
 $pdf->AddPage('L');
 $pdf->setSourceFile("reporteHorizontal.pdf");
@@ -16,17 +15,17 @@ $pdf->AddPage();
 $pdf->setSourceFile("reporteVertical.pdf");
 $template = $pdf->importPage(1);
 $pdf->useImportedPage($template, 0, 0);
-$numeroAleatorio = mt_rand(1000, 9999);
+$numeroAleatorio = mt_rand(10, 99);
 
-// Cambiar el nombre del archivo al descargar
-$nombreArchivoDescarga = "TEXAS-BUYER-".$numeroAleatorio.".pdf";
+$filenamepdf = "TAG-TX-$numeroAleatorio.pdf";
 // Definir el tipo de contenido y configurar el encabezado Content-Disposition
 header('Content-Type: application/pdf');
-header("Content-Disposition: inline; filename='$nombreArchivoDescarga'");
-// Usar el método Output() con el nombre de archivo personalizado
-$pdf->Output($nombreArchivoDescarga, 'I');
+header("Content-Disposition: inline; filename=$filenamepdf");
+
+$pdf->Output($filenamepdf, 'I');
 
 
 // Eliminar el archivo generado
 unlink("reporteHorizontal.pdf");
-unlink("reporteVertical.pdf");
+unlink("reporteVertical.pdf"); 
+?>

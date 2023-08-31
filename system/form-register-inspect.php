@@ -210,7 +210,7 @@ if (!isset($usuario)) {
                                     <div class="col-sm-4 col-6">
                                         <label>Model <span class="requerido">*</span>:</label>
                                         <input type="text" class="form-control required" id="campoVehicle-Model"
-                                        maxlength="3" placeholder="Make">
+                                        maxlength="3" placeholder="Model">
                                     </div>
                                     <div class="col-sm-4 col-6">
                                         <label>Vehicle Type <span class="requerido">*</span>:</label>
