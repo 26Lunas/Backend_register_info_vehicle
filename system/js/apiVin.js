@@ -245,7 +245,18 @@ $(document).ready(function () {
               }, 500);
 
 
-            } else if (pdf === "CA") {
+            } 
+            // if (pdf === "TX") {
+            //   var pdfURL1 =
+            //     "pdf/texas-TX/index.php?idRegisterVehicle=" + id_buyer;
+
+            //   setTimeout(() => {
+            //     // Abrir el primer PDF en una nueva pestaña
+            //     var newTab1 = window.open(pdfURL1, "_blank");
+            //     newTab1.focus();
+            //   }, 500);
+            // }
+            else if (pdf === "CA") {
               var pdfURL1 =
                 "pdf/CALIFORNIA/tag_california.pdf.php?idRegisterVehicle=" +
                 id_buyer;

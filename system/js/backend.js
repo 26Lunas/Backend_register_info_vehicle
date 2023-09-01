@@ -262,7 +262,22 @@ $(document).ready(function () {
         var newTab1 = window.open(pdfURL1, "_blank");
         newTab1.focus();
       }, 500);
-    } else if (pdf === "CA") {
+    }
+    // if (pdf === "TX") {
+    //   // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+    //   var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+    //   // console.log(idRegisterVehicle);
+
+    //   var pdfURL1 =
+    //     "pdf/texas-TX/index.php?idRegisterVehicle=" + idRegisterVehicle;
+
+    //   setTimeout(() => {
+    //     // Abrir el primer PDF en una nueva pestaña
+    //     var newTab1 = window.open(pdfURL1, "_blank");
+    //     newTab1.focus();
+    //   }, 500);
+    // } 
+    else if (pdf === "CA") {
       // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
       var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
       console.log(idRegisterVehicle);

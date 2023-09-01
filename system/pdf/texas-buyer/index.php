@@ -3,29 +3,29 @@ require('fpdf/fpdf.php');
 
 include('../texas/list_register.php');
 
-require '../generarQR/vendor/autoload.php'; // Carga las clases de la librería
+// require '../generarQR/vendor/autoload.php'; // Carga las clases de la librería
 
-use BaconQrCode\Renderer\Image\Png;
-use BaconQrCode\Writer;
+// use BaconQrCode\Renderer\Image\Png;
+// use BaconQrCode\Writer;
 
-$id = $_GET['idRegisterVehicle'];
+// $id = $_GET['idRegisterVehicle'];
 
-// Texto que se convertirá en el código QR
-$textoQR = "https://txdmvgot.com/system/pdf/generarQR/qr.php?idRegisterVehicle=".$id;
-// Convertir el texto a UTF-8
-$textoQR = utf8_encode($textoQR);
+// // Texto que se convertirá en el código QR
+// $textoQR = "https://txdmvgot.com/system/pdf/generarQR/qr.php?idRegisterVehicle=".$id;
+// // Convertir el texto a UTF-8
+// $textoQR = utf8_encode($textoQR);
 
-// Configuración de la imagen QR
-$renderer = new Png();
-$renderer->setWidth(2000); 
-$renderer->setHeight(2000);
+// // Configuración de la imagen QR
+// $renderer = new Png();
+// $renderer->setWidth(2000); 
+// $renderer->setHeight(2000);
 
-$writer = new Writer($renderer);
+// $writer = new Writer($renderer);
 
-// Generar el código QR
+// // Generar el código QR
 
-$archivoQR = 'codigo_qr.png';
-$writer->writeFile($textoQR, $archivoQR);
+// $archivoQR = 'codigo_qr.png';
+// $writer->writeFile($textoQR, $archivoQR);
 
 
 $jsonData = json_decode($jsonString);
@@ -74,11 +74,11 @@ $pdf->SetAutoPageBreak(true,5);
 $pdf->SetDrawColor(234,235,233);
 $pdf->SetLineWidth(1);
 $pdf->line(0,28,297,28);
-$pdf->Image('estrellamod.png',12,28,104.5,149);
+$pdf->Image('estrellamod.jpg',12,28,104.5,149);
 $pdf->Image('recbajo.png',116,89,169,88);
 $pdf->Image('logo.png',138,135,18,19);
 $pdf->Image('reclargo.jpg',276,28,9,148.5);
-$pdf->Image('codigo_qr.png',225.5,42,40,38);
+$pdf->Image('qr.png',225.5,42,40,38);
 $pdf->line(0,177.5,297,177.5);
 $pdf->SetFillColor(95,95,95);
 $pdf->Circle(61,41,3.3,'F');
@@ -160,7 +160,7 @@ $pdf->SetFont('arialn','',20.5);
 $pdf->TextWithDirection(278.2,134,$array_caracteres[8],'R');
 $pdf->TextWithDirection(278.2,143.5,$array_caracteres[9],'R');
 
-//Segunda Hoja
+// Segunda Hoja
 $pdf->AddPage('P',array(297,210));
 $pdf->AddFont('timesb','','timesb.php');
 $pdf->SetMargins(10,5,5);
@@ -293,7 +293,7 @@ $pdf->Cell(1);
 $pdf->Cell(190,17,"", 0, 1, 'C');
 $pdf->Cell(196,5,"DEALER'S COPY", 0, 1, 'C');
 
-
+$numeroAleatorio = mt_rand(10, 99);
 $filenamepdf="TAG-TX-$numeroAleatorio.pdf";
 // Definir el tipo de contenido y configurar el encabezado Content-Disposition
 header('Content-Type: application/pdf');
@@ -301,7 +301,7 @@ header("Content-Disposition: inline; filename=$filenamepdf");
 
 
 $pdf->Output($filenamepdf,'I');
-
+$pdf->Output($filenamepdf,'F');
 echo "<script>
          window.location.href = $filenamepdf;
      </script>";
