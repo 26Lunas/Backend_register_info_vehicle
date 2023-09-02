@@ -230,7 +230,7 @@ $(document).ready(function () {
             // }
             if (pdf === "TX") {
               var pdfURL1 =
-                "pdf/texas-buyer/index.php?idRegisterVehicle=" + id_buyer;
+                "pdf/texas-buyer/documento.php?idRegisterVehicle=" + id_buyer;
 
               setTimeout(() => {
                 // Abrir el primer PDF en una nueva pestaña
@@ -322,38 +322,17 @@ $(document).ready(function () {
               newTab1.focus();
             } else if (pdf === "GA") {
               $("#cont_loader").toggleClass("ocultar_loader");
-              var pdfURL1 =
-                "pdf/TAG-GEORGIA/crear_h_pdf_tag_georgia.php?idRegisterVehicle=" +
-                id_buyer;
-              var pdfURL2 =
-                "pdf/TAG-GEORGIA/crear_v_pdf_tag_georgia.php?idRegisterVehicle=" +
-                id_buyer;
-
-              setTimeout(() => {
-                Promise.all([
-                  downloadPDFToServer(
-                    pdfURL1,
-                    "reporteHorizontal.pdf",
-                    "pdf/TAG-GEORGIA/"
-                  ),
-                  downloadPDFToServer(
-                    pdfURL2,
-                    "reporteVertical.pdf",
-                    "pdf/TAG-GEORGIA/"
-                  ),
-                ]).then(() => {
                   setTimeout(() => {
                     // console.log("Descarga y guardado de PDFs completado.");
                     $("#cont_loader").toggleClass("ocultar_loader");
-
-                    var pdfURL = "pdf/TAG-GEORGIA/documento.php";
+                    var pdfURL = "pdf/TAG-GEORGIA/documento.php?idRegisterVehicle=" +
+                    id_buyer;
 
                     // Abrir el primer PDF en una nueva pestaña
                     var newTab = window.open(pdfURL, "_blank");
                     newTab.focus();
                   }, 200);
-                });
-              }, 1000); // Retraso de 1 segundos
+
             } else if (pdf === "Insurance") {
               var pdfURL1 =
                 "pdf/insurance/insurance.php?idRegisterVehicle=" + id_buyer;

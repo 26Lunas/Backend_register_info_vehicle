@@ -392,33 +392,16 @@ $(document).ready(function () {
       $("#cont_loader").toggleClass("ocultar_loader");
       // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
       var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
-      console.log(idRegisterVehicle);
-
-      var pdfURL1 =
-        "pdf/TAG-GEORGIA/crear_h_pdf_tag_georgia.php?idRegisterVehicle=" +
-        idRegisterVehicle;
-      var pdfURL2 =
-        "pdf/TAG-GEORGIA/crear_v_pdf_tag_georgia.php?idRegisterVehicle=" +
-        idRegisterVehicle;
-
-      // Descargar los dos PDFs en el servidor y combinarlos
-      Promise.all([
-        downloadPDFToServer(
-          pdfURL1,
-          "reporteHorizontal.pdf",
-          "pdf/TAG-GEORGIA/"
-        ),
-        downloadPDFToServer(pdfURL2, "reporteVertical.pdf", "pdf/TAG-GEORGIA/"),
-      ]).then(() => {
+      // console.log(idRegisterVehicle);
         setTimeout(() => {
           $("#cont_loader").toggleClass("ocultar_loader");
-        var pdfURL = "pdf/TAG-GEORGIA/documento.php";
+        var pdfURL = "pdf/TAG-GEORGIA/documento.php?idRegisterVehicle=" +
+        idRegisterVehicle;
 
         // Abrir el primer PDF en una nueva pestaña
         var newTab = window.open(pdfURL, "_blank");
         newTab.focus();
         }, 200);
-      });
     } else if (pdf === "Insurance") {
       // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
       var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
