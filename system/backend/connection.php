@@ -4,7 +4,7 @@
 $host = 'localhost';
 $usuario = 'root';
 $password = '';
-$database = 'sys_record';
+$database = 'sys_ record';
 
     $Connection = mysqli_connect($host, $usuario, $password, $database);
     mysqli_set_charset($Connection, 'utf8');

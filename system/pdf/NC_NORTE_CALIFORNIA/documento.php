@@ -1,5 +1,6 @@
 <?php
-
+include('crear_h_pdf_norte_california.php');
+include('crear_v2_pdf_norte_california.php');
 
 use \setasign\Fpdi\Fpdi;
 
@@ -8,12 +9,12 @@ require('../fpdi/src/autoload.php');
  
 $pdf = new Fpdi();
 $pdf->AddPage('L', array(327, 172)); 
-$pdf->setSourceFile("reporteHorizontal.pdf");
+$pdf->setSourceFile("NC_PAG-1.pdf");
 $template = $pdf->importPage(1);
 $pdf->useImportedPage($template, 0, 0);
 
 $pdf->AddPage();
-$pdf->setSourceFile("reporteVertical.pdf");
+$pdf->setSourceFile("NC_PAG-2.pdf");
 $template = $pdf->importPage(1);
 $pdf->useImportedPage($template, 0, 0);
 $numeroAleatorio = mt_rand(1000, 9999);
@@ -29,11 +30,6 @@ header("Content-Disposition: inline; filename=$filenamepdf");
 
 $pdf->Output($filenamepdf,'I');
 
-echo "<script>
-         window.location.href = $filenamepdf;
-     </script>";
-
-
-// Eliminar el archivo generado
-unlink("reporteHorizontal.pdf");
-unlink("reporteVertical.pdf");
+// // Eliminar el archivo generado
+// unlink("reporteHorizontal.pdf");
+// unlink("reporteVertical.pdf");

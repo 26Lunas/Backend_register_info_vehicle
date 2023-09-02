@@ -1,6 +1,9 @@
 <?php
 
 
+require('crear_h_pdf_tag_louisiana.php');
+require('crear_h2_pdf_tag_louisiana.php');
+
 use \setasign\Fpdi\Fpdi;
 
 require('../fpdf/fpdf.php');
@@ -8,12 +11,12 @@ require('../fpdi/src/autoload.php');
  
 $pdf = new Fpdi();
 $pdf->AddPage('L', array(266, 141));  
-$pdf->setSourceFile("reporteHorizontal.pdf");
+$pdf->setSourceFile("TAG-LOUISIANA-PAG-1.pdf");
 $template = $pdf->importPage(1);
 $pdf->useImportedPage($template, 0, 0);
 
 $pdf->AddPage();
-$pdf->setSourceFile("reporteVertical.pdf");
+$pdf->setSourceFile("TAG-LOUISIANA-PAG-2.pdf");
 $template = $pdf->importPage(1);
 $pdf->useImportedPage($template, 0, 0);
 
@@ -33,5 +36,5 @@ echo "<script>
 
 
 // Eliminar el archivo generado
-unlink("reporteHorizontal.pdf");
-unlink("reporteVertical.pdf");
+// unlink("reporteHorizontal.pdf");
+// unlink("reporteVertical.pdf");

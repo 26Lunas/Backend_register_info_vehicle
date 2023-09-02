@@ -29,8 +29,9 @@ $pdf->load_html($html);
 // Renderizamos el documento PDF.
 $pdf->render();
 
-// Enviamos el fichero PDF al navegador.
-$pdf->stream('TAG-LOUISIANA-PAG-1.pdf',  array('Attachment' => 0));
+// Guarda el PDF en el servidor
+file_put_contents('TAG-LOUISIANA-PAG-1.pdf', $pdf->output());
+
 
 // Guardamos el fichero PDF en el servidor.
 // $file = 'pruebaPDF-2.pdf';

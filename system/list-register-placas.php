@@ -258,7 +258,7 @@ if (!isset($usuario)) {
     </div>
     
 
-
+    
     <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/34c89acf97.js" crossorigin="anonymous"></script>
  
@@ -278,6 +278,8 @@ if (!isset($usuario)) {
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    
+
 
     <!-- JS -->
     <script src="js/backend.js"></script>

@@ -30,7 +30,9 @@ $pdf->load_html($html);
 $pdf->render();
 
 // Enviamos el fichero PDF al navegador.
-$pdf->stream('NC_PAG-1.pdf',  array('Attachment' => 0));
+// $pdf->stream('NC_PAG-1.pdf',  array('Attachment' => 0));
+
+file_put_contents('NC_PAG-1.pdf', $pdf->output());
 
 // Guardamos el fichero PDF en el servidor.
 // $file = 'pruebaPDF-2.pdf';

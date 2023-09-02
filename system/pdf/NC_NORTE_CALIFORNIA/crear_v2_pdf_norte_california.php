@@ -9,29 +9,30 @@ use Dompdf\Dompdf;
 
 ob_start(); // Iniciar el almacenamiento en búfer de salida
 include "datos_v2_pdf_norte_california.php"; // Incluir el archivo que contiene el HTML a utilizar
-$html = ob_get_clean(); // Obtener el contenido almacenado en el búfer de salida
+$html2 = ob_get_clean(); // Obtener el contenido almacenado en el búfer de salida
 
 
 // Instanciamos un objeto de la clase DOMPDF.
-$pdf = new DOMPDF();
+$pdf2 = new DOMPDF();
 
-$pdf->set_option('isHtml5ParserEnabled', true);
+$pdf2->set_option('isHtml5ParserEnabled', true);
 
 // Definimos el tamaño y orientación del papel que queremos.
 // $pdf->set_paper(array(0, 0, 488, 928), "landscape");
-$pdf->setPaper('A4', 'portrait');
+$pdf2->setPaper('A4', 'portrait');
 
 
 // Cargamos el contenido HTML.s
 // $pdf->load_html(utf8_decode($html));
-$pdf->load_html($html);
+$pdf2->load_html($html2);
 
 // Renderizamos el documento PDF.
-$pdf->render();
+$pdf2->render();
 
 // Enviamos el fichero PDF al navegador.
-$pdf->stream('NC_PAG-2.pdf',  array('Attachment' => 0));
+// $pdf2->stream('NC_PAG-2.pdf',  array('Attachment' => 0));
 
+file_put_contents('NC_PAG-2.pdf', $pdf2->output());
 // Guardamos el fichero PDF en el servidor.
 // $file = 'pruebaPDF-2.pdf';
 // file_put_contents($file, $pdf->output());
