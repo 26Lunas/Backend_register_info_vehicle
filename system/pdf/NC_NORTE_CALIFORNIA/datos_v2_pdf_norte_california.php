@@ -205,7 +205,7 @@
             <div class="cont-row-2">
                 <h2>Dealer and Insurance Information</h2>
                 <div class="columna-1">
-                    <p>Daeler Name: <span style="text-transform: uppercase;"><?php echo $seller;?></span></p>
+                    <p>Daeler Name: <span style="text-transform: uppercase;"><?php echo $seller;?>,</span></p>
                     <p>I certify under penalty of law that the vehicle noted on the face hereof is covered by at least
                         the minimun amounts of insurance required by Pennsylvania Motor Vehicle Laws and that I have no
                         outstanding violations with the Motor Vehicle Administration. I furthe certify under penalty of

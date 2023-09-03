@@ -369,13 +369,21 @@ $(document).ready(function () {
       // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
       var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
       $("#cont_loader").toggleClass("ocultar_loader");
-      // console.log(idRegisterVehicle);    
-        $("#cont_loader").toggleClass("ocultar_loader");
+      // console.log(idRegisterVehicle);
+      // var barcode = window.open("pdf/NC_NORTE_CALIFORNIA/barcodeNC.php?idRegisterVehicle=" + idRegisterVehicle, "_blank");
+      // setTimeout(() => {
+      //   barcode.close();
+      // }, 1000);
+      
+        setTimeout(() => {
+          $("#cont_loader").toggleClass("ocultar_loader");
         var pdfURL = "pdf/NC_NORTE_CALIFORNIA/documento.php?idRegisterVehicle=" + idRegisterVehicle;
 
         // Abrir el primer PDF en una nueva pestaña
         var newTab = window.open(pdfURL, "_blank");
         newTab.focus();
+        }, 500);
+        
    
     } else if (pdf === "IL") {
       // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)

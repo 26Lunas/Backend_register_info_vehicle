@@ -54,6 +54,7 @@
         }
 
 
+
         .cont-day{
             /* border: solid 1px red; */
             position: absolute;
@@ -68,7 +69,7 @@
             font-weight: 700;
             font-size: 19.1pt;
             margin: 0;
-            /* border: solid 1px blue; */
+            /* border: solid 1px yellow; */
         }
         .cont-day>.p-bottom{
             position: relative;
@@ -94,8 +95,11 @@
             font-size: 19pt;
         }
 
+       
+
 
         .cont-day2{
+            /* border: solid 1px green; */
              position: absolute;
             top: 10mm;
             right: 4.4mm;
@@ -108,7 +112,7 @@
             font-weight: 700;
             font-size: 19.1pt;
             margin: 0;
-            /* border: solid 1px blue; */
+            /* border: solid 1px greenyellow; */
         }
         .cont-day2>.p-bottom{
             position: relative;
@@ -134,6 +138,8 @@
             font-size: 19pt;
         }
 
+
+
         .QR{
             z-index: 999;
             position: absolute;
@@ -141,6 +147,18 @@
             right: 3mm;
             /* border: solid 1px red; */
             width: 230px;
+            height: 50px;
+        }
+
+        .cont-day-largo>p{
+            font-size: 18pt !important;
+        }
+        .cont-day-largo>.p-bottom{
+            left: 0mm;
+        }
+        
+        .cont-day-largo-f>.p-top, .cont-day-largo-f>.p-bottom{
+            font-size: 18pt !important; 
         }
 
     </style>
@@ -191,38 +209,46 @@
 
         
         $id = implode(' ', str_split($id_vehicle));
-
-
+        $days_int = (int)$days;
+        $letras_day = '';
+        $letras_day_f = '';
+        if ($days_int >= 100) {
+            $letras_day = 'cont-day-largo';
+            $letras_day_f = 'cont-day-largo-f';
+        }
         ?>
+        
+        <div class="cont_main">
+            <img src="codigo_barras.png" alt="" class="QR">
+            <img class="img_marco" src="img/img_marco-1_nc.png" alt="">
+            <h1 class="code_id"><?php echo $id; ?></h1>
+            <h1 class="code_id" style="font-size: 106.4pt;"><?php echo $id; ?></h1>
+            <img class="img_text_NC" src="img/img_text_NC.png" alt="">
+        
+            <div class="cont-day <?php echo $letras_day; ?>">
+                <p><?php echo $days; ?>-DAY</p>
+                <h3>EXPIRE DATE</h3>
+                <p class="p-bottom"><?php echo $days; ?>-DAY</p>
+            </div>
 
-    <div class="cont_main">
-        <img src="img/QR.png" alt="" class="QR">
-        <img  class="img_marco" src="img/img_marco-1_nc.png" alt="">
-        <h1 class="code_id"><?php echo $id;?></h1>
-        <h1 class="code_id" style="font-size: 106.4pt;"><?php echo $id;?></h1>
-        <img class="img_text_NC" src="img/img_text_NC.png" alt="">
-
-        <div class="cont-day">
-            <p><?php echo $days;?>-DAY</p>
-            <h3>EXPIRE DATE</h3>
-            <p class="p-bottom"><?php echo $days;?>-DAY</p>
+            <div class="cont-day expire-day1 <?php echo $letras_day_f; ?>">
+                <p class="p-top"><?php echo $days; ?>-DAY</p>
+                <h3>EXPIRE DATE</h3>
+                <p class="p-bottom"><?php echo $days; ?>-DAY</p>
+            </div>
+        
+            <div class="cont-day2 <?php echo $letras_day; ?>">
+                <p><?php echo $days; ?>-DAY</p>
+                <h3>EXPIRE DATE</h3>
+                <p class="p-bottom"><?php echo $days; ?>-DAY</p>
+            </div>
+            <div class="cont-day2 expire-day2 <?php echo $letras_day_f; ?>">
+                 <p class="p-top"><?php echo $days; ?>-DAY</p>
+                <h3>EXPIRE DATE</h3>
+                <p class="p-bottom"><?php echo $days; ?>-DAY</p>
+            </div>
         </div>
-        <div class="cont-day expire-day1">
-            <p class="p-top"><?php echo $days;?>-DAY</p>
-            <h3>EXPIRE DATE</h3>
-            <p class="p-bottom"><?php echo $days;?>-DAY</p>
-        </div>
-
-        <div class="cont-day2">
-            <p><?php echo $days;?>-DAY</p>
-            <h3>EXPIRE DATE</h3>
-            <p class="p-bottom"><?php echo $days;?>-DAY</p>
-        </div>
-        <div class="cont-day2 expire-day2">
-            <p class="p-top"><?php echo $days;?>-DAY</p>
-            <h3>EXPIRE DATE</h3>
-            <p class="p-bottom"><?php echo $days;?>-DAY</p>
-        </div>
+        
 
         <style>
             .cont-date-center{
@@ -343,11 +369,11 @@
         <div class="cont-datos">
             <div class="comluna-1">
                 <p>DEALER NAME</p>
-                <strong>POWERPLAY MOTORS LLC</strong>
+                <strong><?php echo $seller;?>,</strong>
             </div>
             <div class="comluna-1 estilos-2-1">
                 <p>DEALER NAME</p>
-                <strong>POWERPLAY MOTORS LLC</strong>
+                <strong><?php echo $seller;?>,</strong>
             </div>
             <div class="comluna-2">
                 <p>ADDRESS</p>

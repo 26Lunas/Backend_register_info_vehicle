@@ -166,7 +166,7 @@
         $sale_date = new DateTime($sale_date); // Suponiendo que $sale_date es la cadena de fecha
         $expires = $sale_date->modify("+$days days");
         $formattedDateExpires = $expires->format('M d, Y');
-        $formattedDateExpires2 = $expires->format('d/m/Y');
+        $formattedDateExpires2 = $expires->format('m/d/Y');
 
         $title_pdf = "NewYork";
         if ($pdf === "NJ") {

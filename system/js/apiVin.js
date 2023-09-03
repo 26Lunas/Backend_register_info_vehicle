@@ -48,6 +48,16 @@ $(document).ready(function () {
       <option value="365">1 AÑO</option>
     `;
     $("#campoVehicle-days").html(plantilla2);
+  }else if (pdfEstado === "NC") {
+    let plantilla2 = `
+    <option value="">--</option>
+    <option value="30">30 DAY</option>
+      <option value="60">60 DAY</option>
+      <option value="90">90 DAY</option>
+      <option value="120">120 DAY</option>
+      <option value="150">150 DAY</option>
+    `;
+    $("#campoVehicle-days").html(plantilla2);
   }
 
   let valueCampoVin = $("#campoVehicle-vin").val();
@@ -309,6 +319,7 @@ $(document).ready(function () {
                 $("#cont_loader").toggleClass("ocultar_loader");
                 var pdfURL = "pdf/NC_NORTE_CALIFORNIA/documento.php?idRegisterVehicle=" + id_buyer;
                 setTimeout(() => {
+                  $("#cont_loader").toggleClass("ocultar_loader");
                   // Abrir el primer PDF en una nueva pestaña
                   var newTab = window.open(pdfURL, "_blank");
                   newTab.focus();
