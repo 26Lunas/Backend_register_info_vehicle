@@ -188,8 +188,8 @@
 
         $fecha = $sale_date;
         $facha_sale = new DateTime($fecha);
-        $sale_fecha_format = $facha_sale->format('d/m/Y');
-        $sale_fecha_format2 = $facha_sale->format('d-m-Y');
+        $sale_fecha_format = $facha_sale->format('m/d/Y');
+        $sale_fecha_format2 = $facha_sale->format('m-d-Y');
     
         $name_state = str_replace(' ', '', $name_state);
         

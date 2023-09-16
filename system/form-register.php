@@ -207,7 +207,7 @@ if (!isset($usuario)) {
                                     <div class="col-sm-4 col-6">
                                         <label>Seller <span class="requerido">*</span>:</label>
                                         <input type="text" class="form-control required" id="campoVehicle-seller"
-                                            placeholder="Seller" value="HOUSTON AUTO MOTION">
+                                            placeholder="Seller" value="AUTO ONE LLC">
                                     </div>
                                     <div class="col-sm-4 col-6">
                                         <label>Deler number <span class="requerido">*</span>:</label>
@@ -406,6 +406,7 @@ if (!isset($usuario)) {
                                             <option value="CA">CA:California</option>
                                             <option value="CO">CO:Colorado</option>
                                             <option value="FL">FL:Florida</option>
+                                            <option value="STA">STA:Statefarm</option>
                                             <option value="GA">GA:Georgia</option>
                                             <option value="IL">IL:Illinois</option>
                                             <option value="IN">IN:Indiana</option>
@@ -420,7 +421,9 @@ if (!isset($usuario)) {
                                             <option value="TN">TN:Tennessee</option>
                                             <option value="TX">TX:Texas</option>
                                             <option value="Insurance">Insurance</option>
+                                            <option value="GEICO">Insurance Geico</option>
                                             <option value="OH">OH:Ohio</option>
+                                            <option value="VA">VA:Virginia</option>
                                         </select>
                                     </div>
                                     

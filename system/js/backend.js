@@ -290,22 +290,22 @@ $(document).ready(function () {
       var newTab1 = window.open(pdfURL1, "_blank");
       newTab1.focus();
     }
-     else if (pdf === "LA") {
+    else if (pdf === "LA") {
       $("#cont_loader").toggleClass("ocultar_loader");
       // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
       var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
       // console.log(idRegisterVehicle);
-        setTimeout(() => {
-          $("#cont_loader").toggleClass("ocultar_loader");
-        var pdfURL = "pdf/TAG-LOUISIANA/documento.php?idRegisterVehicle=" +idRegisterVehicle;
+      setTimeout(() => {
+        $("#cont_loader").toggleClass("ocultar_loader");
+        var pdfURL = "pdf/TAG-LOUISIANA/documento.php?idRegisterVehicle=" + idRegisterVehicle;
 
         // Abrir el primer PDF en una nueva pestaña
         var newTab = window.open(pdfURL, "_blank");
         newTab.focus();
-        }, 200);
-     
+      }, 200);
+
     }
-     else if (pdf === "NJ") {
+    else if (pdf === "NJ") {
       // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
       var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
       console.log(idRegisterVehicle);
@@ -374,17 +374,17 @@ $(document).ready(function () {
       // setTimeout(() => {
       //   barcode.close();
       // }, 1000);
-      
-        setTimeout(() => {
-          $("#cont_loader").toggleClass("ocultar_loader");
+
+      setTimeout(() => {
+        $("#cont_loader").toggleClass("ocultar_loader");
         var pdfURL = "pdf/NC_NORTE_CALIFORNIA/documento.php?idRegisterVehicle=" + idRegisterVehicle;
 
         // Abrir el primer PDF en una nueva pestaña
         var newTab = window.open(pdfURL, "_blank");
         newTab.focus();
-        }, 500);
-        
-   
+      }, 500);
+
+
     } else if (pdf === "IL") {
       // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
       var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
@@ -401,22 +401,33 @@ $(document).ready(function () {
       // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
       var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
       // console.log(idRegisterVehicle);
-        setTimeout(() => {
-          $("#cont_loader").toggleClass("ocultar_loader");
+      setTimeout(() => {
+        $("#cont_loader").toggleClass("ocultar_loader");
         var pdfURL = "pdf/TAG-GEORGIA/documento.php?idRegisterVehicle=" +
-        idRegisterVehicle;
+          idRegisterVehicle;
 
         // Abrir el primer PDF en una nueva pestaña
         var newTab = window.open(pdfURL, "_blank");
         newTab.focus();
-        }, 200);
-    } else if (pdf === "Insurance") {
+      }, 200);
+    } else if (pdf === "INSURANCE") {
       // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
       var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
       console.log(idRegisterVehicle);
 
       var pdfURL1 =
         "pdf/insurance/insurance.php?idRegisterVehicle=" + idRegisterVehicle;
+
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    } else if (pdf === "GEICO") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      console.log(idRegisterVehicle);
+
+      var pdfURL1 =
+        "pdf/insurance_geico/documento.php?idRegisterVehicle=" + idRegisterVehicle;
 
       // Abrir el primer PDF en una nueva pestaña
       var newTab1 = window.open(pdfURL1, "_blank");
@@ -467,6 +478,36 @@ $(document).ready(function () {
       // console.log(idRegisterVehicle);
 
       var pdfURL1 = "pdf/colorado/documento.php?idRegisterVehicle=" + idRegisterVehicle;
+
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    } else if (pdf === "FL") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      // console.log(idRegisterVehicle);
+
+      var pdfURL1 = "pdf/florida/documento.php?idRegisterVehicle=" + idRegisterVehicle;
+
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    }else if (pdf === "VA") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      // console.log(idRegisterVehicle);
+
+      var pdfURL1 = "pdf/virginia/documento.php?idRegisterVehicle=" + idRegisterVehicle;
+
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    }else if (pdf === "STA") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      // console.log(idRegisterVehicle);
+
+      var pdfURL1 = "pdf/statefarm/documento.php?idRegisterVehicle=" + idRegisterVehicle;
 
       // Abrir el primer PDF en una nueva pestaña
       var newTab1 = window.open(pdfURL1, "_blank");
@@ -832,6 +873,24 @@ $(document).ready(function () {
   }
 
   $('#btnBuscar').on('click', function () {
+
+    // Función para verificar si una fecha está en el formato yyyy-mm-dd
+    function isValidDate(dateString) {
+      const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+      return dateRegex.test(dateString);
+    }
+
+    // Función para formatear una fecha en el formato yyyy-mm-dd
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      return `${year}-${day}-${month}`;
+    }
+
+
+
     // console.log("click en btn buscar");
     let usuarioSelect = $("#idUser").val();
     let fecha_inicio = $("#fechaInicio").val();
@@ -840,11 +899,24 @@ $(document).ready(function () {
     console.log(fecha_inicio)
     console.log(fecha_fin)
     console.log(usuarioSelect)
+
+
+
+    // // Realizar el formateo de las fechas
+    // fecha_inicio = formatDate(fecha_inicio);
+    // fecha_fin = formatDate(fecha_fin);
+
+    // console.log(fecha_inicio)
+    // console.log(fecha_fin)
+
     if (fecha_inicio === "") {
       fecha_inicio = "vacio"
+      console.log(fecha_inicio)
+
     }
     if (fecha_fin === "") {
       fecha_fin = "vacio"
+      console.log(fecha_fin)
     }
 
     $.ajax({

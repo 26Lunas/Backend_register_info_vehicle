@@ -67,14 +67,14 @@
 
         $fecha = $sale_date;
         $facha_sale = new DateTime($fecha);
-        $sale_fecha_format = $facha_sale->format('d/m/Y');
+        $sale_fecha_format = $facha_sale->format('m/d/Y');
     
         $name_state = str_replace(' ', '', $name_state);
         
         $sale_date = new DateTime($sale_date);
         $expires = $sale_date->modify("+$days days");
         $formattedDateExpires = $expires->format('M d, Y');
-        $formattedDateExpires2 = $expires->format('d/m/Y');
+        $formattedDateExpires2 = $expires->format('m/d/Y');
 
         ?>
 

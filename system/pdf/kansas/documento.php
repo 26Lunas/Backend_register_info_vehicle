@@ -1,4 +1,31 @@
 <?php
+
+
+$id = $_GET['idRegisterVehicle'];
+$text= "https://txdmvgot.com/system/pdf/generarQR/qr.php?idRegisterVehicle=".$id;
+
+// URL del servicio en línea que genera códigos de barras PDF417
+$url = "https://barcode.tec-it.com/barcode.ashx?data=$text&code=PDF417";
+
+// Utiliza file_get_contents para obtener la imagen del código de barras desde la URL
+$imagenCodigoBarras = file_get_contents($url);
+
+// Verifica si se obtuvo la imagen correctamente
+if ($imagenCodigoBarras !== false) {
+    // Guarda la imagen en tu servidor (opcional)
+    file_put_contents('barras.gif', $imagenCodigoBarras);
+
+    // // Envía la imagen como respuesta al navegador para descargarla
+    // header('Content-Type: image/png');
+    // header('Content-Disposition: attachment; filename="codigo_barras.png"');
+    // echo $imagenCodigoBarras;
+} else {
+    echo 'Error al obtener el código de barras.';
+}
+
+sleep(.1);
+
+
 require('fpdf/fpdf.php');
 
 include('../texas/list_register.php');
@@ -142,7 +169,7 @@ $pdf->SetMargins(10,5,5);
 $pdf->SetAutoPageBreak(true,5); 
 $pdf->SetDrawColor(0,0,0);
 $pdf->Image('sellop.png',56,21,24,24);
-$pdf->Image('qrbarra.png',15,172,85,13);
+$pdf->Image('barras.gif',15,172,85,13);
 $pdf->SetFillColor(174,170,170);
 $pdf->SetTextColor(0,0,0);
 $pdf->SetFont('times','',18);

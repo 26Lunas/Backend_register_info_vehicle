@@ -67,12 +67,15 @@
         }
 
         .code-id {
+            width: 100%;
+            /* border: solid 2px red; */
             font-size: 180pt;
             font-weight: 400;
             margin: 0;
             position: relative;
             top: -50mm;
-            right: 5mm;
+            /* right: 5mm; */
+            text-align: center;
         }
 
         .cont-text-valor-issued {
@@ -365,6 +368,10 @@
                     left: 2mm;
                     font-size: 10pt;
                     font-weight: 400;
+                }
+                .cont-row-3 .columna-1>p:nth-child(2) {
+                    /* border: solid 2px red; */
+                    width: 120px;
                 }
 
                 .cont-row-3 .columna-2 {

@@ -1,5 +1,5 @@
 <?php
-
+include('../texas/list_register.php');
 // Cargamos la librería dompdf que hemos instalado en la carpeta dompdf
 require_once '../dompdf/autoload.inc.php';
 use Dompdf\Dompdf;
@@ -28,6 +28,12 @@ $writer = new Writer($renderer);
 $rutaCarpetaQR = "img/";
 $archivoQR = $rutaCarpetaQR .'codigo_qr.png';
 $writer->writeFile($textoQR, $archivoQR);
+
+$jsonData = json_decode($jsonString);
+
+foreach ($jsonData as $item) {
+    $pdf_estado = $item->pdf;
+
 
 // Introducimos HTML de prueba
 // $html = file_get_contents_curl("http://localhost/Software_registro_de_información/system/pdf/texas/datosVerticales.html");
@@ -58,7 +64,7 @@ $pdf->render();
 $numeroAleatorio = mt_rand(10, 99);
 
 // $pdf->Output();
-$filenamepdf="TAG-NJ/NY-$numeroAleatorio.pdf";
+$filenamepdf="TAG-$pdf_estado-$numeroAleatorio.pdf";
 
 
 // Enviamos el fichero PDF al navegador.
@@ -66,3 +72,4 @@ $pdf->stream($filenamepdf,  array('Attachment' => 0));
 
 // Eliminar el archivo generado
 unlink($archivoQR);
+}

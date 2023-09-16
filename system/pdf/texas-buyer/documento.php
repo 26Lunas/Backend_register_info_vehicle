@@ -3,29 +3,29 @@ require('fpdf/fpdf.php');
 
 include('../texas/list_register.php');
 
-// require '../generarQR/vendor/autoload.php'; // Carga las clases de la librería
+require '../generarQR/vendor/autoload.php'; // Carga las clases de la librería
 
-// use BaconQrCode\Renderer\Image\Png;
-// use BaconQrCode\Writer;
+use BaconQrCode\Renderer\Image\Png;
+use BaconQrCode\Writer;
 
-// $id = $_GET['idRegisterVehicle'];
+$id = $_GET['idRegisterVehicle'];
 
-// // Texto que se convertirá en el código QR
-// $textoQR = "https://txdmvgot.com/system/pdf/generarQR/qr.php?idRegisterVehicle=".$id;
-// // Convertir el texto a UTF-8
-// $textoQR = utf8_encode($textoQR);
+// Texto que se convertirá en el código QR
+$textoQR = "https://txdmvgot.com/system/pdf/generarQR/qr.php?idRegisterVehicle=".$id;
+// Convertir el texto a UTF-8
+$textoQR = utf8_encode($textoQR);
 
-// // Configuración de la imagen QR
-// $renderer = new Png();
-// $renderer->setWidth(2000); 
-// $renderer->setHeight(2000);
+// Configuración de la imagen QR
+$renderer = new Png();
+$renderer->setWidth(2000); 
+$renderer->setHeight(2000);
 
-// $writer = new Writer($renderer);
+$writer = new Writer($renderer);
 
-// // Generar el código QR
+// Generar el código QR
 
-// $archivoQR = 'codigo_qr.png';
-// $writer->writeFile($textoQR, $archivoQR);
+$archivoQR = 'codigo_qr.png';
+$writer->writeFile($textoQR, $archivoQR);
 
 
 $jsonData = json_decode($jsonString);
@@ -78,7 +78,7 @@ $pdf->Image('estrellamod.jpg',12,28,104.5,149);
 $pdf->Image('recbajo.png',116,89,169,88);
 $pdf->Image('logo.png',138,135,18,19);
 $pdf->Image('reclargo.jpg',276,28,9,148.5);
-$pdf->Image('qr.png',225.5,42,40,38);
+$pdf->Image('codigo_qr.png',225.5,42,40,38);
 $pdf->line(0,177.5,297,177.5);
 $pdf->SetFillColor(95,95,95);
 $pdf->Circle(61,41,3.3,'F');
@@ -301,12 +301,13 @@ header("Content-Disposition: inline; filename=$filenamepdf");
 
 
 $pdf->Output($filenamepdf,'I');
-$pdf->Output($filenamepdf,'F');
 echo "<script>
          window.location.href = $filenamepdf;
      </script>";
+     unlink($filenamepdf);
 }
 
 // Eliminar el archivo generado
 unlink($archivoQR);
+
 ?>

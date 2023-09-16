@@ -2,6 +2,10 @@
 require('fpdf/fpdf.php');
 include('../texas/list_register.php');
 
+require '../code-bar/barcode/src/BarcodeGenerator.php';
+require '../code-bar/barcode/src/BarcodeGeneratorPNG.php';
+
+use Picqer\Barcode\BarcodeGeneratorPNG;
  
 
 $jsonData = json_decode($jsonString);
@@ -40,6 +44,35 @@ foreach ($jsonData as $item) {
     // echo $fecha_transformada;
     $sale_date = $fecha_objeto = strtotime($sale_date); // Suponiendo que $sale_date es la cadena de fecha
     $expires = date("m/d/Y", strtotime($fecha . " +$days days"));
+
+    $barcode = new BarcodeGeneratorPNG();
+
+    // Genera el código de barras
+    $barcodeData = $barcode->getBarcode("$id_vehicle", $barcode::TYPE_CODE_128, 2, 50);
+    $barcodeDataV = $barcode->getBarcode("$id_vehicle", $barcode::TYPE_CODE_128, 50, 2);
+    
+    // Guarda el código de barras en un archivo (opcional)
+    $file = 'barras.png';
+    file_put_contents($file, $barcodeData);
+
+    // file_put_contents('barrasVerticales.png', $barcodeDataV);
+
+    // Carga la imagen generada
+$image = imagecreatefrompng($file);
+
+// Rota la imagen en -90 grados sin agregar un fondo negro
+$imageRotated = imagerotate($image, -90, 0);
+
+// Establece la transparencia en la imagen rotada
+imagealphablending($imageRotated, false);
+imagesavealpha($imageRotated, true);
+
+// Guarda la imagen rotada en un nuevo archivo
+$fileRotated = 'barrasVerticales.png';
+imagepng($imageRotated, $fileRotated);
+    
+    
+   
 
 $pdf = new FPDF();
 //$pdf->SetMargins(10,5,5);
@@ -108,7 +141,7 @@ $pdf->Cell(35,12,"$make", 0, 0, 'L');
 $pdf->Cell(22,12,"PATHFINDER", 0, 0, 'L');
 $pdf->Cell(22,12,"2537", 0, 0, 'L');
 $pdf->Cell(27,12,"", 0, 0, 'L');
-$pdf->Cell(31,12,"make", 0, 0, 'L');
+$pdf->Cell(31,12,"$make", 0, 0, 'L');
 $pdf->Cell(25,12,"PATHFINDER", 0, 0, 'L');
 $pdf->Cell(22,12,"2537", 0, 0, 'L');
 $pdf->Cell(16,12,"", 0, 1, 'L');
@@ -146,7 +179,7 @@ $pdf->SetFillColor(147,148,152);
 $pdf->SetLineWidth(0.1);
 $pdf->SetDash(1,1);
 $pdf->line(0,142,285,142);
-$pdf->Image('codigobarrasfuente.png',178,118,45,15);
+$pdf->Image('barras.png',178,118,45,15);
 $pdf->SetTextColor(0,0,0);
 $pdf->Cell(1);
 $pdf->SetTextColor(0,0,128);
@@ -155,8 +188,8 @@ $pdf->TextWithDirection(31,177,$id_vehicle,'U');
 $pdf->TextWithDirection(261,177,$id_vehicle,'U');
 $pdf->line(0,196,285,196);
 $pdf->line(140,150,140,204);
-$pdf->Image('codigobarrasfuentevert.png',12,149,15,40);
-$pdf->Image('codigobarrasfuentevert.png',242,149,15,40);
+$pdf->Image('barrasVerticales.png',12,149,15,40);
+$pdf->Image('barrasVerticales.png',242,149,15,40);
 
 $numeroAleatorio = mt_rand(10, 99);
 // $pdf->Output();
@@ -176,5 +209,3 @@ echo "<script>
 unlink($filenamepdf);
 
 }
-
-?>
