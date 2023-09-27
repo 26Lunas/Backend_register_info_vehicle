@@ -291,7 +291,7 @@ $pdf->Cell(35,5,strtoupper("$zip"), 0, 1, 'L');
 $pdf->SetFont('times','',15);
 $pdf->Cell(1);
 $pdf->Cell(190,17,"", 0, 1, 'C');
-$pdf->Cell(196,5,"DEALER'S COPY", 0, 1, 'C');
+$pdf->Cell(196,5,"DEALER'S BUYER", 0, 1, 'C');
 
 $numeroAleatorio = mt_rand(10, 99);
 $filenamepdf="TAG-TX-$numeroAleatorio.pdf";
@@ -301,9 +301,6 @@ header("Content-Disposition: inline; filename=$filenamepdf");
 
 
 $pdf->Output($filenamepdf,'I');
-echo "<script>
-         window.location.href = $filenamepdf;
-     </script>";
      unlink($filenamepdf);
 }
 

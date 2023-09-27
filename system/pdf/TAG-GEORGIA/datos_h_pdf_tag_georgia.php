@@ -38,7 +38,7 @@
     }
     .cont-text-title>.vin{
         position: absolute;
-        left: 46.5mm;
+        left: 42mm;
         top: -1.5mm;
         font-size: 9.5pt;
         font-weight: 400;
@@ -53,31 +53,31 @@
     }
     .cont-expires>p{
         position: absolute;
-        bottom: 38mm;
-        left: 59mm;
+        bottom: 41mm;
+        left: 52mm;
         font-size: 9.5pt;
         font-weight: 400;
     }
     .cont-expires>h6{
         position: absolute;
-        bottom: 25mm;
-        left: 24mm;
-        font-size: 39.8pt;
+        bottom: 30mm;
+        left: 23mm;
+        font-size: 39pt;
         font-weight: 400;
         margin: 0;
     }
     .QR_georgia{
-        width: 54px;
-        height: 55px;
+        width: 72px;
+        height: 75px;
         position: absolute;
         bottom: 28mm;
-        left: 4mm;
+        left: 1mm;
     }
     .cont-make{
         position: absolute;
-        bottom: 19mm;
-        left: 39mm;
-        font-size: 12pt;
+        bottom: 28.5mm;
+        left: 42mm;
+        font-size: 9pt;
         font-weight: 400;
     }
 
@@ -125,6 +125,28 @@
 
         ?>
 
+<style>
+    .marca_agua{
+        z-index: -999;
+        position: absolute !important;
+        top: .5%;
+        left: 26%;
+        width: 195px;
+        height: 200px;
+
+    }
+    .cont-logo-id{
+        position: absolute;
+        text-align: center;
+        right: 3.5mm;
+        bottom: 28.5mm;
+        font-size: 9pt;
+    }
+    .cont-logo-id img{
+        width: 45px;
+    }
+</style>
+    <img src="img/marca_agua.jpg" alt="" class="marca_agua">
     <div class="cont-text-title">
         <h6>GEORGIA TEMPORARY LICENSE</h6>
         <P class="vin"><?php echo $vin_vehicle;?></P>
@@ -132,7 +154,7 @@
     <div class="code-id"><?php echo $id_vehicle;?></div>
     <div class="cont-expires">
         <p>EXPIRES</p>
-        <h6><?php echo $formattedDateExpires; ?></h6>
+        <h6 style="text-transform: uppercase;"><?php echo $formattedDateExpires; ?></h6>
     </div>
     <img src="img/codigo_qr.png" alt="" class="QR_georgia">
     <div class="cont-make">
@@ -141,6 +163,11 @@
         <span class="ELANTRA" style="text-transform: uppercase;"><?php echo $model;?></span>
         <span class="color"><?php echo $major_color;?></span>
     </div>
+    <div class="cont-logo-id">
+    <img src="img/logo-lateral-righ.jpg" alt="" class="logo-lateral-righ">
+    <div class="code-id-lateral"><?php echo $id_vehicle;?></div>
+    </div>
+   
     <?php
     }
     ?>

@@ -383,7 +383,7 @@
                 <p>VIN: <span class="vin"><?php echo $vin_vehicle;?></span></p>
                 <p>Owner: <span class="owner text-mayuscula"><?php echo $name_1 ." ". $name_2;?></span></p>
                 <p>Co-Owner:</p>
-                <p class="address text-mayuscula"><?php echo $adress;?></p>
+                <p class="address text-mayuscula"><?php echo "$adress $city $estado $zip";?></p>
             </div>
             <div class="columna-2">
                 <p>Make: <span><?php echo $make;?></span></p>

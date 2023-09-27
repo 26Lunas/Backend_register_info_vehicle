@@ -372,10 +372,6 @@ header('Content-Type: application/pdf');
 header("Content-Disposition: inline; filename=$filenamepdf");
 $pdf->Output($filenamepdf,'I');
 }
-echo "<script>
-         window.location.href = $filenamepdf;
-     </script>";
-
 // Eliminar el archivo generado
 unlink($archivoQR);
 ?>

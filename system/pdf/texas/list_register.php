@@ -113,6 +113,7 @@ if (isset($_GET['idRegisterVehicle']) && is_numeric($_GET['idRegisterVehicle']))
             function openCurrentURLInNewTab() {
                 window.location.href = window.location.href;
             }
+            window.location.href = window.location.href;
             </script>
         </body>
         </html>

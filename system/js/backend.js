@@ -512,7 +512,17 @@ $(document).ready(function () {
       // Abrir el primer PDF en una nueva pestaña
       var newTab1 = window.open(pdfURL1, "_blank");
       newTab1.focus();
-    } else {
+    }else if (pdf === "TX2") {
+      // Obtén el valor del atributo idRegisterVehicle del elemento padre (tr)
+      var idRegisterVehicle = $(this).closest("tr").attr("idRegisterVehicle");
+      // console.log(idRegisterVehicle);
+
+      var pdfURL1 = "pdf/texas_2/documento.php?idRegisterVehicle=" + idRegisterVehicle;
+
+      // Abrir el primer PDF en una nueva pestaña
+      var newTab1 = window.open(pdfURL1, "_blank");
+      newTab1.focus();
+    }  else {
       alert("No hay PDF disponible para este registro");
     }
   });

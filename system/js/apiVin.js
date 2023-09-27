@@ -299,6 +299,14 @@ $(document).ready(function () {
               // Abrir el primer PDF en una nueva pestaña
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
+            }else if (pdf === "TX2") {
+              var pdfURL1 =
+                "pdf/texas_2/documento.php?idRegisterVehicle=" +
+                id_buyer;
+
+              // Abrir el primer PDF en una nueva pestaña
+              var newTab1 = window.open(pdfURL1, "_blank");
+              newTab1.focus();
             } else if (pdf === "LA") {
               $("#cont_loader").toggleClass("ocultar_loader");
               setTimeout(() => {

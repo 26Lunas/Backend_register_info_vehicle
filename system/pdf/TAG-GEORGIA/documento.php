@@ -1,7 +1,7 @@
 <?php
 
 require('crear_h_pdf_tag_georgia.php');
-require('crear_v_pdf_tag_georgia.php.php');
+require('crear_v_pdf_tag_georgia.php');
 
 use \setasign\Fpdi\Fpdi;
 

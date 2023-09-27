@@ -207,7 +207,7 @@ if (!isset($usuario)) {
                                     <div class="col-sm-4 col-6">
                                         <label>Seller <span class="requerido">*</span>:</label>
                                         <input type="text" class="form-control required" id="campoVehicle-seller"
-                                            placeholder="Seller" value="AUTO ONE LLC">
+                                            placeholder="Seller" value="HOUSTON AUTO MOTION">
                                     </div>
                                     <div class="col-sm-4 col-6">
                                         <label>Deler number <span class="requerido">*</span>:</label>
@@ -420,6 +420,7 @@ if (!isset($usuario)) {
                                             <option value="NC">NC:North Carolina</option>
                                             <option value="TN">TN:Tennessee</option>
                                             <option value="TX">TX:Texas</option>
+                                            <option value="TX2">TX2:Texas 2</option>
                                             <option value="Insurance">Insurance</option>
                                             <option value="GEICO">Insurance Geico</option>
                                             <option value="OH">OH:Ohio</option>
