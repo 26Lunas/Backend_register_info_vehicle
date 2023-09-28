@@ -69,7 +69,7 @@ $(document).ready(function () {
       <option value="150">150 DAY</option>
     `;
     $("#campoVehicle-days").html(plantilla2);
-  }else if (pdfEstado === "GEICO") {
+  } else if (pdfEstado === "GEICO") {
     let plantilla2 = `
     <option value="">--</option>
       <option value="90">90</option>
@@ -80,7 +80,7 @@ $(document).ready(function () {
       <option value="365">1 AÑO</option>
     `;
     $("#campoVehicle-days").html(plantilla2);
-  }else if (pdfEstado === "STA") {
+  } else if (pdfEstado === "STA") {
     let plantilla2 = `
     <option value="">--</option>
       <option value="90">90</option>
@@ -299,7 +299,7 @@ $(document).ready(function () {
               // Abrir el primer PDF en una nueva pestaña
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
-            }else if (pdf === "TX2") {
+            } else if (pdf === "TX2") {
               var pdfURL1 =
                 "pdf/texas_2/documento.php?idRegisterVehicle=" +
                 id_buyer;
@@ -394,7 +394,7 @@ $(document).ready(function () {
               // Abrir el primer PDF en una nueva pestaña
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
-            }else if (pdf === "GEICO") {
+            } else if (pdf === "GEICO") {
               var pdfURL1 =
                 "pdf/insurance_geico/documento.php?idRegisterVehicle=" + id_buyer;
 
@@ -442,14 +442,14 @@ $(document).ready(function () {
               // Abrir el primer PDF en una nueva pestaña
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
-            } else if (pdf === "VA"){
+            } else if (pdf === "VA") {
               var pdfURL1 =
                 "pdf/virginia/documento.php?idRegisterVehicle=" + id_buyer;
 
               // Abrir el primer PDF en una nueva pestaña
               var newTab1 = window.open(pdfURL1, "_blank");
               newTab1.focus();
-            } else if (pdf === "STA"){
+            } else if (pdf === "STA") {
               var pdfURL1 =
                 "pdf/statefarm/documento.php?idRegisterVehicle=" + id_buyer;
 
@@ -678,4 +678,371 @@ $(document).ready(function () {
       },
     });
   }
+
+  $.ajax({
+    type: "POST",
+    url: "backend/Model/valida_vin.php",
+    data: { valueCampoVin },
+    success: function (response) {
+      // console.log(response);
+
+      //Llenaremos los campos con la info de la base de datos
+      let datos = JSON.parse(response);
+      datos.forEach((dato) => {
+        // $('#campoVehicle-saleDate').val(dato.sale_date);
+        // $('#campoVehicle-days').val(dato.days);
+        $('#campoVehicle-seller').val(dato.seller);
+        $('#campoVehicle-delerNumber').val(dato.deler_number);
+
+        $('#campoVehicle-Make').val(dato.make);
+        $('#campoVehicle-bodyStyle').val(dato.body_style);
+        $('#campoVehicle-year').val(dato.year);
+        $('#campoVehicle-Model').val(dato.model);
+
+        $('#campoVehicle-majorColor').val(dato.major_color);
+        $('#campoVehicle-minorColor').val(dato.minor_color);
+        $('#campoVehicle-Miles').val(dato.miles);
+
+        $('#campoBuyer-name1').val(dato.name_1);
+        $('#campoBuyer-name2').val(dato.name_2);
+        $('#campoBuyer-adress').val(dato.adress);
+        $('#campoBuyer-city').val(dato.city);
+
+        $('#campoBuyer-state').val(dato.estado);
+        $('#campoBuyer-zip').val(dato.zip);
+        $('#campoBuyer-email').val(dato.email);
+        $('#campoBuyer-phone').val(dato.phone);
+
+        $('#campoBuyer-id').val(dato.id_buyer);
+        $('#campoBuyer-pdf').val(dato.pdf);
+      });
+
+      if (response !== '[]') {
+        var boton = $("#btn_generar");
+
+        // Quita la clase "btn-save-vehicle" si existe
+        boton.removeClass("btn-save-vehicle");
+
+        // Agrega la clase "btn-edit"
+        boton.addClass("btn-edit");
+      }
+
+      function update_register_vehicle_info() {
+        let id_buyerVehicle = $("#campoBuyer-id").val();
+        let campoVehicleVin = $("#campoVehicle-vin").val().toUpperCase();
+        let campoVehicleSaleDate = $("#campoVehicle-saleDate").val();
+        let campoVehicleDays = $("#campoVehicle-days").val();
+
+        let campoVehicleSeller = $("#campoVehicle-seller").val();
+        let campoVehicleDelerNamber = $("#campoVehicle-delerNumber").val();
+        let campoVehicleMake = $("#campoVehicle-Make").val();
+        let campoVehicleBodyStyle = $("#campoVehicle-bodyStyle").val();
+        let campoVehicleYear = $("#campoVehicle-year").val();
+        let campoVehicleModel = $("#campoVehicle-Model").val();
+        let campoVehicleMajorColor = $("#campoVehicle-majorColor").val();
+        let campoVehicleMinorColor = $("#campoVehicle-minorColor").val();
+        let campoVehicleMiles = $("#campoVehicle-Miles").val();
+
+        let campoBuyerName1 = $("#campoBuyer-name1").val();
+        let campoBuyerName2 = $("#campoBuyer-name2").val();
+        let campoBuyerAdress = $("#campoBuyer-adress").val();
+        let campoBuyerCity = $("#campoBuyer-city").val();
+        let campoBuyerState = $("#campoBuyer-state").val();
+        let campoBuyerZip = $("#campoBuyer-zip").val();
+        let campoBuyerEmail = $("#campoBuyer-email").val();
+        let campoBuyerPhone = $("#campoBuyer-phone").val();
+        let campoBuyerpdf = $("#campoBuyer-pdf").val();
+
+        const datos = {
+          id_buyerVehicle: id_buyerVehicle,
+          campoVehicleVin: campoVehicleVin,
+          campoVehicleSaleDate: campoVehicleSaleDate,
+          campoVehicleDays: campoVehicleDays,
+
+          campoVehicleSeller: campoVehicleSeller,
+          campoVehicleDelerNamber: campoVehicleDelerNamber,
+          campoVehicleMake: campoVehicleMake,
+          campoVehicleBodyStyle: campoVehicleBodyStyle,
+          campoVehicleYear: campoVehicleYear,
+          campoVehicleModel: campoVehicleModel,
+          campoVehicleMajorColor: campoVehicleMajorColor,
+          campoVehicleMinorColor: campoVehicleMinorColor,
+          campoVehicleMiles: campoVehicleMiles,
+
+          campoBuyerName1: campoBuyerName1,
+          campoBuyerName2: campoBuyerName2,
+          campoBuyerAdress: campoBuyerAdress,
+          campoBuyerCity: campoBuyerCity,
+          campoBuyerState: campoBuyerState,
+          campoBuyerZip: campoBuyerZip,
+          campoBuyerEmail: campoBuyerEmail,
+          campoBuyerPhone: campoBuyerPhone,
+          campoBuyerpdf: campoBuyerpdf,
+        };
+
+        for (let key in datos) {
+          if (datos.hasOwnProperty(key) && typeof datos[key] === 'string') {
+            datos[key] = datos[key].toUpperCase();
+          }
+        }
+
+        // console.log(campoVehicleVin);
+
+        $.ajax({
+          type: "POST",
+          url: "backend/Model/update_registro.php",
+          data: datos,
+          success: function (result) {
+            //   console.log(result);
+            if (result === "Exito") {
+              $("#form-register")[0].reset();
+              // console.log(result);
+            } else {
+              alert(
+                "Hubo un error en los datos, porfavor vuelva a intentarlo."
+              );
+              // console.log(result);
+            }
+          },
+          error: function (xhr, status, error) {
+            // Manejar errores de la solicitud AJAX si es necesario
+            console.log(xhr.responseText);
+          },
+        });
+      }
+
+
+
+
+      $(".btn-edit").click(function () {
+        let camposRequeridos = $(".required");
+        // console.log(camposRequeridos);
+        camposRequeridos.each(function () {
+          if ($(this).val() === "" || $(this).val() === "") {
+            algunoVacio = true;
+            $(this).addClass("valor-vacio");
+            return false; // Detener la iteración si se encuentra un valor vacío
+          }
+          if ($(this).val() !== "") {
+            $(this).removeClass("valor-vacio");
+            algunoVacio = false;
+          }
+        });
+        if (algunoVacio) {
+          alert("Al menos uno de los valores está vacío.");
+        } else {
+          let pdf = $("#campoBuyer-pdf").val();
+          var id_buyer = $("#campoBuyer-id").val();
+          update_register_vehicle_info();
+          // console.log(id_buyer);
+          // function downloadPDFToServer(url, filename, urlEnvioPDF) {
+          //   console.log("Descargando archivo:", url);
+
+          //   return fetch(url)
+          //     .then((response) => response.blob())
+          //     .then((blob) => {
+          //       console.log("Archivo descargado:", url);
+
+          //       const formData = new FormData();
+          //       formData.append("pdf", blob, filename);
+
+          //       return fetch(urlEnvioPDF + "recibir_pdf.php", {
+          //         method: "POST",
+          //         body: formData,
+          //       });
+          //     })
+          //     .then((response) => response.text())
+          //     .then((result) => {
+          //       console.log("PDF guardado en el servidor:", result);
+          //     })
+          //     .catch((error) => {
+          //       console.error("Error al descargar y guardar PDF: " + error);
+          //     });
+          // }
+          if (pdf === "TX") {
+            var pdfURL1 =
+              "pdf/texas-buyer/documento.php?idRegisterVehicle=" + id_buyer;
+
+            setTimeout(() => {
+              // Abrir el primer PDF en una nueva pestaña
+              var newTab1 = window.open(pdfURL1, "_blank");
+              newTab1.focus();
+            }, 500);
+          }
+          else if (pdf === "CA") {
+            var pdfURL1 =
+              "pdf/CALIFORNIA/tag_california.pdf.php?idRegisterVehicle=" +
+              id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "TX2") {
+            var pdfURL1 =
+              "pdf/texas_2/documento.php?idRegisterVehicle=" +
+              id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "LA") {
+            $("#cont_loader").toggleClass("ocultar_loader");
+            setTimeout(() => {
+              $("#cont_loader").toggleClass("ocultar_loader");
+              var pdfURL =
+                "pdf/TAG-LOUISIANA/documento.php?idRegisterVehicle=" + id_buyer;
+
+              // Abrir el primer PDF en una nueva pestaña
+              var newTab = window.open(pdfURL, "_blank");
+              newTab.focus();
+            }, 500);
+          } else if (pdf === "NJ") {
+            var pdfURL1 =
+              "pdf/NJ_NY/documento.php?idRegisterVehicle=" + id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "NY") {
+            var pdfURL1 =
+              "pdf/NJ_NY/documento.php?idRegisterVehicle=" + id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "NV") {
+            var pdfURL1 =
+              "pdf/TAG-NEVADA-/documento.php?idRegisterVehicle=" +
+              id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "MD") {
+            var pdfURL1 =
+              "pdf/TAG-MD/documento.php?idRegisterVehicle=" +
+              id_buyer;
+
+            setTimeout(() => {
+              // Abrir el primer PDF en una nueva pestaña
+              var newTab1 = window.open(pdfURL1, "_blank");
+              newTab1.focus();
+            }, 500);
+          } else if (pdf === "TN") {
+            var pdfURL1 =
+              "pdf/TAG-TENNESSEE-/documento.php?idRegisterVehicle=" +
+              id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "NC") {
+            $("#cont_loader").toggleClass("ocultar_loader");
+            var pdfURL = "pdf/NC_NORTE_CALIFORNIA/documento.php?idRegisterVehicle=" + id_buyer;
+            setTimeout(() => {
+              $("#cont_loader").toggleClass("ocultar_loader");
+              // Abrir el primer PDF en una nueva pestaña
+              var newTab = window.open(pdfURL, "_blank");
+              newTab.focus();
+            }, 100);
+          } else if (pdf === "IL") {
+            var pdfURL1 =
+              "pdf/Illonis/illonis.php?idRegisterVehicle=" + id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "GA") {
+            $("#cont_loader").toggleClass("ocultar_loader");
+            setTimeout(() => {
+              // console.log("Descarga y guardado de PDFs completado.");
+              $("#cont_loader").toggleClass("ocultar_loader");
+              var pdfURL = "pdf/TAG-GEORGIA/documento.php?idRegisterVehicle=" +
+                id_buyer;
+
+              // Abrir el primer PDF en una nueva pestaña
+              var newTab = window.open(pdfURL, "_blank");
+              newTab.focus();
+            }, 200);
+
+          } else if (pdf === "Insurance") {
+            var pdfURL1 =
+              "pdf/insurance/insurance.php?idRegisterVehicle=" + id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "GEICO") {
+            var pdfURL1 =
+              "pdf/insurance_geico/documento.php?idRegisterVehicle=" + id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "OH") {
+            var pdfURL1 = "pdf/ohio/documento.php?idRegisterVehicle=" + id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "KS") {
+            var pdfURL1 =
+              "pdf/kansas/documento.php?idRegisterVehicle=" + id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "IN") {
+            var pdfURL1 =
+              "pdf/indiana/documento.php?idRegisterVehicle=" + id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "NM") {
+            var pdfURL1 =
+              "pdf/mexico/documento.php?idRegisterVehicle=" + id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "CO") {
+            var pdfURL1 =
+              "pdf/colorado/documento.php?idRegisterVehicle=" + id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "FL") {
+            var pdfURL1 =
+              "pdf/florida/documento.php?idRegisterVehicle=" + id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "VA") {
+            var pdfURL1 =
+              "pdf/virginia/documento.php?idRegisterVehicle=" + id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          } else if (pdf === "STA") {
+            var pdfURL1 =
+              "pdf/statefarm/documento.php?idRegisterVehicle=" + id_buyer;
+
+            // Abrir el primer PDF en una nueva pestaña
+            var newTab1 = window.open(pdfURL1, "_blank");
+            newTab1.focus();
+          }
+          else {
+            alert("No hay PDF disponible para este registro");
+          }
+        }
+      });
+
+    }
+  });
+
+
 });

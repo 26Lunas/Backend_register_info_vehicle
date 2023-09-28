@@ -432,7 +432,7 @@ if (!isset($usuario)) {
                                 <div class="row">
                                     <div class="section-btn-plates col-sm-12">
                                         <button type="button" class="btn btn-cancel">Cancel</button>
-                                        <button type="button" class="btn btn-save btn-save-vehicle">Generar</button>
+                                        <button type="button" class="btn btn-save btn-save-vehicle" id="btn_generar">Generar</button>
                                     </div>
                                 </div>
                             </div>
